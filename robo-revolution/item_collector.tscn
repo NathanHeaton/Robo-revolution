@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkgn3ys5nt1ao"]
+
+[ext_resource type="Script" path="res://rigid_body_2d.gd" id="1_8ruds"]
+[ext_resource type="Texture2D" uid="uid://bc88own3hjhol" path="res://assets/collection_point.png" id="2_ayeuq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgpwt"]
+radius = 24.0832
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kifpb"]
+atlas = ExtResource("2_ayeuq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pwhl"]
+atlas = ExtResource("2_ayeuq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4ao8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kifpb")
+}],
+"loop": true,
+"name": &"scrap_collector",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pwhl")
+}],
+"loop": true,
+"name": &"underground_collector",
+"speed": 5.0
+}]
+
+[node name="Item_Collector" type="RigidBody2D"]
+position = Vector2(800, 500)
+gravity_scale = 0.0
+script = ExtResource("1_8ruds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mgpwt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_y4ao8")
+animation = &"scrap_collector"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,5 @@
 extends Area2D
+signal push
 
 @export var speed = 400
 @export var health = 100
@@ -7,7 +8,10 @@ var screen_size
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
-
+func _spawn():
+	position = Vector2.ZERO
+	show()
+	$CollisionShape2D.disabled = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,3 +38,10 @@ func _process(delta: float) -> void:
 	
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO,screen_size)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	#hide()
+	push.emit()
+	$CollisionShape2D.set_deferred("disabled", true)
+	 # function for pushing items

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8nwu4mwix02w"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_3hp8v"]
+[ext_resource type="PackedScene" uid="uid://chxff3xxo7qn2" path="res://player.tscn" id="1_kglwf"]
+[ext_resource type="PackedScene" uid="uid://cypyv08he7eys" path="res://scrap_treasure.tscn" id="2_vycq8"]
+[ext_resource type="PackedScene" uid="uid://dkgn3ys5nt1ao" path="res://item_collector.tscn" id="4_q373p"]
+
+[sub_resource type="Curve2D" id="Curve2D_ijyt7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 205, 203, 0, 0, 0, 0, 1496, 201, 0, 0, 0, 0, 1599, 868, 0, 0, 0, 0, 273, 910, 0, 0, 0, 0, 205, 203)
+}
+point_count = 5
+
+[node name="Main" type="Node"]
+script = ExtResource("1_3hp8v")
+scrap_treasure = ExtResource("2_vycq8")
+
+[node name="Player" parent="." instance=ExtResource("1_kglwf")]
+position = Vector2(994, 660)
+
+[node name="loot_spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Start_Position" type="Marker2D" parent="."]
+position = Vector2(800, 500)
+
+[node name="Temp_Item_spawn" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ijyt7")
+
+[node name="spawn_location" type="PathFollow2D" parent="Temp_Item_spawn"]
+position = Vector2(205, 203)
+rotation = -0.00154919
+
+[node name="Item_Collector" parent="." instance=ExtResource("4_q373p")]
+
+[connection signal="push" from="Player" to="." method="_on_player_push"]
+[connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]
+[connection signal="collect" from="Item_Collector" to="." method="_on_item_collector_collect"]
