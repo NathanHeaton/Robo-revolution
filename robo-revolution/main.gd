@@ -27,7 +27,9 @@ func _on_item_collector_collect() -> void:
 
 func newGame():
 	money = 0
-	#$Player.start($Start_Position.position)
+	$HUD.show_message("Collect Items")
+	$HUD.update_money(money)
+	#$Player.position($Start_Position.position)
 	
 
 
@@ -51,3 +53,7 @@ func _spawn_loot() -> void:
 	loot.rotation = rotation_dir
 	
 	add_child(loot) #adds loot to main scene
+
+
+func _on_hud_start_game() -> void:
+	newGame()

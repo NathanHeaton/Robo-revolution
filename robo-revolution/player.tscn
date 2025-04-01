@@ -43,7 +43,9 @@ animations = [{
 radius = 27.0
 height = 100.0
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="RigidBody2D"]
+mass = 20.0
+gravity_scale = 0.0
 script = ExtResource("1_7vtfk")
 metadata/_edit_group_ = true
 

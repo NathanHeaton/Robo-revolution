@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 signal push
 
 @export var speed = 400
@@ -33,11 +33,13 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.stop()
 		
 	
+
 	
 	$AnimatedSprite2D.rotation = (mouse_pos - position).angle() + deg_to_rad(90)
 	
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO,screen_size)
+	
 
 
 func _on_body_entered(body: Node2D) -> void:

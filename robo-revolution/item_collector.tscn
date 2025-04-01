@@ -33,9 +33,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Item_Collector" type="RigidBody2D"]
+[node name="Item_Collector" type="StaticBody2D"]
 position = Vector2(800, 500)
-gravity_scale = 0.0
 script = ExtResource("1_8ruds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -45,5 +44,3 @@ shape = SubResource("CircleShape2D_mgpwt")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y4ao8")
 animation = &"scrap_collector"
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
