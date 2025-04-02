@@ -22,6 +22,7 @@ func _on_player_push() -> void:
 
 func _on_item_collector_collect() -> void:
 	money += 40
+	print("money gained")
 	
 	
 

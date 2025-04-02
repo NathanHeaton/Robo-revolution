@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Area2D
 
 signal collect
 
@@ -16,4 +16,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	collect.emit()
+	print("money gained")
+	if body is RigidBody2D:
+		collect.emit()

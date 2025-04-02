@@ -1,10 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://cypyv08he7eys"]
+[gd_scene load_steps=20 format=3 uid="uid://cypyv08he7eys"]
 
 [ext_resource type="Script" path="res://scrap_treasure.gd" id="1_bp5v4"]
 [ext_resource type="Texture2D" uid="uid://dsg2470af5hxa" path="res://assets/loot_items.png" id="1_lcom2"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vufmf"]
+friction = 14.75
+rough = true
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujyit"]
-radius = 14.0357
+radius = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ycdfh"]
 atlas = ExtResource("1_lcom2")
@@ -128,7 +132,10 @@ animations = [{
 }]
 
 [node name="Scrap_Treasure" type="RigidBody2D"]
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_vufmf")
 gravity_scale = 0.0
+inertia = 9.7
 script = ExtResource("1_bp5v4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

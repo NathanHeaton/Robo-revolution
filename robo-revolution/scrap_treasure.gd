@@ -5,6 +5,12 @@ extends RigidBody2D
 func _ready() -> void:
 	var scrap_treasure_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
 	$AnimatedSprite2D.animation = scrap_treasure_types.pick_random()
+	
+	contact_monitor = true
+	
+	max_contacts_reported = 1
+	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

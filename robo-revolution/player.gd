@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends CharacterBody2D
 signal push
 
 @export var speed = 400
@@ -12,11 +12,13 @@ func _spawn():
 	position = Vector2.ZERO
 	show()
 	$CollisionShape2D.disabled = false
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO
+func _physics_process(delta: float) -> void:
+	velocity = Vector2.ZERO
 	var mouse_pos = get_viewport().get_mouse_position()
+	var angle_to_mouse = (mouse_pos - position).angle() + deg_to_rad(90)
+	
 	if Input.is_action_pressed("move_right"):
 		velocity.x +=1
 	if Input.is_action_pressed("move_up"):
@@ -29,17 +31,26 @@ func _process(delta: float) -> void:
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
-	else:
+	else:	
 		$AnimatedSprite2D.stop()
-		
 	
 
+	$AnimatedSprite2D.rotation = angle_to_mouse
+	$player_body.rotation = angle_to_mouse - deg_to_rad(90)
+
+	$pushing_area.rotation = angle_to_mouse
 	
-	$AnimatedSprite2D.rotation = (mouse_pos - position).angle() + deg_to_rad(90)
+	move_and_slide()
 	
-	position += velocity * delta
+	
 	position = position.clamp(Vector2.ZERO,screen_size)
 	
+	for body in $pushing_area.get_overlapping_bodies():  # Use Area2D method
+		if body is RigidBody2D:
+			var push_direction = (body.position - position).normalized()
+			body.apply_central_impulse(push_direction * 5)  # Adjust push force
+
+
 
 
 func _on_body_entered(body: Node2D) -> void:

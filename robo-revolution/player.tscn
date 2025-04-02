@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://chxff3xxo7qn2"]
+[gd_scene load_steps=10 format=3 uid="uid://chxff3xxo7qn2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_7vtfk"]
 [ext_resource type="Texture2D" uid="uid://vc7fsssuw2mr" path="res://assets/player_sprite-Sheet.png" id="1_jxlbb"]
@@ -40,12 +40,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7ykx"]
-radius = 27.0
-height = 100.0
+radius = 38.0
+height = 120.0
 
-[node name="Player" type="RigidBody2D"]
-mass = 20.0
-gravity_scale = 0.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6lt8k"]
+radius = 23.0
+height = 106.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, 15)
 script = ExtResource("1_7vtfk")
 metadata/_edit_group_ = true
 
@@ -54,8 +57,14 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yp4ya")
 animation = &"walk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="pushing_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pushing_area"]
+position = Vector2(2, -8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v7ykx")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="player_body" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6lt8k")
