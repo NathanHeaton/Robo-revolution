@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bc88own3hjhol" path="res://assets/collection_point.png" id="2_ayeuq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgpwt"]
-radius = 88.5664
+radius = 136.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kifpb"]
 atlas = ExtResource("2_ayeuq")
@@ -38,10 +38,12 @@ position = Vector2(800, 500)
 script = ExtResource("1_8ruds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(160, 12)
 shape = SubResource("CircleShape2D_mgpwt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
+position = Vector2(160, 12)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_y4ao8")
 animation = &"scrap_collector"
 

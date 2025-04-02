@@ -4,6 +4,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 
 var money = 0
+var rarity_lvl = 4
 
 func _ready() -> void:
 	newGame()
@@ -43,7 +44,7 @@ func respawn():
 
 func _spawn_loot() -> void:
 	
-	var loot = $Item_creator.spawn_item(0,"Scrapyard", "scrap", scrap_treasure)
+	var loot = $Item_creator.spawn_item(rarity_lvl,"Scrapyard", "scrap", scrap_treasure)
 	
 
 	var loot_spawn_location = $Temp_Item_spawn/spawn_location

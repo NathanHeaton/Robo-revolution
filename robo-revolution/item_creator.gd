@@ -8,15 +8,139 @@ var item_data: Dictionary = {
 		"value": 3,
 		"rarity": 0,
 		"type": "scrap",
-		"weight": 2,
-		"locations":["Scrapyard","UndergroundStorage"] 
+		"weight": 3,
+		"locations":["Scrapyard","UndergroundStorage","Ocean"], 
+		"variants": 4
 	},
 	"plastic":{
 		"name": "plastic",
-		"value": 3,
-		"rarity": 3,
+		"value": 4,
+		"rarity": 0,
+		"type": "scrap",
+		"weight": 2,
+		"locations":["Scrapyard","UndergroundStorage","Ocean"], 
+		"variants": 3
 	},
+	"rusty_nails":{
+		"name": "rusty_nails",
+		"value": 2,
+		"rarity": 0,
+		"type": "scrap",
+		"weight": 1,
+		"locations":["Scrapyard","UndergroundStorage","Ocean"], 
+		"variants": 3
+	},
+	"gears":{
+		"name": "gears",
+		"value": 3,
+		"rarity": 0,
+		"type": "scrap",
+		"weight": 1,
+		"locations":["Scrapyard"], 
+		"variants": 4
+	},
+	"computer_chips": {
+		"name": "computer_chips",
+		"value": 6,
+		"rarity": 1,
+		"type": "scrap",
+		"weight": 1,
+		"locations": ["Scrapyard", "Underground"],
+		"variants": 3
+	},
+	"vehicle_components": {
+		"name": "vehicle_components",
+		"value": 10,
+		"rarity": 1,
+		"type": "scrap",
+		"weight": 15,
+		"locations": ["Scrapyard", "Underground"],
+		"variants": 2
+	},
+	"wires": {
+		"name": "wires",
+		"value": 4,
+		"rarity": 1,
+		"type": "scrap",
+		"weight": 1,
+		"locations": ["Scrapyard", "Underground"],
+		"variants": 3
+	},
+	"robot_parts": {
+		"name": "robot_parts",
+		"value": 50,
+		"rarity": 2,
+		"type": "scrap",
+		"weight": 20,
+		"locations": ["Underground"],
+		"variants": 4
+	},
+	"motherboard": {
+		"name": "motherboard",
+		"value": 35,
+		"rarity": 2,
+		"type": "scrap",
+		"weight": 2,
+		"locations": ["Underground"],
+		"variants": 3
+	},
+	"metal": {
+		"name": "metal",
+		"value": 40,
+		"rarity": 2,
+		"type": "scrap",
+		"weight": 3,
+		"locations": ["Underground"],
+		"variants": 4
+	},
+	"seashells": {
+		"name": "seashells",
+		"value": 700,
+		"rarity": 3,
+		"type": "scrap",
+		"weight": 3,
+		"locations": ["Ocean"],
+		"variants": 3
+	},
+	"ship_wreckage": {
+		"name": "ship_wreckage",
+		"value": 1500,
+		"rarity": 3,
+		"type": "scrap",
+		"weight": 50,
+		"locations": ["Ocean"],
+		"variants": 4
+	},
+	"broken_jewels": {
+		"name": "broken_jewels",
+		"value": 2000,
+		"rarity": 3,
+		"type": "scrap",
+		"weight": 4,
+		"locations": ["Ocean"],
+		"variants": 4
+	},
+	"alien_parts": {
+		"name": "alien_parts",
+		"value": 4000,
+		"rarity": 4,
+		"type": "scrap",
+		"weight": 50,
+		"locations": ["Alien"],
+		"variants": 3
+	},
+	"alien_scrap_metal": {
+		"name": "alien_scrap_metal",
+		"value": 3000,
+		"rarity": 4,
+		"type": "scrap",
+		"weight": 30,
+		"locations": ["Alien"],
+		"variants": 4
+	}
 }
+
+var pickable_items = []
 
 func spawn_item(rarity: int, location: String, type: String, item_scene):
 	
@@ -34,7 +158,10 @@ func pick_item(rarity: int, location: String, type: String ):
 	for items in item_data: # goes through all items to find the right item
 		if (item_data[items].get("rarity") == rarity):
 			item = item_data[items]
+			pickable_items.append(item)
 		
+	
+	item = pickable_items.pick_random()
 	
 	return item
 
