@@ -1,6 +1,6 @@
 extends Area2D
 
-signal collect
+signal collect(body)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +16,5 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	print("money gained")
 	if body is RigidBody2D:
-		collect.emit()
+		emit_signal("collect", body)

@@ -131,7 +131,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Scrap_Treasure" type="RigidBody2D"]
+[node name="Scrap_Treasure" type="RigidBody2D" groups=["scrapTreasure"]]
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_vufmf")
 gravity_scale = 0.0

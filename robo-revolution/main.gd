@@ -20,9 +20,11 @@ func _on_player_push() -> void:
 	
 
 
-func _on_item_collector_collect() -> void:
+func _on_item_collector_collect(body: Node) -> void:
 	money += 40
 	print("money gained")
+	$HUD.update_money(money)
+	body.queue_free()
 	
 	
 
