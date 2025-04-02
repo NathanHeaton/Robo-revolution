@@ -144,4 +144,4 @@ shape = SubResource("CircleShape2D_ujyit")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_kt7y1")
-animation = &"gears"
+animation = &"scrap"

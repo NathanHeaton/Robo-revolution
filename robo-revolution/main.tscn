@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=9 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3hp8v"]
 [ext_resource type="PackedScene" uid="uid://chxff3xxo7qn2" path="res://player.tscn" id="1_kglwf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dkgn3ys5nt1ao" path="res://item_collector.tscn" id="4_q373p"]
 [ext_resource type="PackedScene" uid="uid://3pke8c3v8xbd" path="res://hud.tscn" id="5_h1go3"]
 [ext_resource type="PackedScene" uid="uid://bgplxom4d71ao" path="res://walls.tscn" id="6_o4jhg"]
+[ext_resource type="PackedScene" uid="uid://cbh7nw33q7mn7" path="res://item_creator.tscn" id="7_8vil2"]
 
 [sub_resource type="Curve2D" id="Curve2D_ijyt7"]
 _data = {
@@ -38,6 +39,8 @@ rotation = -0.00154919
 [node name="HUD" parent="." instance=ExtResource("5_h1go3")]
 
 [node name="Walls" parent="." instance=ExtResource("6_o4jhg")]
+
+[node name="Item_creator" parent="." instance=ExtResource("7_8vil2")]
 
 [connection signal="push" from="Player" to="." method="_on_player_push"]
 [connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]

@@ -21,7 +21,7 @@ func _on_player_push() -> void:
 
 
 func _on_item_collector_collect(body: Node) -> void:
-	money += 40
+	money += body.get_value()
 	print("money gained")
 	$HUD.update_money(money)
 	body.queue_free()
@@ -42,8 +42,10 @@ func respawn():
 
 
 func _spawn_loot() -> void:
-	var loot = scrap_treasure.instantiate()
 	
+	var loot = $Item_creator.spawn_item(0,"Scrapyard", "scrap", scrap_treasure)
+	
+
 	var loot_spawn_location = $Temp_Item_spawn/spawn_location
 	loot_spawn_location.progress_ratio = randf()
 	
