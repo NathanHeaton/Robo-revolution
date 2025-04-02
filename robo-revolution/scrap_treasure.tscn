@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cypyv08he7eys"]
+[gd_scene load_steps=64 format=3 uid="uid://cypyv08he7eys"]
 
 [ext_resource type="Script" path="res://scrap_treasure.gd" id="1_bp5v4"]
 [ext_resource type="Texture2D" uid="uid://dsg2470af5hxa" path="res://assets/loot_items.png" id="1_lcom2"]
@@ -9,6 +9,10 @@ rough = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujyit"]
 radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5lea"]
+atlas = ExtResource("1_lcom2")
+region = Rect2(0, 608, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xu5c"]
 atlas = ExtResource("1_lcom2")
@@ -82,6 +86,18 @@ region = Rect2(64, 96, 32, 32)
 atlas = ExtResource("1_lcom2")
 region = Rect2(96, 96, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr7vw"]
+atlas = ExtResource("1_lcom2")
+region = Rect2(0, 544, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wruht"]
+atlas = ExtResource("1_lcom2")
+region = Rect2(0, 480, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s71p"]
+atlas = ExtResource("1_lcom2")
+region = Rect2(32, 480, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvjxr"]
 atlas = ExtResource("1_lcom2")
 region = Rect2(0, 288, 32, 32)
@@ -110,6 +126,10 @@ region = Rect2(32, 256, 32, 32)
 atlas = ExtResource("1_lcom2")
 region = Rect2(64, 256, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a64k0"]
+atlas = ExtResource("1_lcom2")
+region = Rect2(0, 576, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tkxuj"]
 atlas = ExtResource("1_lcom2")
 region = Rect2(0, 32, 32, 32)
@@ -121,6 +141,10 @@ region = Rect2(32, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rs7iq"]
 atlas = ExtResource("1_lcom2")
 region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iexhy"]
+atlas = ExtResource("1_lcom2")
+region = Rect2(0, 640, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_as78m"]
 atlas = ExtResource("1_lcom2")
@@ -137,6 +161,10 @@ region = Rect2(64, 224, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcmbn"]
 atlas = ExtResource("1_lcom2")
 region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdl74"]
+atlas = ExtResource("1_lcom2")
+region = Rect2(0, 512, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qefdn"]
 atlas = ExtResource("1_lcom2")
@@ -218,6 +246,14 @@ region = Rect2(64, 192, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_a5lea")
+}],
+"loop": true,
+"name": &"alien_artifacts",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5xu5c")
 }, {
 "duration": 1.0,
@@ -297,6 +333,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mr7vw")
+}],
+"loop": true,
+"name": &"gold_bars",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wruht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s71p")
+}],
+"loop": true,
+"name": &"gold_plates",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jvjxr")
 }, {
 "duration": 1.0,
@@ -328,6 +383,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_a64k0")
+}],
+"loop": true,
+"name": &"pearls",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tkxuj")
 }, {
 "duration": 1.0,
@@ -338,6 +401,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"plastic",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iexhy")
+}],
+"loop": true,
+"name": &"power_crystals",
 "speed": 5.0
 }, {
 "frames": [{
@@ -355,6 +426,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"robot_parts",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdl74")
+}],
+"loop": true,
+"name": &"rubies",
 "speed": 5.0
 }, {
 "frames": [{
@@ -458,4 +537,4 @@ shape = SubResource("CircleShape2D_ujyit")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_kt7y1")
-animation = &"alien_scrap_metal"
+animation = &"power_crystals"

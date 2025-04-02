@@ -137,6 +137,61 @@ var item_data: Dictionary = {
 		"weight": 30,
 		"locations": ["Alien"],
 		"variants": 4
+	},
+		"gold_plates": {
+		"name": "gold_plates",
+		"value": 60,
+		"rarity": 0,
+		"type": "treasure",
+		"weight": 2,
+		"locations": ["Scrapyard", "Underground"],
+		"variants": 2
+	},
+	"rubies": {
+		"name": "rubies",
+		"value": 80,
+		"rarity": 1,
+		"type": "treasure",
+		"weight": 1,
+		"locations": ["Scrapyard", "Underground", "Ocean"],
+		"variants": 1
+	},
+	"gold_bars": {
+		"name": "gold_bars",
+		"value": 600,
+		"rarity": 2,
+		"type": "treasure",
+		"weight": 5,
+		"locations": ["Underground"],
+		"variants": 1  # Unique appearance
+	},
+
+	"pearls": {
+		"name": "pearls",
+		"value": 9000,
+		"rarity": 3,
+		"type": "treasure",
+		"weight": 1,
+		"locations": ["Ocean"],
+		"variants": 1 
+	},
+	"alien_artifacts": {
+		"name": "alien_artifacts",
+		"value": 50000,
+		"rarity": 4,
+		"type": "treasure",
+		"weight": 3,
+		"locations": ["Alien"],
+		"variants": 1
+	},
+	"power_crystals": {
+		"name": "power_crystals",
+		"value": 1,  # figure out power crystal system later
+		"rarity": 4,
+		"type": "treasure",
+		"weight": 1,
+		"locations": ["Alien"],
+		"variants": 1,
 	}
 }
 
