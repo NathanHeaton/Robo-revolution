@@ -45,6 +45,7 @@ func _on_fade_out_player_animation_finished(anim_name: StringName) -> void:
 
 
 func collect():
+	$fade_out_player.stop()
 	$CollisionShape2D.disabled = true
 	$collect.play("collect")
 	

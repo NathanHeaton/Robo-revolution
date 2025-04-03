@@ -28,7 +28,7 @@ func _on_item_collector_collect(body: Node) -> void:
 
 func newGame():
 	money = 0
-	$HUD.show_message("Collect Items")
+	$HUD.show_message("Collect Scrap and treasure")
 	$HUD.update_money(money)
 	#$Player.position($Start_Position.position)
 	

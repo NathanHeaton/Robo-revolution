@@ -1,50 +1,177 @@
-[gd_scene load_steps=3 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=9 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_qb4pq"]
 [ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_31lgq"]
+[ext_resource type="Texture2D" uid="uid://c7neiybn4mmfe" path="res://assets/upgrade_icons.png" id="3_80ti6"]
 
-[node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_qb4pq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tmh5"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(0, 0, 32, 32)
 
-[node name="Money_Label" type="Label" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_c56t4"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nljm0"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnwrj"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yegfb"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(96, 32, 32, 32)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -101.0
-offset_bottom = 77.0
-grow_horizontal = 0
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 2
-
-[node name="Message" type="Label" parent="."]
-offset_left = 538.0
-offset_top = 327.0
-offset_right = 1404.0
-offset_bottom = 404.0
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 64
-text = "Collect Scrap and treasure"
-
-[node name="Start_Button" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -224.5
-offset_top = -42.5
-offset_right = 224.5
-offset_bottom = 57.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 64
-text = "New Game"
+script = ExtResource("1_qb4pq")
 
 [node name="Message_Timer" type="Timer" parent="."]
 wait_time = 3.0
 
-[connection signal="pressed" from="Start_Button" to="." method="_on_start_button_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="top_nav" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/top_nav"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_31lgq")
+theme_override_font_sizes/font_size = 64
+text = "Collect Scrap and treasure"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Money_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_31lgq")
+theme_override_font_sizes/font_size = 48
+text = "Money: 0"
+horizontal_alignment = 2
+
+[node name="Power_Crystals_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_31lgq")
+theme_override_font_sizes/font_size = 32
+text = "Power Crystals: 0"
+
+[node name="Companions_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_31lgq")
+theme_override_font_sizes/font_size = 32
+text = "Comapanions: 0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="Location_Button" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_6tmh5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button2" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_6tmh5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button3" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_6tmh5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button4" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_6tmh5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button5" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_c56t4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button6" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_nljm0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button7" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_dnwrj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button8" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_yegfb")
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
