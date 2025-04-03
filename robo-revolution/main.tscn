@@ -11,8 +11,8 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_3hp8v")
 scrap_treasure = ExtResource("2_vycq8")
-metadata/_edit_vertical_guides_ = [824.0, 1143.0]
-metadata/_edit_horizontal_guides_ = [325.0, 725.0]
+metadata/_edit_vertical_guides_ = [824.0, 1143.0, 964.0]
+metadata/_edit_horizontal_guides_ = [325.0, 725.0, 517.0]
 
 [node name="Player" parent="." instance=ExtResource("1_kglwf")]
 position = Vector2(994, 660)

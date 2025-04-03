@@ -42,3 +42,15 @@ func _on_despawn_start_timeout() -> void:
 
 func _on_fade_out_player_animation_finished(anim_name: StringName) -> void:
 	queue_free()
+
+
+func collect():
+	$CollisionShape2D.disabled = true
+	$collect.play("collect")
+	
+	
+
+
+
+func _on_collect_animation_finished(anim_name: StringName) -> void:
+	queue_free()

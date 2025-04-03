@@ -21,7 +21,8 @@ func _on_item_collector_collect(body: Node) -> void:
 	money += body.get_value()
 	print("money gained")
 	$HUD.update_money(money)
-	body.queue_free()
+	
+	body.collect()
 	
 	
 
@@ -38,14 +39,13 @@ func respawn():
 	#$Player.start($Start_Position.position)
 	
 
-func item_spawn_location() -> Vector2:
+func item_spawn_location() -> Vector2: # picks where to spawn the loot items and avoids the center of the screen
 	var item_spawn_region = $Player.get_item_spawn_region()
 	print(item_spawn_region)
 	var rndLocation = Vector2(randi_range(item_spawn_region[0].x,item_spawn_region[1].x),randi_range(item_spawn_region[0].y,item_spawn_region[1].y))
 	
 	if (rndLocation.x > 820 && rndLocation.x < 1150):
 		if(rndLocation.y > 325 && rndLocation.y < 725):
-			print("blocked from middle")
 			rndLocation = Vector2(rndLocation.x + 400, rndLocation.y+ 400)
 	
 	
@@ -69,3 +69,4 @@ func _spawn_loot() -> void:
 
 func _on_hud_start_game() -> void:
 	newGame()
+	
