@@ -3,10 +3,14 @@ signal push
 
 @export var speed = 400
 @export var health = 100
+
+var item_spawn_region
+
 var screen_size
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	item_spawn_region = [Vector2(30,30),Vector2(get_viewport_rect().size.x - 30,get_viewport_rect().size.y - 30)]
 
 func _spawn():
 	position = Vector2.ZERO
@@ -50,7 +54,9 @@ func _physics_process(delta: float) -> void:
 			var push_direction = (body.position - position).normalized()
 			body.apply_central_impulse(push_direction * 5)  # Adjust push force
 
-
+func get_item_spawn_region():
+	print(item_spawn_region)
+	return item_spawn_region
 
 
 func _on_body_entered(body: Node2D) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=8 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3hp8v"]
 [ext_resource type="PackedScene" uid="uid://chxff3xxo7qn2" path="res://player.tscn" id="1_kglwf"]
@@ -8,15 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bgplxom4d71ao" path="res://walls.tscn" id="6_o4jhg"]
 [ext_resource type="PackedScene" uid="uid://cbh7nw33q7mn7" path="res://item_creator.tscn" id="7_8vil2"]
 
-[sub_resource type="Curve2D" id="Curve2D_ijyt7"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 205, 203, 0, 0, 0, 0, 1496, 201, 0, 0, 0, 0, 1599, 868, 0, 0, 0, 0, 273, 910, 0, 0, 0, 0, 205, 203)
-}
-point_count = 5
-
 [node name="Main" type="Node"]
 script = ExtResource("1_3hp8v")
 scrap_treasure = ExtResource("2_vycq8")
+metadata/_edit_vertical_guides_ = [824.0, 1143.0]
+metadata/_edit_horizontal_guides_ = [325.0, 725.0]
 
 [node name="Player" parent="." instance=ExtResource("1_kglwf")]
 position = Vector2(994, 660)
@@ -26,13 +22,6 @@ autostart = true
 
 [node name="Start_Position" type="Marker2D" parent="."]
 position = Vector2(800, 500)
-
-[node name="Temp_Item_spawn" type="Path2D" parent="."]
-curve = SubResource("Curve2D_ijyt7")
-
-[node name="spawn_location" type="PathFollow2D" parent="Temp_Item_spawn"]
-position = Vector2(205, 203)
-rotation = -0.00154919
 
 [node name="Item_Collector" parent="." instance=ExtResource("4_q373p")]
 

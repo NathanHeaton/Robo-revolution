@@ -6,6 +6,7 @@ extends Node
 var money = 0
 var rarity_lvl = 0
 
+
 func _ready() -> void:
 	newGame()
 
@@ -14,11 +15,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_player_push() -> void:
-	pass # Replace with function body.
-	
-	
 
 
 func _on_item_collector_collect(body: Node) -> void:
@@ -40,22 +36,32 @@ func newGame():
 func respawn():
 	money = money * 0.1
 	#$Player.start($Start_Position.position)
+	
+
+func item_spawn_location() -> Vector2:
+	var item_spawn_region = $Player.get_item_spawn_region()
+	print(item_spawn_region)
+	var rndLocation = Vector2(randi_range(item_spawn_region[0].x,item_spawn_region[1].x),randi_range(item_spawn_region[0].y,item_spawn_region[1].y))
+	
+	if (rndLocation.x > 820 && rndLocation.x < 1150):
+		if(rndLocation.y > 325 && rndLocation.y < 725):
+			print("blocked from middle")
+			rndLocation = Vector2(rndLocation.x + 400, rndLocation.y+ 400)
+	
+	
+	return rndLocation
+
 
 
 func _spawn_loot() -> void:
 	
+	
 	var loot = $Item_creator.spawn_item(rarity_lvl,"Scrapyard", "scrap", scrap_treasure)
 	
-
-	var loot_spawn_location = $Temp_Item_spawn/spawn_location
-	loot_spawn_location.progress_ratio = randf()
-	
-	loot.position = loot_spawn_location.position
-	
 	var rotation_dir = 0
-	
 	rotation_dir = randf_range(-PI / 4, PI/4)
 	
+	loot.position = item_spawn_location()
 	loot.rotation = rotation_dir
 	
 	add_child(loot) #adds loot to main scene

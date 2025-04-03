@@ -13,8 +13,6 @@ func _spawn_loot_type(item):
 	
 	$AnimatedSprite2D.play(item.name)
 	var rnd_frame = randi_range(0,item.variants-1)
-	print(rnd_frame)
-	print(item.name)
 	$AnimatedSprite2D.frame = rnd_frame
 
 	$AnimatedSprite2D.pause()
@@ -25,6 +23,7 @@ func _spawn_loot_type(item):
 	#print(scrap_treasure_types.filter( func(item): return item == "scarp"))
 	#$AnimatedSprite2D.animation = scrap_treasure_types.filter( func(item): return item == "scarp")
 	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
