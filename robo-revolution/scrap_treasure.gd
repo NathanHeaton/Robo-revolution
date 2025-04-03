@@ -35,3 +35,11 @@ func _process(delta: float) -> void:
 func get_value() -> int:
 	return value
 	
+
+
+func _on_despawn_start_timeout() -> void:
+	$fade_out_player.play("fade_out")
+
+
+func _on_fade_out_player_animation_finished(anim_name: StringName) -> void:
+	queue_free()

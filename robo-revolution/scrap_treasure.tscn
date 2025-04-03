@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cypyv08he7eys"]
+[gd_scene load_steps=67 format=3 uid="uid://cypyv08he7eys"]
 
 [ext_resource type="Script" path="res://scrap_treasure.gd" id="1_bp5v4"]
 [ext_resource type="Texture2D" uid="uid://dsg2470af5hxa" path="res://assets/loot_items.png" id="1_lcom2"]
@@ -524,6 +524,43 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_w6c0p"]
+resource_name = "fade_out"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 2, 4, 5.96667, 8.03333, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 2.44589),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.411765), Color(1, 1, 1, 0.752941), Color(1, 1, 1, 0.160784), Color(1, 1, 1, 0.439216), Color(1, 1, 1, 0.14902)]
+}
+
+[sub_resource type="Animation" id="Animation_xhmei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n0f8c"]
+_data = {
+"RESET": SubResource("Animation_xhmei"),
+"fade_out": SubResource("Animation_w6c0p")
+}
+
 [node name="Scrap_Treasure" type="RigidBody2D" groups=["scrapTreasure"]]
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_vufmf")
@@ -538,3 +575,16 @@ shape = SubResource("CircleShape2D_ujyit")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_kt7y1")
 animation = &"power_crystals"
+
+[node name="despawn_start" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="fade_out_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n0f8c")
+}
+
+[connection signal="timeout" from="despawn_start" to="." method="_on_despawn_start_timeout"]
+[connection signal="animation_finished" from="fade_out_player" to="." method="_on_fade_out_player_animation_finished"]
