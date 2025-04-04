@@ -55,7 +55,6 @@ func _physics_process(delta: float) -> void:
 			body.apply_central_impulse(push_direction * 5)  # Adjust push force
 
 func get_item_spawn_region():
-	print(item_spawn_region)
 	return item_spawn_region
 
 

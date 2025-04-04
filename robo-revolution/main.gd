@@ -4,7 +4,8 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 
 var money = 0
-var rarity_lvl = 0
+var rarity_lvl = 2
+
 
 
 func _ready() -> void:

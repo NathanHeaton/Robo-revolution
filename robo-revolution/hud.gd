@@ -4,7 +4,8 @@ signal start_game
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$Scrapyard_upgrade_panel.hide()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,10 +19,21 @@ func show_message(text):
 
 	
 func update_money(money):
-	pass
-	#$Money_Label.text = str(money)
+	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + str(money)
 
 
 
 func _on_message_timer_timeout():
 	$Message.hide()
+
+
+
+
+
+
+func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
+	print(toggled_on)
+	if(toggled_on):
+		$Scrapyard_upgrade_panel.show()
+	else:
+		$Scrapyard_upgrade_panel.hide()
