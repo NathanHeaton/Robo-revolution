@@ -66,11 +66,6 @@ corner_radius_bottom_left = 40
 atlas = ExtResource("3_80ti6")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4ens"]
-bg_color = Color(0.964706, 0.572549, 1, 1)
-corner_radius_top_right = 20
-corner_radius_bottom_left = 20
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m04em"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 corner_radius_bottom_left = 40
@@ -82,6 +77,11 @@ corner_radius_bottom_left = 20
 [sub_resource type="AtlasTexture" id="AtlasTexture_ss25v"]
 atlas = ExtResource("5_xomnu")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4ens"]
+bg_color = Color(0.964706, 0.572549, 1, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -294,18 +294,6 @@ theme_override_fonts/font = ExtResource("2_31lgq")
 theme_override_font_sizes/font_size = 54
 text = "Scrapyard Upgrades"
 
-[node name="Scrapyard_Close_Button" type="Button" parent="Scrapyard_upgrade_panel/MarginContainer"]
-top_level = true
-z_index = 2
-z_as_relative = false
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_j4ens")
-text = "x"
-
 [node name="Upgrades_Section_Scrapyard" type="VBoxContainer" parent="Scrapyard_upgrade_panel/MarginContainer"]
 layout_mode = 2
 
@@ -423,6 +411,21 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "100$  | Buy 1X"
 
+[node name="Scrapyard_Close_Button" type="Button" parent="Scrapyard_upgrade_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+offset_left = 900.0
+offset_top = 20.0
+offset_right = 960.0
+offset_bottom = 80.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4ens")
+text = "x"
+
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
 [connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
-[connection signal="pressed" from="Scrapyard_upgrade_panel/MarginContainer/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
+[connection signal="pressed" from="Scrapyard_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
