@@ -32,8 +32,14 @@ func _on_message_timer_timeout():
 
 
 func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
-	print(toggled_on)
+
 	if(toggled_on):
 		$Scrapyard_upgrade_panel.show()
 	else:
 		$Scrapyard_upgrade_panel.hide()
+
+
+func _on_scrapyard_close_button_pressed() -> void:
+	# close the scrapyard upgarde panel
+	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.button_pressed = false
+	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.emit_signal("toggled", false)
