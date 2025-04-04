@@ -8,6 +8,7 @@ signal collect(body)
 func _ready() -> void:
 	var collectors = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
 	$AnimatedSprite2D.animation = collectors[0] # scrapyard collector
+	z_index = -2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

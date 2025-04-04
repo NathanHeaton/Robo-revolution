@@ -202,6 +202,7 @@ func spawn_item(rarity: int, location: String, type: String, item_scene):
 	var item = pick_item(rarity, location, type)
 	
 	var item_instance = item_scene.instantiate()
+	item_instance.z_index = -1
 	item_instance._spawn_loot_type(item)
 	
 	return item_instance
@@ -213,7 +214,7 @@ func pick_item(rarity: int, location: String, type: String ):
 	for items in item_data: # goes through all items to find the right item
 		if (item_data[items].get("rarity") == rarity):
 			item = item_data[items]
-			pickable_items.append(item)
+			pickable_items.append(item)# adds the valid item that can be chosen from to an array
 		
 	
 	item = pickable_items.pick_random()
