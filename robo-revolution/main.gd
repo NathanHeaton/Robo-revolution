@@ -7,7 +7,6 @@ var money = 0
 var rarity_lvl = 0
 
 
-
 func _ready() -> void:
 	newGame()
 
@@ -22,6 +21,7 @@ func _on_item_collector_collect(body: Node) -> void:
 	money += body.get_value()
 	print("money gained")
 	$HUD.update_money(money)
+	
 	
 	body.collect()
 	
