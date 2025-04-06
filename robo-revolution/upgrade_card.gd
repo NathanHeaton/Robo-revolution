@@ -8,13 +8,16 @@ var scaling =0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".disabled = true
+	Money.connect("money_changed", Callable(self, "_on_money_changed"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+
+func _on_money_changed():
+	cal_max_buy(1,1,1)
 
 func change_title(text) -> void:
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title.text = str(text)
@@ -29,6 +32,11 @@ func cal_max_buy(t_level,t_cost,t_scaling):
 	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = str(Money.MONEY) + "$ | BUY"
 	
 
+func update_button_state():
+	if (Money.MONEY < cost):
+		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".disabled = true
+	else:
+		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".disabled = false
 
 func change_sprite(t_pos):
 	var icon_rect = Rect2(Vector2(t_pos.x *FRAME_SIZE,t_pos.y *FRAME_SIZE),Vector2(FRAME_SIZE,FRAME_SIZE))
