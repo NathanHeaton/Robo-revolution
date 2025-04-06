@@ -4,6 +4,7 @@ var upgrade_card_scene = preload("res://upgrade_card.tscn")
 
 signal start_game
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Scrapyard_upgrade_panel.hide()
@@ -21,16 +22,13 @@ func show_message(text):
 	#$Message_Timer.start()
 
 	
-func update_money(money):
-	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + str(money)
+func update_money():
+	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + str(Money.MONEY)
 
 
 
 func _on_message_timer_timeout():
 	$Message.hide()
-
-
-
 
 
 
@@ -54,9 +52,10 @@ func generate_scrapyard_upgrades() -> void:
 	for upgrade in Scrapyard_Upgrades:
 		print(upgrade)
 		var card = upgrade_card_scene.instantiate()
-		$Scrapyard_upgrade_panel/Scrapyard_container/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
+		$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
 		card.change_title(Scrapyard_Upgrades[upgrade].get("name"))
 		card.change_Description(Scrapyard_Upgrades[upgrade].get("description"))
 		card.change_sprite(Scrapyard_Upgrades[upgrade].get("sprite_position"))
 		card.change_cost(Scrapyard_Upgrades[upgrade].get("base_cost"))
+		card.cal_max_buy(Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"))
 		

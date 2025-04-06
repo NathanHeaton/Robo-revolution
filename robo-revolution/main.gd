@@ -3,8 +3,7 @@ extends Node
 @export var scrap_treasure: PackedScene
 # Called when the node enters the scene tree for the first time.
 
-var money = 0
-var rarity_lvl = 0
+var rarity_lvl = 3
 
 
 func _ready() -> void:
@@ -18,8 +17,8 @@ func _process(delta: float) -> void:
 
 
 func _on_item_collector_collect(body: Node) -> void:
-	money += body.get_value()
-	$HUD.update_money(money)
+	Money.MONEY += body.get_value()
+	$HUD.update_money()
 	
 	
 	body.collect()
@@ -27,15 +26,15 @@ func _on_item_collector_collect(body: Node) -> void:
 	
 
 func newGame():
-	money = 0
+	Money.MONEY = 0
 	$HUD.show_message("Collect Scrap and treasure")
-	$HUD.update_money(money)
+	$HUD.update_money()
 	#$Player.position($Start_Position.position)
 	
 
 
 func respawn():
-	money = money * 0.1
+	Money.MONEY = Money.MONEY * 0.1
 	#$Player.start($Start_Position.position)
 	
 
