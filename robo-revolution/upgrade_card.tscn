@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://uarugnx1gljb"]
+
+[ext_resource type="Script" path="res://upgrade_card.gd" id="1_2ltps"]
+[ext_resource type="Texture2D" uid="uid://bictl1ubjaau0" path="res://assets/Basic Items.png" id="1_i8ykb"]
+[ext_resource type="Texture2D" uid="uid://emau8dp4fqpx" path="res://assets/Glow_Background.png" id="2_e7vse"]
+[ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_au76j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvyci"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56gpc"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7njfd"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ydby"]
+atlas = ExtResource("1_i8ykb")
+region = Rect2(0, 0, 32, 32)
+
+[node name="upgrade_card" type="Panel"]
+anchors_preset = -1
+anchor_right = 0.408
+anchor_bottom = 0.183
+offset_right = 0.319946
+offset_bottom = -17.64
+theme_override_styles/panel = SubResource("StyleBoxFlat_tvyci")
+script = ExtResource("1_2ltps")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(800, 180)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_56gpc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Speed_Upgarde_Content_Panel" type="Panel" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7njfd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Speed_Upgarde_Content" type="HBoxContainer" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Speed_Upgrade_Icon" type="TextureRect" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/Speed_Upgarde_Content"]
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_8ydby")
+expand_mode = 3
+
+[node name="Background_Glow" type="TextureRect" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/Speed_Upgarde_Content/Speed_Upgrade_Icon"]
+modulate = Color(1, 1, 1, 0.72549)
+show_behind_parent = true
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e7vse")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/Speed_Upgarde_Content"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="seperator" type="Control" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/Speed_Upgarde_Content/VBoxContainer"]
+layout_mode = 2
+
+[node name="Speed_Title" type="Label" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/Speed_Upgarde_Content/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_au76j")
+theme_override_font_sizes/font_size = 28
+text = "Speed Upgrade"
+
+[node name="Speed_Description" type="Label" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/Speed_Upgarde_Content/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+text = "Increase player speed 
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_au76j")
+theme_override_font_sizes/font_size = 32
+text = "100$  | Buy 1X"
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/Speed_Upgarde_Content_Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "100$  | Buy 1X"
