@@ -6,6 +6,8 @@ var cost =0
 var level =0
 var scaling =0
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
@@ -18,6 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_money_changed():
 	cal_max_buy(1,1,1)
+	update_button_state()
 
 func change_title(text) -> void:
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title.text = str(text)
@@ -25,7 +28,7 @@ func change_title(text) -> void:
 func change_Description(text) -> void:
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Description.text = str(text)
 
-func cal_max_buy(t_level,t_cost,t_scaling):
+func cal_max_buy(t_level,t_cost,t_scaling):# add code to calculate the amount that can be bought
 	level = t_level
 	scaling = t_scaling
 	Money.MONEY

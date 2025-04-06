@@ -7,8 +7,8 @@ var MONEY: int = 0: # allows signals to be sent when money is updated
 	get:
 		return money_back_up
 	set(value):
-		emit_signal("money_changed")
 		money_back_up = value
+		emit_signal("money_changed")
 
 
 var POWER_CRYSTALS = 0
