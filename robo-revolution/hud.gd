@@ -49,9 +49,14 @@ func _on_scrapyard_close_button_pressed() -> void:
 	
 
 func generate_scrapyard_upgrades() -> void:
-	for upgrade in UpgradeData.upgrades.get("Scrapyard"):
+	var Scrapyard_Upgrades: Dictionary = UpgradeData.upgrades["Scrapyard"].duplicate() # might need to change if alter dict values
+	print(Scrapyard_Upgrades)
+	for upgrade in Scrapyard_Upgrades:
 		print(upgrade)
 		var card = upgrade_card_scene.instantiate()
 		$Scrapyard_upgrade_panel/Scrapyard_container/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
+		card.change_title(Scrapyard_Upgrades[upgrade].get("name"))
+		card.change_Description(Scrapyard_Upgrades[upgrade].get("description"))
+		card.change_sprite(Scrapyard_Upgrades[upgrade].get("sprite_position"))
+		card.change_cost(Scrapyard_Upgrades[upgrade].get("base_cost"))
 		
-	print($Scrapyard_upgrade_panel/Scrapyard_container/Scrapyard_content/ScrollContainer/Upgrades.get_children())

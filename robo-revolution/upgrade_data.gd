@@ -14,7 +14,7 @@ var upgrades: Dictionary = {
 			"first_upgarde": false, #if there is a buy bonus for first upgrade
 			"first_description":"",  #if there is a buy bonus for first upgrade
 			"description": "Increases player speed",
-			"sprite_description": Vector2(0,0),
+			"sprite_position": Vector2(0,0),
 		},
 		"Strength": {
 			"name": "Strength",
