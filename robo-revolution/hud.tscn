@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=22 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_qb4pq"]
 [ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_31lgq"]
@@ -52,6 +52,9 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yegfb"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0kg"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugnei"]
 content_margin_top = 20.0
@@ -271,6 +274,20 @@ size_flags_vertical = 8
 icon = SubResource("AtlasTexture_yegfb")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_bm0kg")
+
+[node name="Label" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 38
+text = "Location: Scraoyard"
 
 [node name="Scrapyard_upgrade_panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(1160, 760)

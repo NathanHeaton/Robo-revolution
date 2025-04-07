@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 UpgradeData="*res://upgrade_data.gd"
 Money="*res://money.gd"
+CurrentLocation="*res://Current_Location.gd"
 
 [display]
 
