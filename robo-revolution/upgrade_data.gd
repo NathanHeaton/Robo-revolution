@@ -69,7 +69,7 @@ var upgrades: Dictionary = {
 			"level": 0,
 			"max_level": 5,
 			"base_cost": 1000,
-			"cost_scaling": 1.8,
+			"cost_scaling": 1.7,
 			"type": "custom",
 			"first_upgrade": true,
 			"first_description": "Robot can now combo giving multiplier on sales",

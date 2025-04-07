@@ -59,13 +59,15 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 	if(current_money > 0):
 		var var1:float= current_money/cost
 		
-		buyable_levels = int(log(var1) / log(float(scaling))+1)
-		buyable_levels =clamp(buyable_levels,0,max_level)
+		buyable_levels = log(((scaling-1)*current_money)/cost) / log(scaling) + 1
+		affordable_price = current_money/buyable_levels
+		buyable_levels =clamp(int(buyable_levels),0,max_level)
 	print(buyable_levels)
+	print(scaling)
 	
 	affordable_price = cost * (scaling ** (buyable_levels -1))	
-	affordable_price = int(float(affordable_price)*100.0)
-	affordable_price = float(affordable_price/100.0)
+
+	affordable_price = snapped(affordable_price, 0.01)
 	
 	if(buyable_levels == 0):
 		affordable_price = cost

@@ -48,13 +48,9 @@ func _on_scrapyard_close_button_pressed() -> void:
 
 func generate_scrapyard_upgrades() -> void:
 	var Scrapyard_Upgrades: Dictionary = UpgradeData.upgrades["Scrapyard"].duplicate() # might need to change if alter dict values
-	var card = upgrade_card_scene.instantiate()
-	var upgrade = "ItemFocuser"
-	$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
-	card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"))
-	#for upgrade in Scrapyard_Upgrades:
-		#var card = upgrade_card_scene.instantiate()
-		#$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
-		#card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"))
-
-		
+	for upgrade in Scrapyard_Upgrades:
+		var card = upgrade_card_scene.instantiate()
+		$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
+		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"))
+	
+	
