@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=23 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_qb4pq"]
 [ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_31lgq"]
@@ -41,7 +41,7 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("3_80ti6")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nljm0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo47e"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(32, 32, 32, 32)
 
@@ -54,7 +54,16 @@ atlas = ExtResource("3_80ti6")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0kg"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_top_left = 20
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugnei"]
 content_margin_top = 20.0
@@ -101,6 +110,10 @@ content_margin_top = 20.0
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_top = 4
 border_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rnnb"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(32, 32, 32, 32)
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -247,15 +260,14 @@ icon = SubResource("AtlasTexture_c56t4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Location_Button" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
+[node name="Location_Button" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-icon = SubResource("AtlasTexture_nljm0")
-icon_alignment = 1
-expand_icon = true
-item_count = 1
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_fo47e")
+stretch_mode = 0
 
 [node name="PowerC_Upgrades" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
 custom_minimum_size = Vector2(80, 80)
@@ -275,14 +287,14 @@ icon = SubResource("AtlasTexture_yegfb")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="right_hud" type="Panel" parent="MarginContainer"]
 custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_bm0kg")
 
-[node name="Label" type="Label" parent="MarginContainer/Panel"]
+[node name="location" type="Label" parent="MarginContainer/right_hud"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 20.0
@@ -301,7 +313,7 @@ offset_bottom = -98.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
-[node name="TextureRect" type="TextureRect" parent="Scrapyard_upgrade_panel"]
+[node name="Scrapyard_Icon" type="TextureRect" parent="Scrapyard_upgrade_panel"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 offset_right = 60.0
@@ -367,6 +379,72 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
+[node name="Locations_panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1160, 760)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 1182.0
+offset_bottom = -98.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Title" type="Label" parent="Locations_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.5
+offset_right = 135.5
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
+theme_override_fonts/font = ExtResource("2_31lgq")
+theme_override_font_sizes/font_size = 54
+text = "Locations"
+
+[node name="Locations_Close_Button" type="Button" parent="Locations_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Locations_content" type="VBoxContainer" parent="Locations_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 90.0
+offset_right = -2.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Locations_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_8rnnb")
+expand_mode = 3
+
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
 [connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Location_Button" to="." method="_on_location_button_toggled"]
 [connection signal="pressed" from="Scrapyard_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
+[connection signal="pressed" from="Locations_panel/Locations_Close_Button" to="." method="_on_locations_close_button_pressed"]

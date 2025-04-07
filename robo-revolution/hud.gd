@@ -8,7 +8,9 @@ signal start_game
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Scrapyard_upgrade_panel.hide()
+	$Locations_panel.hide()
 	generate_scrapyard_upgrades()
+	CurrentLocation.connect("change_location", Callable(self, "_on_change_location"))
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,7 +27,8 @@ func show_message(text):
 func update_money():
 	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + str(Money.MONEY)
 
-
+func _on_change_location():
+	$MarginContainer/right_hud/location.text = CurrentLocation.CURRENT_LOCATION
 
 func _on_message_timer_timeout():
 	$Message.hide()
@@ -54,3 +57,15 @@ func generate_scrapyard_upgrades() -> void:
 		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"))
 	
 	
+
+
+func _on_location_button_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
+		$Locations_panel.show()
+	else:
+		$Locations_panel.hide()
+
+
+func _on_locations_close_button_pressed() -> void:
+	$MarginContainer/upgrades_Locations_nav/Location_Button.button_pressed = false
+	$MarginContainer/upgrades_Locations_nav/Location_Button.emit_signal("toggled", false)

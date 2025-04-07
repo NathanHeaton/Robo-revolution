@@ -9,8 +9,14 @@ Ocean,
 Alien
 }
 # current location
-var CURRENT_LOCATION = locations.Scrapyard
+var CURRENT_LOCATION_SAFE: locations = locations.Scrapyard
 
+var CURRENT_LOCATION: locations = locations.Scrapyard:
+	get:
+		return CURRENT_LOCATION_SAFE
+	set(value):
+		CURRENT_LOCATION_SAFE = value
+		emit_signal("change_location")
 # convert enum to string when needed
 var location_to_string: Dictionary = {
 	locations.Scrapyard:"Scrapyard",
@@ -19,9 +25,6 @@ var location_to_string: Dictionary = {
 	locations.Alien:"Alien"}
 
 
-func get_current_locations()->locations:
-	emit_signal("change_location")
-	return CURRENT_LOCATION
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
