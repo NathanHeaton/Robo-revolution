@@ -33,7 +33,7 @@ var location_data: Dictionary = {
 		"cost": 0,
 		"priColour": "#CE3CDF",
 		"secColour": "#AB1FBB",
-		"spritePos": Vector2(0,0)
+		"sprite_position": Vector2(0,0)
 	},
 	locations.Underground:{
 		"name": "Underground",
@@ -42,7 +42,7 @@ var location_data: Dictionary = {
 		"cost": 5000,
 		"priColour": "#CE3CDF",
 		"secColour": "#AB1FBB",
-		"spritePos": Vector2(1,0)
+		"sprite_position": Vector2(1,0)
 	},
 	locations.Ocean:{
 		"name": "Ocean",
@@ -51,7 +51,7 @@ var location_data: Dictionary = {
 		"cost": 5000000,
 		"priColour": "#CE3CDF",
 		"secColour": "#AB1FBB",
-		"spritePos": Vector2(0,1)
+		"sprite_position": Vector2(0,1)
 	},
 	locations.Alien:{
 		"name": "Alien",
@@ -60,7 +60,7 @@ var location_data: Dictionary = {
 		"cost": 500000000,
 		"priColour": "#CE3CDF",
 		"secColour": "#AB1FBB",
-		"spritePos": Vector2(1,1)
+		"sprite_position": Vector2(1,1)
 	}
 }
 

@@ -3,7 +3,7 @@ extends Node
 @export var scrap_treasure: PackedScene
 # Called when the node enters the scene tree for the first time.
 
-var rarity_lvl = 3
+var rarity_lvl = 0
 
 
 func _ready() -> void:

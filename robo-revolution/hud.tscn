@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=24 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_qb4pq"]
-[ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_31lgq"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
 [ext_resource type="Texture2D" uid="uid://bisrwqsp3i7ac" path="res://assets/upgrade_icons.png" id="3_80ti6"]
 
@@ -40,6 +39,14 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c56t4"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="InputEventKey" id="InputEventKey_3ndxh"]
+device = -1
+keycode = 54
+unicode = 54
+
+[sub_resource type="Shortcut" id="Shortcut_13tdr"]
+events = [SubResource("InputEventKey_3ndxh")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fo47e"]
 atlas = ExtResource("3_80ti6")
@@ -174,8 +181,7 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 40
 text = "Collect Scrap and treasure"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -188,23 +194,20 @@ alignment = 2
 [node name="Money_Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 28
 text = "Money: 0"
 horizontal_alignment = 2
 
 [node name="Power_Crystals_Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 22
 text = "Power Crystals: 0"
 
 [node name="Companions_Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 22
 text = "Comapanions: 0"
 
 [node name="upgrades_Locations_nav" type="HBoxContainer" parent="MarginContainer"]
@@ -266,6 +269,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 toggle_mode = true
+shortcut = SubResource("Shortcut_13tdr")
 texture_normal = SubResource("AtlasTexture_fo47e")
 stretch_mode = 0
 
@@ -298,10 +302,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bm0kg")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 20.0
-theme_override_font_sizes/font_size = 38
+theme_override_font_sizes/font_size = 18
 text = "Location: Scraoyard"
 
 [node name="Scrapyard_upgrade_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -333,9 +338,10 @@ offset_bottom = 66.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 40
 text = "Scrapyard Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Scrapyard_Close_Button" type="Button" parent="Scrapyard_upgrade_panel"]
 clip_children = 2
@@ -402,9 +408,10 @@ offset_bottom = 66.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
-theme_override_fonts/font = ExtResource("2_31lgq")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 40
 text = "Locations"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Locations_Close_Button" type="Button" parent="Locations_panel"]
 clip_children = 2
@@ -424,16 +431,26 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
 text = "x"
 
 [node name="Locations_content" type="VBoxContainer" parent="Locations_panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
 offset_left = -2.0
 offset_top = 90.0
-offset_right = -2.0
-offset_bottom = -66.0
+offset_right = 1158.0
+offset_bottom = 890.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Locations_panel/Locations_content"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uppe2")
+horizontal_scroll_mode = 0
+
+[node name="locations" type="VBoxContainer" parent="Locations_panel/Locations_content/ScrollContainer"]
+custom_minimum_size = Vector2(0, 800)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="Locations_panel"]
 custom_minimum_size = Vector2(80, 80)

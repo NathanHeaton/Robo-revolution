@@ -73,7 +73,7 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 	else:
 		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = false
 	
-	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = Money.covert_Scientific_format(affordable_price) + "$ | BUY "+str(buyable_levels)
+	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = Money.covert_Scientific_format(affordable_price) + "$ | MAX ("+str(buyable_levels)+")"
 	
 
 func _update_button_state():
@@ -88,6 +88,7 @@ func _change_sprite():
 	atlas_texture.atlas = load("res://assets/Basic Items.png") # loads upgrades
 	atlas_texture.set_region(icon_rect) # sets rext for icons
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/Upgrade_Icons.texture = atlas_texture
+	
 
 func _change_cost():
-	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".text = Money.covert_Scientific_format(cost) + "$ | BUY"
+	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".text = Money.covert_Scientific_format(cost) + "$ | 1X"

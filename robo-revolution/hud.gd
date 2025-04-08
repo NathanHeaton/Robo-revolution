@@ -1,6 +1,7 @@
 extends Control
 
 var upgrade_card_scene = preload("res://upgrade_card.tscn")
+var location_card_scene = preload("res://location_card.tscn")
 
 signal start_game
 
@@ -10,7 +11,8 @@ func _ready() -> void:
 	$Scrapyard_upgrade_panel.hide()
 	$Locations_panel.hide()
 	generate_scrapyard_upgrades()
-	CurrentLocation.connect("change_location", Callable(self, "_on_change_location"))
+	generate_location_cards()
+	LocationData.connect("change_location", Callable(self, "_on_change_location"))
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,7 +30,7 @@ func update_money():
 	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + Money.covert_Scientific_format(Money.MONEY)
 
 func _on_change_location():
-	$MarginContainer/right_hud/location.text = CurrentLocation.CURRENT_LOCATION
+	$MarginContainer/right_hud/location.text = LocationData.CURRENT_LOCATION
 
 func _on_message_timer_timeout():
 	$Message.hide()
@@ -55,6 +57,17 @@ func generate_scrapyard_upgrades() -> void:
 		var card = upgrade_card_scene.instantiate()
 		$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
 		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"))
+	
+	
+	
+
+func generate_location_cards() -> void:
+	var locations:Dictionary = LocationData.location_data
+	for location in LocationData.location_data:
+		var card = location_card_scene.instantiate()
+		$Locations_panel/Locations_content/ScrollContainer/locations.add_child(card)
+		#get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlocked)
+		card.get_inital_data(locations[location].get("description"),locations[location].get("sprite_position"),locations[location].get("name"),locations[location].get("base_cost"),locations[location].get("priColour"),locations[location].get("secColour"),locations[location].get("unlocked"))
 	
 	
 

@@ -39,6 +39,5 @@ func covert_Scientific_format(num: float):
 		sci_format = sci_format.insert(1,".")
 	
 	sci_format = sci_format + "e" + str(digits - 1)
-	print(sci_format)
 	return sci_format
 	

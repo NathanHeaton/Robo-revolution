@@ -53,7 +53,7 @@ func collect():
 	
 
 func display_value_animation():
-	$Value.text = str(value)
+	$Value.text = Money.covert_Scientific_format(value)
 	
 
 

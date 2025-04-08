@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=3 uid="uid://bgh71pk7i2w1n"]
+
+[ext_resource type="Script" path="res://location_card.gd" id="1_vjwwg"]
+[ext_resource type="Texture2D" uid="uid://bictl1ubjaau0" path="res://assets/Basic Items.png" id="2_x5u22"]
+[ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_76oin"]
+[ext_resource type="StyleBox" uid="uid://btbtswtbq2102" path="res://button_focus.tres" id="4_neclg"]
+[ext_resource type="StyleBox" uid="uid://cumvo6rguxrma" path="res://styles/Disabled_buy_button.tres" id="5_fd5mt"]
+[ext_resource type="StyleBox" uid="uid://b1ba2pu1l6a3m" path="res://styles/normal_buy_button.tres" id="6_y7u8s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eq3nb"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p6nn"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o80yt"]
+atlas = ExtResource("2_x5u22")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us4c2"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.8667, 0.468787, 0.880652, 1)
+border_width_left = 7
+border_width_bottom = 7
+border_color = Color(0.674427, 0.344994, 0.657784, 1)
+corner_radius_bottom_left = 20
+corner_detail = 6
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpgek"]
+bg_color = Color(0.513726, 0.113725, 0.533333, 1)
+border_width_left = 2
+border_width_bottom = 2
+border_color = Color(0.376471, 0.0235294, 0.396078, 1)
+corner_radius_bottom_left = 20
+corner_detail = 6
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+anti_aliasing = false
+
+[node name="location_card" type="Panel"]
+offset_right = 1000.0
+offset_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_vjwwg")
+
+[node name="location_panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eq3nb")
+
+[node name="MarginContainer" type="MarginContainer" parent="location_panel"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Upgarde_Content_Panel" type="Panel" parent="location_panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0p6nn")
+
+[node name="MarginContainer" type="MarginContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Upgarde_Content" type="HBoxContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Upgrade_Icons" type="TextureRect" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content"]
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_o80yt")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_76oin")
+theme_override_font_sizes/font_size = 30
+text = "place holder"
+
+[node name="Description" type="Label" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+theme_override_font_sizes/font_size = 24
+text = "placeholder"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="1X" type="Button" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = ExtResource("4_neclg")
+theme_override_styles/disabled = ExtResource("5_fd5mt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_us4c2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lpgek")
+theme_override_styles/normal = ExtResource("6_y7u8s")
+text = "Travel
+"
