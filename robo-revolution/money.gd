@@ -24,13 +24,21 @@ func _process(delta: float) -> void:
 func covert_Scientific_format(num: float):
 	var num_string = str(snapped(num,1))# gets rid of decimals if there are any
 	var digits = num_string.length()
+	var sci_format = ""
 	
 	if(digits < 4):
 		return str(num)
-
-	num_string = num_string.insert(1,".")
-	num_string = num_string[0] + num_string[1] + num_string[2] + num_string[3] # dumb way of getting first 3 digits
-	num_string = num_string + "e" + str(digits - 1)
-	print(num_string)
-	return num_string
+		
+	sci_format = num_string[0]
+	if (num_string[1] != "0" || num_string[2] != "0"):# if both digits are 0 this is skipped
+		sci_format += num_string[1] 
+		if(num_string[2] != "0"):
+			sci_format +=  num_string[2]
+	
+	if (sci_format.length() > 1):
+		sci_format = sci_format.insert(1,".")
+	
+	sci_format = sci_format + "e" + str(digits - 1)
+	print(sci_format)
+	return sci_format
 	
