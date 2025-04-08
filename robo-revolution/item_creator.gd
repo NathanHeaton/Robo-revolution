@@ -138,12 +138,12 @@ var item_data: Dictionary = {
 		"locations": ["Alien"],
 		"variants": 4
 	},
-		"gold_plates": {
+	"gold_plates": {
 		"name": "gold_plates",
 		"value": 60,
 		"rarity": 0,
 		"type": "treasure",
-		"weight": 2,
+		"weight": 4,
 		"locations": ["Scrapyard", "Underground"],
 		"variants": 2
 	},
@@ -161,7 +161,7 @@ var item_data: Dictionary = {
 		"value": 600,
 		"rarity": 2,
 		"type": "treasure",
-		"weight": 5,
+		"weight": 7,
 		"locations": ["Underground"],
 		"variants": 1  # Unique appearance
 	},

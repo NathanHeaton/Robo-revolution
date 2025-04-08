@@ -44,7 +44,8 @@ func _change_title() -> void:
 func _change_Description() -> void:
 	$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Description.text = str(description)
 
-
+func _change_button_colour() -> void:
+	var stylebox = $"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".get_theme_stylebox("panel")
 	
 
 func _update_button_state():
