@@ -25,7 +25,7 @@ func show_message(text):
 
 	
 func update_money():
-	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + str(Money.MONEY)
+	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + Money.covert_Scientific_format(Money.MONEY)
 
 func _on_change_location():
 	$MarginContainer/right_hud/location.text = CurrentLocation.CURRENT_LOCATION

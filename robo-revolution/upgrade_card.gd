@@ -65,7 +65,7 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 	
 	affordable_price = cost * (scaling ** (buyable_levels -1))	
 
-	affordable_price = snapped(affordable_price, 0.01)
+	affordable_price = snapped(affordable_price, 1)
 	
 	if(buyable_levels == 0):
 		affordable_price = cost
@@ -73,7 +73,7 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 	else:
 		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = false
 	
-	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = str(affordable_price) + "$ | BUY "+str(buyable_levels)
+	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = Money.covert_Scientific_format(affordable_price) + "$ | BUY "+str(buyable_levels)
 	
 
 func _update_button_state():
@@ -90,4 +90,4 @@ func _change_sprite():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/Upgrade_Icons.texture = atlas_texture
 
 func _change_cost():
-	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".text = str(cost) + "$ | BUY"
+	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".text = Money.covert_Scientific_format(cost) + "$ | BUY"

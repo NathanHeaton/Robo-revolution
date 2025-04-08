@@ -23,6 +23,46 @@ var location_to_string: Dictionary = {
 	locations.Underground:"Underground",
 	locations.Ocean:"Ocean",
 	locations.Alien:"Alien"}
+	
+
+var location_data: Dictionary = {
+	locations.Scrapyard:{
+		"name": "Scrapyard",
+		"description" : "Increase chance to spawn trash items",
+		"unlocked": true,
+		"cost": 0,
+		"priColour": "#CE3CDF",
+		"secColour": "#AB1FBB",
+		"spritePos": Vector2(0,0)
+	},
+	locations.Underground:{
+		"name": "Underground",
+		"description" : "Increase chance to spawn trash items",
+		"unlocked": false,
+		"cost": 5000,
+		"priColour": "#CE3CDF",
+		"secColour": "#AB1FBB",
+		"spritePos": Vector2(1,0)
+	},
+	locations.Ocean:{
+		"name": "Ocean",
+		"description" : "Increase chance to spawn trash items",
+		"unlocked": false,
+		"cost": 5000000,
+		"priColour": "#CE3CDF",
+		"secColour": "#AB1FBB",
+		"spritePos": Vector2(0,1)
+	},
+	locations.Alien:{
+		"name": "Alien",
+		"description" : "Increase chance to spawn trash items",
+		"unlocked": false,
+		"cost": 500000000,
+		"priColour": "#CE3CDF",
+		"secColour": "#AB1FBB",
+		"spritePos": Vector2(1,1)
+	}
+}
 
 
 

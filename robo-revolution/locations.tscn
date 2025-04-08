@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw74wx46pksmj"]
 
-[ext_resource type="Script" path="res://locations.gd" id="1_hte8d"]
+[ext_resource type="Script" path="res://Location_sprites.gd" id="1_hte8d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mtjme"]
 
