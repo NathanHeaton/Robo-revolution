@@ -47,10 +47,13 @@ expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 anti_aliasing = false
 
-[node name="location_card" type="Panel"]
-offset_right = 1000.0
-offset_bottom = 200.0
-size_flags_horizontal = 3
+[node name="location_card" type="Control"]
+layout_direction = 1
+layout_mode = 3
+anchor_right = 0.521
+anchor_bottom = 0.185
+offset_right = -0.320068
+offset_bottom = 0.199997
 size_flags_vertical = 3
 script = ExtResource("1_vjwwg")
 

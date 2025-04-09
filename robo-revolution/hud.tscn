@@ -74,7 +74,7 @@ expand_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugnei"]
 content_margin_top = 20.0
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0, 0, 0, 0.627451)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -306,7 +306,6 @@ theme_override_font_sizes/font_size = 18
 text = "Location: Scraoyard"
 
 [node name="Scrapyard_upgrade_panel" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9

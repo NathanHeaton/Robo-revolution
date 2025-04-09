@@ -262,3 +262,5 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ogord")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_figw4")
 theme_override_styles/normal = ExtResource("6_7uf5o")
 text = "100$  | Buy 1X"
+
+[connection signal="pressed" from="Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X" to="." method="_on_x_pressed"]

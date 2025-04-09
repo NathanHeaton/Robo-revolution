@@ -92,3 +92,7 @@ func _change_sprite():
 
 func _change_cost():
 	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".text = Money.covert_Scientific_format(cost) + "$ | 1X"
+
+
+func _on_x_pressed() -> void:
+	UpgradeManager.apply_upgrade(title,level,1,cost)

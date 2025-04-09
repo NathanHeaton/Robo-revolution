@@ -13,6 +13,7 @@ func _ready() -> void:
 	generate_scrapyard_upgrades()
 	generate_location_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
+	Money.connect("money_changed", Callable(self, "_on_money_changed"))
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,6 +25,10 @@ func show_message(text):
 	#$Message.text = text
 	#$Message.show()
 	#$Message_Timer.start()
+	
+
+func _on_money_changed():
+	update_money()
 
 	
 func update_money():

@@ -8,6 +8,7 @@ var rarity_lvl = 0
 
 func _ready() -> void:
 	newGame()
+	Money.MONEY = 5000
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
