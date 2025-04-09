@@ -235,4 +235,5 @@ theme_override_styles/pressed = ExtResource("7_y2clt")
 theme_override_styles/normal = ExtResource("7_y2clt")
 text = "100$  | MAX"
 
+[connection signal="pressed" from="Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max" to="." method="_on_max_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy" to="." method="_on_buy_pressed"]

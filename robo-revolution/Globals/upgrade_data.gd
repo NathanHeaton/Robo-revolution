@@ -5,6 +5,7 @@ extends Node
 var upgrades: Dictionary = {
 	"Scrapyard":{
 		"Speed":{
+			"id": 0,
 			"name": "Speed",
 			"level": 0,
 			"max_level": 10,
@@ -17,6 +18,7 @@ var upgrades: Dictionary = {
 			"sprite_position": Vector2(0,0),
 		},
 		"Strength": {
+			"id": 1,
 			"name": "Strength",
 			"level": 0,
 			"max_level": 10,
@@ -29,6 +31,7 @@ var upgrades: Dictionary = {
 			"sprite_position": Vector2(1, 0),
 		},
 		"SpawnRate": {
+			"id": 2,
 			"name": "Spawn Rate",
 			"level": 0,
 			"max_level": 20,
@@ -41,6 +44,7 @@ var upgrades: Dictionary = {
 			"sprite_position": Vector2(2, 0),
 		},
 		"Rarity": {
+			"id": 3,
 			"name": "Rarity",
 			"level": 0,
 			"max_level": 8,
@@ -53,6 +57,7 @@ var upgrades: Dictionary = {
 			"sprite_position": Vector2(3, 0),
 		},
 		"ItemFocuser": {
+			"id": 4,
 			"name": "Item Focuser",
 			"level": 0,
 			"max_level": 6,
@@ -65,6 +70,7 @@ var upgrades: Dictionary = {
 			"sprite_position": Vector2(0, 1),
 		},
 		"Combo": {
+			"id": 5,
 			"name": "Combo",
 			"level": 0,
 			"max_level": 5,
@@ -77,6 +83,7 @@ var upgrades: Dictionary = {
 			"sprite_position": Vector2(1, 1),
 		},
 		"ComboIncrease": {
+			"id": 6,
 			"name": "Combo Increase",
 			"level": 0,
 			"max_level": 100,
@@ -89,6 +96,7 @@ var upgrades: Dictionary = {
 			"sprite_position": Vector2(2, 1),
 		},
 		"SurgeProtection": {
+			"id": 7,
 			"name": "Surge Protection",
 			"level": 0,
 			"max_level": 5,

@@ -65,7 +65,7 @@ func generate_scrapyard_upgrades() -> void:
 	for upgrade in Scrapyard_Upgrades:
 		var card = upgrade_card_scene.instantiate()
 		$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
-		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"))
+		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"),Scrapyard_Upgrades[upgrade].get("id"))
 	
 	
 	

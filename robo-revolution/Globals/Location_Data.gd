@@ -21,6 +21,7 @@ var CURRENT_LOCATION: locations = locations.Scrapyard:
 	
 var location_data: Dictionary = {
 	locations.Scrapyard:{
+		"id": 0,
 		"name": "Scrapyard",
 		"description" : "Increase chance to spawn trash items",
 		"unlocked": true,
@@ -31,6 +32,7 @@ var location_data: Dictionary = {
 		"sprite_position": Vector2(0,0)
 	},
 	locations.Underground:{
+		"id": 1,
 		"name": "Underground",
 		"description" : "Increase chance to spawn trash items",
 		"unlocked": false,
@@ -41,6 +43,7 @@ var location_data: Dictionary = {
 		"sprite_position": Vector2(1,0)
 	},
 	locations.Ocean:{
+		"id": 2,
 		"name": "Ocean",
 		"description" : "Increase chance to spawn trash items",
 		"unlocked": false,
@@ -51,6 +54,7 @@ var location_data: Dictionary = {
 		"sprite_position": Vector2(0,1)
 	},
 	locations.Alien:{
+		"id": 3,
 		"name": "Alien",
 		"description" : "Increase chance to spawn trash items",
 		"unlocked": false,

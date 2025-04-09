@@ -9,18 +9,22 @@ var scaling =0
 var pos # sprite position
 var description = ""
 var title = ""
+var buyable_levels = 0
+var affordable_price = cost
+var id
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
+	UpgradeManager.connect("level_changed", Callable(self, "_update_level"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_pos,t_title):
+func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_pos,t_title, t_id):
 	cost = t_base_cost
 	scaling = t_scaling
 	level = t_level
@@ -28,6 +32,7 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 	pos = t_pos
 	description = t_description
 	title = t_title
+	id = t_id
 	
 	_change_title()
 	_change_Description()
@@ -35,6 +40,16 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 	_change_cost()
 	_cal_max_buy()
 	_change_level()
+
+
+func _update_level(t_id):
+	if (id == t_id):
+		level = UpgradeData.upgrades["Scrapyard"][title]["level"]
+		_update_button_state()
+		_cal_max_buy()
+		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
+	
+
 
 func _change_level():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
@@ -53,15 +68,13 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 	var current_money = Money.MONEY
 	var max_amount = 0
 	var remainingLevels = max_level - level
-	var buyable_levels = 0
-	var affordable_price = cost
 	
 	if(current_money > 0):
 		var var1:float= current_money/cost
 		
 		buyable_levels = log(((scaling-1)*current_money)/cost) / log(scaling) + 1
 		affordable_price = current_money/buyable_levels
-		buyable_levels =clamp(int(buyable_levels),0,max_level)
+		buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
 	
 	affordable_price = cost * (scaling ** (buyable_levels -1))	
 
@@ -77,10 +90,14 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 	
 
 func _update_button_state():
-	if (Money.MONEY < cost):
+	if (Money.MONEY < cost || level >= max_level):
 		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = true
+		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true
 	else:
 		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = false
+		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = false
+
+
 
 func _change_sprite():
 	var icon_rect = Rect2(Vector2(pos.x *FRAME_SIZE,pos.y *FRAME_SIZE),Vector2(FRAME_SIZE,FRAME_SIZE))
@@ -98,4 +115,8 @@ func _change_cost():
 
 func _on_buy_pressed() -> void:
 	
-	UpgradeManager.apply_upgrade(title,level,1,cost)
+	UpgradeManager.apply_upgrade(id,level,1,cost)
+
+
+func _on_max_pressed() -> void:
+	UpgradeManager.apply_upgrade(id,level,buyable_levels,affordable_price,)
