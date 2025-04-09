@@ -67,7 +67,7 @@ func generate_location_cards() -> void:
 		var card = location_card_scene.instantiate()
 		$Locations_panel/Locations_content/ScrollContainer/locations.add_child(card)
 		#get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlocked)
-		card.get_inital_data(locations[location].get("description"),locations[location].get("sprite_position"),locations[location].get("name"),locations[location].get("base_cost"),locations[location].get("priColour"),locations[location].get("secColour"),locations[location].get("unlocked"))
+		card.get_inital_data(locations[location].get("description"),locations[location].get("sprite_position"),locations[location].get("name"),locations[location].get("base_cost"),locations[location].get("priColour"),locations[location].get("secColour"),locations[location].get("unlocked"),locations[location].get("key_needed"))
 	
 	
 
