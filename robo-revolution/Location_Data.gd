@@ -17,14 +17,8 @@ var CURRENT_LOCATION: locations = locations.Scrapyard:
 	set(value):
 		CURRENT_LOCATION_SAFE = value
 		emit_signal("change_location")
-# convert enum to string when needed
-var location_to_string: Dictionary = {
-	locations.Scrapyard:"Scrapyard",
-	locations.Underground:"Underground",
-	locations.Ocean:"Ocean",
-	locations.Alien:"Alien"}
 	
-
+	
 var location_data: Dictionary = {
 	locations.Scrapyard:{
 		"name": "Scrapyard",

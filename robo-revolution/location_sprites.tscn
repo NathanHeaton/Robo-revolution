@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpky4ajurmwss"]
+
+[ext_resource type="Texture2D" uid="uid://c6jjhyraw7f72" path="res://assets/Locations-Sheet.png" id="1_h71mi"]
+[ext_resource type="Script" path="res://location_sprites.gd" id="2_d7tva"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2ft2"]
+atlas = ExtResource("1_h71mi")
+region = Rect2(480, 270, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mow72"]
+atlas = ExtResource("1_h71mi")
+region = Rect2(0, 270, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74klf"]
+atlas = ExtResource("1_h71mi")
+region = Rect2(0, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dd4f"]
+atlas = ExtResource("1_h71mi")
+region = Rect2(480, 0, 480, 270)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j1bm7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2ft2")
+}],
+"loop": true,
+"name": &"Alien",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mow72")
+}],
+"loop": true,
+"name": &"Ocean",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74klf")
+}],
+"loop": true,
+"name": &"Scrapyard",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dd4f")
+}],
+"loop": true,
+"name": &"Underground",
+"speed": 5.0
+}]
+
+[node name="Location_Sprites" type="AnimatedSprite2D"]
+z_index = -100
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_j1bm7")
+animation = &"Underground"
+centered = false
+script = ExtResource("2_d7tva")

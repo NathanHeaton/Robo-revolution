@@ -10,6 +10,14 @@ var priColour =""
 var secColour = ""
 var key_needed = false
 
+var location_to_enum = {
+	"Alien":3,
+	"Scrapyard":0,
+	"Underground":1,
+	"Ocean":2,
+	
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,7 +49,7 @@ func get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlock
 func _change_unlocked():
 	
 	if (unlocked):
-		$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".text = "Travel"
+		$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".text = "Travel"
 	else:
 		_change_cost()
 	
@@ -58,10 +66,10 @@ func _change_Description() -> void:
 
 func _change_button_colour() -> void:
 	#var stylebox = $"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".get_theme_stylebox("panel")
-	var new_stylebox_normal = $"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".get_theme_stylebox("normal").duplicate()
+	var new_stylebox_normal = $"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".get_theme_stylebox("normal").duplicate()
 	new_stylebox_normal.border_color = Color(secColour)
 	new_stylebox_normal.bg_color = Color(priColour)
-	$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".add_theme_stylebox_override("normal",new_stylebox_normal)
+	$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".add_theme_stylebox_override("normal",new_stylebox_normal)
 
 	
 
@@ -82,6 +90,10 @@ func _change_sprite():
 	
 
 func _change_cost():
-	$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".text = Money.covert_Scientific_format(cost) + "$"
+	$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".text = Money.covert_Scientific_format(cost) + "$"
 	if (key_needed):
-		$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".text = Money.covert_Scientific_format(cost) + "$ + 1X KEY"
+		$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".text = Money.covert_Scientific_format(cost) + "$ + 1X KEY"
+
+
+func _on_location_button_pressed() -> void:
+	LocationData.CURRENT_LOCATION = location_to_enum.get(title)

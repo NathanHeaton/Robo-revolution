@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=9 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3hp8v"]
 [ext_resource type="PackedScene" uid="uid://chxff3xxo7qn2" path="res://player.tscn" id="1_kglwf"]
 [ext_resource type="PackedScene" uid="uid://cypyv08he7eys" path="res://scrap_treasure.tscn" id="2_vycq8"]
+[ext_resource type="PackedScene" uid="uid://cpky4ajurmwss" path="res://location_sprites.tscn" id="3_if4rs"]
 [ext_resource type="PackedScene" uid="uid://dkgn3ys5nt1ao" path="res://item_collector.tscn" id="4_q373p"]
 [ext_resource type="PackedScene" uid="uid://3pke8c3v8xbd" path="res://hud.tscn" id="5_h1go3"]
 [ext_resource type="PackedScene" uid="uid://bgplxom4d71ao" path="res://walls.tscn" id="6_o4jhg"]
@@ -13,6 +14,8 @@ script = ExtResource("1_3hp8v")
 scrap_treasure = ExtResource("2_vycq8")
 metadata/_edit_vertical_guides_ = [824.0, 1143.0, 964.0]
 metadata/_edit_horizontal_guides_ = [325.0, 725.0, 517.0]
+
+[node name="Location_Sprites" parent="." instance=ExtResource("3_if4rs")]
 
 [node name="Player" parent="." instance=ExtResource("1_kglwf")]
 position = Vector2(994, 660)

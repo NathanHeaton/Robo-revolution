@@ -30,7 +30,7 @@ func update_money():
 	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + Money.covert_Scientific_format(Money.MONEY)
 
 func _on_change_location():
-	$MarginContainer/right_hud/location.text = LocationData.CURRENT_LOCATION
+	$MarginContainer/right_hud/location.text = "Location: " + str(LocationData.location_data[LocationData.CURRENT_LOCATION].get("name"))
 
 func _on_message_timer_timeout():
 	$Message.hide()

@@ -1,9 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw74wx46pksmj"]
 
-[ext_resource type="Script" path="res://Location_sprites.gd" id="1_hte8d"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_mtjme"]
+
+[sub_resource type="GDScript" id="GDScript_1aa1y"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Locations" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_mtjme")
-script = ExtResource("1_hte8d")
+script = SubResource("GDScript_1aa1y")

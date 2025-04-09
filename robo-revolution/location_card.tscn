@@ -126,7 +126,7 @@ layout_mode = 2
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="1X" type="Button" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer"]
+[node name="location_button" type="Button" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -138,3 +138,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_lpgek")
 theme_override_styles/normal = ExtResource("6_y7u8s")
 text = "Travel
 "
+
+[connection signal="pressed" from="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button" to="." method="_on_location_button_pressed"]
