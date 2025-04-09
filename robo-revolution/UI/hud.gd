@@ -1,13 +1,17 @@
 extends Control
 
-var upgrade_card_scene = preload("res://upgrade_card.tscn")
-var location_card_scene = preload("res://location_card.tscn")
+var upgrade_card_scene = preload("res://UI/upgrade_card.tscn")
+var location_card_scene = preload("res://UI/location_card.tscn")
 
 signal start_game
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(upgrade_card_scene)
+	print(location_card_scene)
+	var card = location_card_scene.instantiate()
+	print(card)
 	$Scrapyard_upgrade_panel.hide()
 	$Locations_panel.hide()
 	generate_scrapyard_upgrades()
@@ -70,6 +74,7 @@ func generate_location_cards() -> void:
 	var locations:Dictionary = LocationData.location_data
 	for location in LocationData.location_data:
 		var card = location_card_scene.instantiate()
+		print(card)
 		$Locations_panel/Locations_content/ScrollContainer/locations.add_child(card)
 		#get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlocked)
 		card.get_inital_data(locations[location].get("description"),locations[location].get("sprite_position"),locations[location].get("name"),locations[location].get("base_cost"),locations[location].get("priColour"),locations[location].get("secColour"),locations[location].get("unlocked"),locations[location].get("key_needed"))

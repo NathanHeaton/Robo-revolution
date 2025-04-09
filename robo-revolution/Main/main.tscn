@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8nwu4mwix02w"]
+
+[ext_resource type="Script" path="res://Main/main.gd" id="1_l0ipk"]
+[ext_resource type="PackedScene" uid="uid://cypyv08he7eys" path="res://Scenes/scrap_treasure.tscn" id="2_yxho2"]
+[ext_resource type="PackedScene" uid="uid://cpky4ajurmwss" path="res://Scenes/location_sprites.tscn" id="3_cn8wn"]
+[ext_resource type="PackedScene" uid="uid://chxff3xxo7qn2" path="res://Scenes/player.tscn" id="4_pkabt"]
+[ext_resource type="PackedScene" uid="uid://dkgn3ys5nt1ao" path="res://Scenes/item_collector.tscn" id="5_looat"]
+[ext_resource type="PackedScene" uid="uid://3pke8c3v8xbd" path="res://UI/hud.tscn" id="6_rxbsb"]
+[ext_resource type="PackedScene" uid="uid://bgplxom4d71ao" path="res://Scenes/walls.tscn" id="7_lbk8s"]
+[ext_resource type="PackedScene" uid="uid://cbh7nw33q7mn7" path="res://Scenes/item_creator.tscn" id="8_7cs6e"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_l0ipk")
+scrap_treasure = ExtResource("2_yxho2")
+metadata/_edit_vertical_guides_ = [824.0, 1143.0, 964.0]
+metadata/_edit_horizontal_guides_ = [325.0, 725.0, 517.0]
+
+[node name="Location_Sprites" parent="." instance=ExtResource("3_cn8wn")]
+
+[node name="Player" parent="." instance=ExtResource("4_pkabt")]
+position = Vector2(994, 660)
+
+[node name="loot_spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Start_Position" type="Marker2D" parent="."]
+position = Vector2(800, 500)
+
+[node name="Item_Collector" parent="." instance=ExtResource("5_looat")]
+
+[node name="HUD" parent="." instance=ExtResource("6_rxbsb")]
+
+[node name="Walls" parent="." instance=ExtResource("7_lbk8s")]
+
+[node name="Item_creator" parent="." instance=ExtResource("8_7cs6e")]
+
+[connection signal="push" from="Player" to="." method="_on_player_push"]
+[connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]
+[connection signal="collect" from="Item_Collector" to="." method="_on_item_collector_collect"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

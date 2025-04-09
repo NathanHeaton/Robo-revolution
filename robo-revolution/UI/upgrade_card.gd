@@ -78,9 +78,9 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 
 func _update_button_state():
 	if (Money.MONEY < cost):
-		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".disabled = true
+		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = true
 	else:
-		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".disabled = false
+		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = false
 
 func _change_sprite():
 	var icon_rect = Rect2(Vector2(pos.x *FRAME_SIZE,pos.y *FRAME_SIZE),Vector2(FRAME_SIZE,FRAME_SIZE))
@@ -91,8 +91,11 @@ func _change_sprite():
 	
 
 func _change_cost():
-	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".text = Money.covert_Scientific_format(cost) + "$ | 1X"
+	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.text = Money.covert_Scientific_format(cost) + "$ | 1X"
 
 
-func _on_x_pressed() -> void:
+
+
+func _on_buy_pressed() -> void:
+	
 	UpgradeManager.apply_upgrade(title,level,1,cost)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cbh7nw33q7mn7"]
 
-[ext_resource type="Script" path="res://item_creator.gd" id="1_2vs4u"]
+[ext_resource type="Script" path="res://Scenes/item_creator.gd" id="1_2vs4u"]
 
 [node name="Item_creator" type="Node" groups=["scrapTreasure"]]
 script = ExtResource("1_2vs4u")

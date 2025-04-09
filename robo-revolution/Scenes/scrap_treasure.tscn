@@ -1,6 +1,6 @@
 [gd_scene load_steps=70 format=3 uid="uid://cypyv08he7eys"]
 
-[ext_resource type="Script" path="res://scrap_treasure.gd" id="1_bp5v4"]
+[ext_resource type="Script" path="res://Scenes/scrap_treasure.gd" id="1_bp5v4"]
 [ext_resource type="Texture2D" uid="uid://dsg2470af5hxa" path="res://assets/loot_items.png" id="1_lcom2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vufmf"]

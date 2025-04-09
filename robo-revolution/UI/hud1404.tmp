@@ -1,0 +1,467 @@
+[gd_scene load_steps=24 format=3 uid="uid://3pke8c3v8xbd"]
+
+[ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
+[ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
+[ext_resource type="Texture2D" uid="uid://bisrwqsp3i7ac" path="res://assets/upgrade_icons.png" id="3_80ti6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0poq"]
+atlas = ExtResource("2_yatbj")
+region = Rect2(0, 0, 32, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fars7"]
+atlas = ExtResource("2_yatbj")
+region = Rect2(32, 0, 32, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siikn"]
+atlas = ExtResource("2_yatbj")
+region = Rect2(64, 0, 32, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51pt6"]
+atlas = ExtResource("2_yatbj")
+region = Rect2(96, 0, 32, 0)
+
+[sub_resource type="InputEventKey" id="InputEventKey_ceg5h"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_6345e"]
+events = [SubResource("InputEventKey_ceg5h")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84ht1"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tmh5"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c56t4"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="InputEventKey" id="InputEventKey_3ndxh"]
+device = -1
+keycode = 54
+unicode = 54
+
+[sub_resource type="Shortcut" id="Shortcut_13tdr"]
+events = [SubResource("InputEventKey_3ndxh")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo47e"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnwrj"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yegfb"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0kg"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_top_left = 20
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugnei"]
+content_margin_top = 20.0
+bg_color = Color(0, 0, 0, 0.627451)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psalp"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwkk5"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.513726, 0.113725, 0.533333, 1)
+border_width_left = 7
+border_width_bottom = 7
+border_color = Color(0.376471, 0.0235294, 0.396078, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uppe2"]
+content_margin_top = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 4
+border_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rnnb"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(32, 32, 32, 32)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qb4pq")
+
+[node name="Message_Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="top_nav" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Settings" type="MenuButton" parent="MarginContainer/top_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = SubResource("AtlasTexture_p0poq")
+expand_icon = true
+
+[node name="Profile" type="MenuButton" parent="MarginContainer/top_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = SubResource("AtlasTexture_fars7")
+expand_icon = true
+
+[node name="Achievements" type="MenuButton" parent="MarginContainer/top_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = SubResource("AtlasTexture_siikn")
+expand_icon = true
+
+[node name="Stats" type="MenuButton" parent="MarginContainer/top_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = SubResource("AtlasTexture_51pt6")
+expand_icon = true
+
+[node name="Message" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Collect Scrap and treasure"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Money_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 28
+text = "Money: 0"
+horizontal_alignment = 2
+
+[node name="Power_Crystals_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 22
+text = "Power Crystals: 0"
+
+[node name="Companions_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 22
+text = "Comapanions: 0"
+
+[node name="upgrades_Locations_nav" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="Scrapyard_Upgrades" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+toggle_mode = true
+shortcut = SubResource("Shortcut_6345e")
+texture_normal = SubResource("AtlasTexture_84ht1")
+stretch_mode = 0
+
+[node name="Underground_Upgrades" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_6tmh5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Ocean_Upgrades" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_6tmh5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Alien_Upgrades" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_6tmh5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Companion_Upgrades" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_c56t4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Location_Button" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+toggle_mode = true
+shortcut = SubResource("Shortcut_13tdr")
+texture_normal = SubResource("AtlasTexture_fo47e")
+stretch_mode = 0
+
+[node name="PowerC_Upgrades" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_dnwrj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Prestiege" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = SubResource("AtlasTexture_yegfb")
+icon_alignment = 1
+expand_icon = true
+
+[node name="right_hud" type="Panel" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_bm0kg")
+
+[node name="location" type="Label" parent="MarginContainer/right_hud"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 18
+text = "Location: Scraoyard"
+
+[node name="Scrapyard_upgrade_panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1160, 760)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 1182.0
+offset_bottom = -98.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Scrapyard_Icon" type="TextureRect" parent="Scrapyard_upgrade_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_psalp")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Scrapyard_upgrade_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Scrapyard Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Scrapyard_Close_Button" type="Button" parent="Scrapyard_upgrade_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Scrapyard_content" type="VBoxContainer" parent="Scrapyard_upgrade_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 90.0
+offset_right = -2.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Scrapyard_upgrade_panel/Scrapyard_content"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uppe2")
+horizontal_scroll_mode = 0
+
+[node name="Upgrades" type="VBoxContainer" parent="Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer"]
+custom_minimum_size = Vector2(0, 800)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Locations_panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1160, 760)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 1182.0
+offset_bottom = -98.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Title" type="Label" parent="Locations_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.5
+offset_right = 135.5
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Locations"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Locations_Close_Button" type="Button" parent="Locations_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Locations_content" type="VBoxContainer" parent="Locations_panel"]
+layout_mode = 2
+offset_left = -2.0
+offset_top = 90.0
+offset_right = 1158.0
+offset_bottom = 890.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Locations_panel/Locations_content"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uppe2")
+horizontal_scroll_mode = 0
+
+[node name="locations" type="VBoxContainer" parent="Locations_panel/Locations_content/ScrollContainer"]
+custom_minimum_size = Vector2(0, 800)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Locations_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_8rnnb")
+expand_mode = 3
+
+[connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
+[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Location_Button" to="." method="_on_location_button_toggled"]
+[connection signal="pressed" from="Scrapyard_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
+[connection signal="pressed" from="Locations_panel/Locations_Close_Button" to="." method="_on_locations_close_button_pressed"]
