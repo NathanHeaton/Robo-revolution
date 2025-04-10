@@ -44,7 +44,10 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 
 func _update_level(t_id):
 	if (id == t_id):
-		level = UpgradeData.upgrades["Scrapyard"][title]["level"]
+		cost = UpgradeManager.get_upgrade_id(id,"Scrapyard")["cost"]
+		level = UpgradeManager.get_upgrade_id(id,"Scrapyard")["level"]
+		
+		_change_cost()
 		_update_button_state()
 		_cal_max_buy()
 		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"

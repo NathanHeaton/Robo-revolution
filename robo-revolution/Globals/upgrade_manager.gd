@@ -15,10 +15,12 @@ func apply_upgrade(id, lvl, amount, cost):
 	update_level(amount,id)
 
 func update_level(amount,id):
-	var locations_upgrades = UpgradeData.upgrades["Scrapyard"].duplicate()
+	
 	var upgarde_lvl =2 # add code to update level
 	
-	get_upgrade_id(id, locations_upgrades)["level"] += amount
+	var upgrade = get_upgrade_id(id, "Scrapyard")
+	upgrade["level"]  += amount
+	upgrade["cost"] = upgrade["base_cost"]*pow(upgrade["cost_scaling"],upgrade["level"] -1)
 	emit_signal("level_changed",id)
 	
 
@@ -26,8 +28,13 @@ func detuct_money(cost):
 	Money.MONEY -= cost
 
 
-func get_upgrade_id(id, locations_upgrades):
+func get_upgrade_id(id, location):
+	var locations_upgrades = UpgradeData.upgrades[location]
 	for upgrade in locations_upgrades:
 		if (locations_upgrades[upgrade].get("id") == id):
 			return locations_upgrades[upgrade]
+	
+	
+
+
 	
