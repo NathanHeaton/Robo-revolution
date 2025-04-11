@@ -7,6 +7,8 @@ signal push
 var item_spawn_region
 
 var screen_size
+var strength = 15
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -52,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	for body in $pushing_area.get_overlapping_bodies():  # Use Area2D method
 		if body is RigidBody2D:
 			var push_direction = (body.position - position).normalized()
-			body.apply_central_impulse(push_direction * 5)  # Adjust push force
+			body.apply_central_impulse(push_direction * strength)  # Adjust push force
 
 func get_item_spawn_region():
 	return item_spawn_region

@@ -46,16 +46,13 @@ func _update_level(t_id):
 	if (id == t_id):
 		cost = UpgradeManager.get_upgrade_id(id,"Scrapyard")["cost"]
 		level = UpgradeManager.get_upgrade_id(id,"Scrapyard")["level"]
+		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
 		if (level >= max_level):
 			_set_has_maxed()
 			return
-		
 		_change_cost()
 		_update_button_state()
 		_cal_max_buy()
-		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
-	
-
 
 func _change_level():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"

@@ -5,6 +5,10 @@ var value = 0
 func _ready() -> void:
 	randomize()# makes vbarients more random
 	contact_monitor = true
+	if (LocationData.CURRENT_LOCATION == 2):
+		linear_damp = 0
+	else:
+		linear_damp = 2.0  # Higher = more resistance
 	
 	max_contacts_reported = 1
 	
