@@ -20,12 +20,13 @@ func update_level(amount,id):
 	
 	var upgrade = get_upgrade_id(id, "Scrapyard")
 	upgrade["level"]  += amount
-	upgrade["cost"] = upgrade["base_cost"]*pow(upgrade["cost_scaling"],upgrade["level"] -1)
+	upgrade["cost"] = upgrade["base_cost"]*pow(upgrade["cost_scaling"],upgrade["level"])
 	emit_signal("level_changed",id)
 	
 
 func detuct_money(cost):
-	Money.MONEY -= cost
+	if (Money.MONEY - cost > 0):
+		Money.MONEY -= cost
 
 
 func get_upgrade_id(id, location):
@@ -34,7 +35,4 @@ func get_upgrade_id(id, location):
 		if (locations_upgrades[upgrade].get("id") == id):
 			return locations_upgrades[upgrade]
 	
-	
-
-
 	

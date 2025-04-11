@@ -7,14 +7,14 @@ var MONEY: float = 0: # allows signals to be sent when money is updated
 	get:
 		return money_back_up
 	set(value):
-		money_back_up = value
+		money_back_up = snapped(value,1)
 		emit_signal("money_changed")
 
 
 var POWER_CRYSTALS = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	covert_Scientific_format(961.083984375)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +27,7 @@ func covert_Scientific_format(num: float):
 	var sci_format = ""
 	
 	if(digits < 4):
-		return str(num)
+		return str(num_string)
 		
 	sci_format = num_string[0]
 	if (num_string[1] != "0" || num_string[2] != "0"):# if both digits are 0 this is skipped
@@ -39,5 +39,6 @@ func covert_Scientific_format(num: float):
 		sci_format = sci_format.insert(1,".")
 	
 	sci_format = sci_format + "e" + str(digits - 1)
+	print(sci_format)
 	return sci_format
 	

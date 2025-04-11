@@ -12,7 +12,7 @@ var title = ""
 var buyable_levels = 0
 var affordable_price = cost
 var id
-
+var maxed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,6 +46,9 @@ func _update_level(t_id):
 	if (id == t_id):
 		cost = UpgradeManager.get_upgrade_id(id,"Scrapyard")["cost"]
 		level = UpgradeManager.get_upgrade_id(id,"Scrapyard")["level"]
+		if (level >= max_level):
+			_set_has_maxed()
+			return
 		
 		_change_cost()
 		_update_button_state()
@@ -58,6 +61,9 @@ func _change_level():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
 
 func _on_money_changed():
+	if (level >= max_level):
+		_set_has_maxed()
+		return
 	_cal_max_buy()
 	_update_button_state()
 
@@ -93,7 +99,7 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 	
 
 func _update_button_state():
-	if (Money.MONEY < cost || level >= max_level):
+	if (Money.MONEY < cost):
 		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = true
 		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true
 	else:
@@ -113,7 +119,11 @@ func _change_sprite():
 func _change_cost():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.text = Money.covert_Scientific_format(cost) + "$ | 1X"
 
-
+func _set_has_maxed():
+	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = true
+	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true
+	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.text =  "MAXED"
+	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = "MAXED"
 
 
 func _on_buy_pressed() -> void:
