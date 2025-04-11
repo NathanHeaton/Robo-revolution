@@ -143,7 +143,7 @@ var item_data: Dictionary = {
 		"value": 60,
 		"rarity": 0,
 		"type": "treasure",
-		"weight": 4,
+		"weight": 2,
 		"locations": ["Scrapyard", "Underground"],
 		"variants": 2
 	},

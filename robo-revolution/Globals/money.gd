@@ -14,7 +14,7 @@ var MONEY: float = 0: # allows signals to be sent when money is updated
 var POWER_CRYSTALS = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	covert_Scientific_format(961.083984375)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +39,5 @@ func covert_Scientific_format(num: float):
 		sci_format = sci_format.insert(1,".")
 	
 	sci_format = sci_format + "e" + str(digits - 1)
-	print(sci_format)
 	return sci_format
 	

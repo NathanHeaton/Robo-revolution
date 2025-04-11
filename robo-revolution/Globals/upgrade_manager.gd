@@ -1,6 +1,7 @@
 extends Node
 
 signal level_changed(id)
+signal upgrade(upgrade)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,12 +17,12 @@ func apply_upgrade(id, lvl, amount, cost):
 
 func update_level(amount,id):
 	
-	var upgarde_lvl =2 # add code to update level
-	
 	var upgrade = get_upgrade_id(id, "Scrapyard")
 	upgrade["level"]  += amount
 	upgrade["cost"] = upgrade["base_cost"]*pow(upgrade["cost_scaling"],upgrade["level"])
 	emit_signal("level_changed",id)
+	emit_signal("upgrade",get_upgrade_id(id, "Scrapyard"))
+	
 	
 
 func detuct_money(cost):

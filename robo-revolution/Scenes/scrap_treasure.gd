@@ -4,13 +4,10 @@ var value = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()# makes vbarients more random
-	contact_monitor = true
 	if (LocationData.CURRENT_LOCATION == 2):
-		linear_damp = 0
+		linear_damp = 0.5
 	else:
 		linear_damp = 2.0  # Higher = more resistance
-	
-	max_contacts_reported = 1
 	
 
 func _spawn_loot_type(item):

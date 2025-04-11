@@ -8,11 +8,13 @@ var item_spawn_region
 
 var screen_size
 var strength = 15
+var surge_protection = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
-	item_spawn_region = [Vector2(30,30),Vector2(get_viewport_rect().size.x - 30,get_viewport_rect().size.y - 30)]
+	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 
 func _spawn():
 	position = Vector2.ZERO
@@ -56,9 +58,6 @@ func _physics_process(delta: float) -> void:
 			var push_direction = (body.position - position).normalized()
 			body.apply_central_impulse(push_direction * strength)  # Adjust push force
 
-func get_item_spawn_region():
-	return item_spawn_region
-
 
 func _on_body_entered(body: Node2D) -> void:
 	#hide()
@@ -66,3 +65,39 @@ func _on_body_entered(body: Node2D) -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	 # function for pushing items
 	
+
+func _upgrade(upgrade):
+	print("strength: ")
+	match upgrade["name"]:
+		"Speed":
+			speed_upgrade(upgrade["level"])
+		"Strength":
+			strength_upgrade(upgrade["level"])
+		"Combo":
+			combo_upgrade(upgrade["level"])
+		"Combo Increase":
+			combo_increase_upgrade(upgrade["level"])
+		"Surge Protection":
+			surge_protection_upgrade(upgrade["level"])
+		
+
+
+func strength_upgrade(level: int):
+	strength = 1 + log(level +2)* 15 +(level/5)
+	print("strength: "+ str(strength))
+
+func speed_upgrade(level: int):
+	speed = 400+log(level+2)* 50
+	print("speed: "+ str(strength))
+
+
+
+func combo_upgrade(level: int):
+	print("Applying Combo upgrade, level:", level)
+
+func combo_increase_upgrade(level: int):
+	print("Applying Combo Increase upgrade, level:", level)
+
+func surge_protection_upgrade(level: int):
+	surge_protection = level
+	print("Surge Protection :", level)

@@ -8,10 +8,7 @@ signal start_game
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(upgrade_card_scene)
-	print(location_card_scene)
 	var card = location_card_scene.instantiate()
-	print(card)
 	$Scrapyard_upgrade_panel.hide()
 	$Locations_panel.hide()
 	generate_scrapyard_upgrades()

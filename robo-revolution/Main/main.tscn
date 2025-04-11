@@ -21,6 +21,7 @@ metadata/_edit_horizontal_guides_ = [325.0, 725.0, 517.0]
 position = Vector2(994, 660)
 
 [node name="loot_spawn_timer" type="Timer" parent="."]
+wait_time = 4.0
 autostart = true
 
 [node name="Start_Position" type="Marker2D" parent="."]

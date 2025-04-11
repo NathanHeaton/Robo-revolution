@@ -82,7 +82,7 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 		affordable_price = current_money/buyable_levels
 		buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
 	
-	affordable_price = cost * (scaling ** (buyable_levels -1))	
+	affordable_price = cost * (((scaling ** buyable_levels)-1)/(scaling - 1))
 
 	affordable_price = snapped(affordable_price, 1)
 	
