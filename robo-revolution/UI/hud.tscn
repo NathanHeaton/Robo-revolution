@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=35 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
@@ -32,13 +32,37 @@ events = [SubResource("InputEventKey_ceg5h")]
 atlas = ExtResource("3_80ti6")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="InputEventKey" id="InputEventKey_1t80n"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_5qsbe"]
+events = [SubResource("InputEventKey_1t80n")]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnhca"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="InputEventKey" id="InputEventKey_oyh7p"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_h21ji"]
+events = [SubResource("InputEventKey_oyh7p")]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l8xg"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="InputEventKey" id="InputEventKey_x6vqd"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_6smp1"]
+events = [SubResource("InputEventKey_x6vqd")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brdmd"]
 atlas = ExtResource("3_80ti6")
@@ -133,6 +157,14 @@ region = Rect2(32, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlcgv"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ukgu"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgk42"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(96, 0, 32, 32)
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -245,6 +277,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 toggle_mode = true
+shortcut = SubResource("Shortcut_5qsbe")
 texture_normal = SubResource("AtlasTexture_bnhca")
 stretch_mode = 5
 
@@ -254,6 +287,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 toggle_mode = true
+shortcut = SubResource("Shortcut_h21ji")
 texture_normal = SubResource("AtlasTexture_8l8xg")
 stretch_mode = 5
 
@@ -263,6 +297,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 toggle_mode = true
+shortcut = SubResource("Shortcut_6smp1")
 texture_normal = SubResource("AtlasTexture_brdmd")
 stretch_mode = 5
 
@@ -502,7 +537,7 @@ offset_right = 277.0
 offset_bottom = 66.0
 grow_horizontal = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
+theme_override_colors/font_color = Color(0.980254, 0.559928, 0.522245, 1)
 theme_override_font_sizes/font_size = 40
 text = "Underground Upgrades"
 horizontal_alignment = 1
@@ -562,13 +597,13 @@ offset_bottom = -98.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
-[node name="Scrapyard_Icon" type="TextureRect" parent="Ocean_upgrade_panel"]
+[node name="Ocean_Icon" type="TextureRect" parent="Ocean_upgrade_panel"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 offset_right = 60.0
 offset_bottom = 60.0
 size_flags_horizontal = 0
-texture = SubResource("AtlasTexture_psalp")
+texture = SubResource("AtlasTexture_6ukgu")
 stretch_mode = 5
 
 [node name="Title" type="Label" parent="Ocean_upgrade_panel"]
@@ -581,13 +616,13 @@ offset_right = 277.0
 offset_bottom = 66.0
 grow_horizontal = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
+theme_override_colors/font_color = Color(0.603609, 0.728721, 0.977494, 1)
 theme_override_font_sizes/font_size = 40
-text = "Scrapyard Upgrades"
+text = "Ocean Upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Scrapyard_Close_Button" type="Button" parent="Ocean_upgrade_panel"]
+[node name="Ocean_Close_Button" type="Button" parent="Ocean_upgrade_panel"]
 clip_children = 2
 z_index = 2
 custom_minimum_size = Vector2(50, 50)
@@ -641,13 +676,13 @@ offset_bottom = -98.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
-[node name="Scrapyard_Icon" type="TextureRect" parent="Alien_upgrade_panel"]
+[node name="Alien_Icon" type="TextureRect" parent="Alien_upgrade_panel"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 offset_right = 60.0
 offset_bottom = 60.0
 size_flags_horizontal = 0
-texture = SubResource("AtlasTexture_psalp")
+texture = SubResource("AtlasTexture_bgk42")
 stretch_mode = 5
 
 [node name="Title" type="Label" parent="Alien_upgrade_panel"]
@@ -660,13 +695,13 @@ offset_right = 277.0
 offset_bottom = 66.0
 grow_horizontal = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.964706, 0.572549, 1, 1)
+theme_override_colors/font_color = Color(0.554793, 0.989348, 0.855077, 1)
 theme_override_font_sizes/font_size = 40
-text = "Scrapyard Upgrades"
+text = "Alien Upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Scrapyard_Close_Button" type="Button" parent="Alien_upgrade_panel"]
+[node name="Alien_Close_Button" type="Button" parent="Alien_upgrade_panel"]
 clip_children = 2
 z_index = 2
 custom_minimum_size = Vector2(50, 50)
@@ -717,5 +752,5 @@ theme_override_constants/separation = 20
 [connection signal="pressed" from="Scrapyard_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
 [connection signal="pressed" from="Locations_panel/Locations_Close_Button" to="." method="_on_locations_close_button_pressed"]
 [connection signal="pressed" from="Underground_upgrade_panel/Underground_Close_Button" to="." method="_on_underground_close_button_pressed"]
-[connection signal="pressed" from="Ocean_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
-[connection signal="pressed" from="Alien_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
+[connection signal="pressed" from="Ocean_upgrade_panel/Ocean_Close_Button" to="." method="_on_ocean_close_button_pressed"]
+[connection signal="pressed" from="Alien_upgrade_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]

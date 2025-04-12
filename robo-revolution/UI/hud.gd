@@ -130,6 +130,12 @@ func _on_ocean_upgrades_toggled(toggled_on: bool) -> void:
 	else:
 		$Ocean_upgrade_panel.hide()
 
+func _on_ocean_close_button_pressed() -> void:
+	$MarginContainer/upgrades_Locations_nav/Ocean_Upgrades.button_pressed = false
+	$MarginContainer/upgrades_Locations_nav/Ocean_Upgrades.emit_signal("toggled", false)
+	
+
+
 
 func _on_alien_upgrades_toggled(toggled_on: bool) -> void:
 	var currentCard = "MarginContainer/upgrades_Locations_nav/Alien_Upgrades"
@@ -139,6 +145,11 @@ func _on_alien_upgrades_toggled(toggled_on: bool) -> void:
 		previousCard = currentCard
 	else:
 		$Alien_upgrade_panel.hide()
+
+func _on_alien_close_button_pressed() -> void:
+	$MarginContainer/upgrades_Locations_nav/Alien_Upgrades.button_pressed = false
+	$MarginContainer/upgrades_Locations_nav/Alien_Upgrades.emit_signal("toggled", false)
+
 
 
 func _on_scrapyard_close_button_pressed() -> void:
