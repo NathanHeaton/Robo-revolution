@@ -3,13 +3,13 @@ extends Node
 @export var scrap_treasure: PackedScene
 # Called when the node enters the scene tree for the first time.
 
-var rarity_lvl = 0
+var rarity_lvl = 5
 
 var item_spawn_region
 
 func _ready() -> void:
 	newGame()
-	Money.MONEY = 5000000
+	Money.MONEY = 500000000
 	item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 

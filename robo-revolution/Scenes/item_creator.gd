@@ -9,7 +9,7 @@ var item_data: Dictionary = {
 		"rarity": 0,
 		"type": "scrap",
 		"weight": 3,
-		"locations":["Scrapyard","UndergroundStorage","Ocean"], 
+		"locations":[LocationData.locations.Scrapyard,LocationData.locations.Underground,LocationData.locations.Ocean], 
 		"variants": 4
 	},
 	"plastic":{
@@ -18,7 +18,7 @@ var item_data: Dictionary = {
 		"rarity": 0,
 		"type": "scrap",
 		"weight": 2,
-		"locations":["Scrapyard","UndergroundStorage","Ocean"], 
+		"locations":[LocationData.locations.Scrapyard,LocationData.locations.Underground,LocationData.locations.Ocean], 
 		"variants": 3
 	},
 	"rusty_nails":{
@@ -27,7 +27,7 @@ var item_data: Dictionary = {
 		"rarity": 0,
 		"type": "scrap",
 		"weight": 1,
-		"locations":["Scrapyard","UndergroundStorage","Ocean"], 
+		"locations":[LocationData.locations.Scrapyard,LocationData.locations.Underground,LocationData.locations.Ocean], 
 		"variants": 3
 	},
 	"gears":{
@@ -36,7 +36,7 @@ var item_data: Dictionary = {
 		"rarity": 0,
 		"type": "scrap",
 		"weight": 1,
-		"locations":["Scrapyard"], 
+		"locations":[LocationData.locations.Scrapyard], 
 		"variants": 4
 	},
 	"computer_chips": {
@@ -45,7 +45,7 @@ var item_data: Dictionary = {
 		"rarity": 1,
 		"type": "scrap",
 		"weight": 1,
-		"locations": ["Scrapyard", "Underground"],
+		"locations": [LocationData.locations.Scrapyard, LocationData.locations.Underground],
 		"variants": 3
 	},
 	"vehicle_components": {
@@ -54,7 +54,7 @@ var item_data: Dictionary = {
 		"rarity": 1,
 		"type": "scrap",
 		"weight": 15,
-		"locations": ["Scrapyard", "Underground"],
+		"locations": [LocationData.locations.Scrapyard, LocationData.locations.Underground],
 		"variants": 2
 	},
 	"wires": {
@@ -63,7 +63,7 @@ var item_data: Dictionary = {
 		"rarity": 1,
 		"type": "scrap",
 		"weight": 1,
-		"locations": ["Scrapyard", "Underground"],
+		"locations": [LocationData.locations.Scrapyard, LocationData.locations.Underground],
 		"variants": 3
 	},
 	"robot_parts": {
@@ -72,7 +72,7 @@ var item_data: Dictionary = {
 		"rarity": 2,
 		"type": "scrap",
 		"weight": 20,
-		"locations": ["Underground"],
+		"locations": [LocationData.locations.Underground],
 		"variants": 4
 	},
 	"motherboard": {
@@ -81,7 +81,7 @@ var item_data: Dictionary = {
 		"rarity": 2,
 		"type": "scrap",
 		"weight": 2,
-		"locations": ["Underground"],
+		"locations": [LocationData.locations.Underground],
 		"variants": 3
 	},
 	"metal": {
@@ -90,7 +90,7 @@ var item_data: Dictionary = {
 		"rarity": 2,
 		"type": "scrap",
 		"weight": 3,
-		"locations": ["Underground"],
+		"locations": [LocationData.locations.Underground, LocationData.locations.Ocean],
 		"variants": 4
 	},
 	"seashells": {
@@ -99,7 +99,7 @@ var item_data: Dictionary = {
 		"rarity": 3,
 		"type": "scrap",
 		"weight": 3,
-		"locations": ["Ocean"],
+		"locations": [LocationData.locations.Ocean],
 		"variants": 3
 	},
 	"ship_wreckage": {
@@ -108,7 +108,7 @@ var item_data: Dictionary = {
 		"rarity": 3,
 		"type": "scrap",
 		"weight": 50,
-		"locations": ["Ocean"],
+		"locations": [LocationData.locations.Ocean],
 		"variants": 4
 	},
 	"broken_jewels": {
@@ -117,7 +117,7 @@ var item_data: Dictionary = {
 		"rarity": 3,
 		"type": "scrap",
 		"weight": 4,
-		"locations": ["Ocean"],
+		"locations": [LocationData.locations.Ocean],
 		"variants": 4
 	},
 	"alien_parts": {
@@ -126,7 +126,7 @@ var item_data: Dictionary = {
 		"rarity": 4,
 		"type": "scrap",
 		"weight": 50,
-		"locations": ["Alien"],
+		"locations": [LocationData.locations.Alien],
 		"variants": 3
 	},
 	"alien_scrap_metal": {
@@ -135,7 +135,7 @@ var item_data: Dictionary = {
 		"rarity": 4,
 		"type": "scrap",
 		"weight": 30,
-		"locations": ["Alien"],
+		"locations": [LocationData.locations.Alien],
 		"variants": 4
 	},
 	"gold_plates": {
@@ -144,7 +144,7 @@ var item_data: Dictionary = {
 		"rarity": 0,
 		"type": "treasure",
 		"weight": 2,
-		"locations": ["Scrapyard", "Underground"],
+		"locations": [LocationData.locations.Scrapyard, LocationData.locations.Underground],
 		"variants": 2
 	},
 	"rubies": {
@@ -153,7 +153,7 @@ var item_data: Dictionary = {
 		"rarity": 1,
 		"type": "treasure",
 		"weight": 1,
-		"locations": ["Scrapyard", "Underground", "Ocean"],
+		"locations": [LocationData.locations.Scrapyard, LocationData.locations.Underground, LocationData.locations.Ocean],
 		"variants": 1
 	},
 	"gold_bars": {
@@ -162,7 +162,7 @@ var item_data: Dictionary = {
 		"rarity": 2,
 		"type": "treasure",
 		"weight": 7,
-		"locations": ["Underground"],
+		"locations": [LocationData.locations.Underground],
 		"variants": 1  # Unique appearance
 	},
 
@@ -172,7 +172,7 @@ var item_data: Dictionary = {
 		"rarity": 3,
 		"type": "treasure",
 		"weight": 1,
-		"locations": ["Ocean"],
+		"locations": [LocationData.locations.Ocean],
 		"variants": 1 
 	},
 	"alien_artifacts": {
@@ -181,7 +181,7 @@ var item_data: Dictionary = {
 		"rarity": 4,
 		"type": "treasure",
 		"weight": 3,
-		"locations": ["Alien"],
+		"locations": [LocationData.locations.Alien],
 		"variants": 1
 	},
 	"power_crystals": {
@@ -190,7 +190,7 @@ var item_data: Dictionary = {
 		"rarity": 4,
 		"type": "treasure",
 		"weight": 1,
-		"locations": ["Alien"],
+		"locations": [LocationData.locations.Alien],
 		"variants": 1,
 	}
 }
@@ -212,7 +212,7 @@ func pick_item(rarity: int, location: String, type: String ):
 	var keys = item_data.keys()
 	
 	for items in item_data: # goes through all items to find the right item
-		if (item_data[items].get("rarity") == rarity):
+		if (item_data[items].get("rarity") <= rarity && _in_correct_location(items) ):
 			item = item_data[items]
 			pickable_items.append(item)# adds the valid item that can be chosen from to an array
 		
@@ -229,3 +229,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _in_correct_location(items) -> bool:
+	var in_location = false
+	var locations = item_data[items].get("locations")
+	print(locations)
+	
+	for location in locations:
+		if (location == LocationData.CURRENT_LOCATION):
+			in_location = true
+	
+	return in_location

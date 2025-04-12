@@ -35,7 +35,7 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 	description = t_description
 	title = t_title
 	id = t_id
-	first_description =t_first_desciption
+	first_description = t_first_desciption
 	location = t_location
 	_change_title()
 	_change_theme()
@@ -53,6 +53,7 @@ func _update_level(t_id):
 	if (id == t_id):
 		cost = UpgradeManager.get_upgrade_id(id,location)["cost"]
 		level = UpgradeManager.get_upgrade_id(id,location)["level"]
+		_change_Description() 
 		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
 		if (level >= max_level):
 			_set_has_maxed()
@@ -75,7 +76,11 @@ func _change_title() -> void:
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title.text = str(title)
 
 func _change_Description() -> void:
-	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Description.text = str(description)
+	if (first_description != "" && level == 0):
+		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Description.text = str(first_description)
+	else:
+		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Description.text = str(description)
+		
 
 func _cal_max_buy():# add code to calculate the amount that can be bought
 	var current_money = Money.MONEY

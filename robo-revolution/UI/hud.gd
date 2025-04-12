@@ -62,7 +62,7 @@ func generate_upgrade_cards() -> void:
 			location[upgrade].get("sprite_position"),
 			location[upgrade].get("name"),
 			location[upgrade].get("id"),
-			location[upgrade].get("descriptiont_first_description")
+			location[upgrade].get("first_description")
 			,currentLocationCard)
 	
 	
