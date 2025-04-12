@@ -11,17 +11,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func apply_upgrade(id, lvl, amount, cost):
+func apply_upgrade(id, lvl, amount, cost,location):
 	detuct_money(cost)
-	update_level(amount,id)
+	update_level(amount,id,location)
 
-func update_level(amount,id):
+func update_level(amount,id,location):
 	
-	var upgrade = get_upgrade_id(id, "Scrapyard")
+	var upgrade = get_upgrade_id(id, location)
 	upgrade["level"]  += amount
 	upgrade["cost"] = upgrade["base_cost"]*pow(upgrade["cost_scaling"],upgrade["level"])
 	emit_signal("level_changed",id)
-	emit_signal("upgrade",get_upgrade_id(id, "Scrapyard"))
+	emit_signal("upgrade",get_upgrade_id(id, location))
 	
 	
 

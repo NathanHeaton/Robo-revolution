@@ -62,7 +62,16 @@ func generate_scrapyard_upgrades() -> void:
 	for upgrade in Scrapyard_Upgrades:
 		var card = upgrade_card_scene.instantiate()
 		$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
-		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),Scrapyard_Upgrades[upgrade].get("base_cost"),Scrapyard_Upgrades[upgrade].get("cost_scaling"),Scrapyard_Upgrades[upgrade].get("level"),Scrapyard_Upgrades[upgrade].get("max_level"),Scrapyard_Upgrades[upgrade].get("sprite_position"),Scrapyard_Upgrades[upgrade].get("name"),Scrapyard_Upgrades[upgrade].get("id"))
+		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),
+		Scrapyard_Upgrades[upgrade].get("base_cost"),
+		Scrapyard_Upgrades[upgrade].get("cost_scaling"),
+		Scrapyard_Upgrades[upgrade].get("level"),
+		Scrapyard_Upgrades[upgrade].get("max_level"),
+		Scrapyard_Upgrades[upgrade].get("sprite_position"),
+		Scrapyard_Upgrades[upgrade].get("name"),
+		Scrapyard_Upgrades[upgrade].get("id"),
+		Scrapyard_Upgrades[upgrade].get("descriptiont_first_description")
+		,"Scrapyard")
 	
 	
 	
@@ -73,8 +82,15 @@ func generate_location_cards() -> void:
 		var card = location_card_scene.instantiate()
 		print(card)
 		$Locations_panel/Locations_content/ScrollContainer/locations.add_child(card)
-		#get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlocked)
-		card.get_inital_data(locations[location].get("description"),locations[location].get("sprite_position"),locations[location].get("name"),locations[location].get("base_cost"),locations[location].get("priColour"),locations[location].get("secColour"),locations[location].get("unlocked"),locations[location].get("key_needed"))
+		#get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlocked, t_first_description)
+		card.get_inital_data(
+			locations[location].get("description"),
+			locations[location].get("sprite_position"),
+			locations[location].get("name"),
+			locations[location].get("base_cost"),
+			locations[location].get("unlocked"),
+			locations[location].get("key_needed"),
+		)
 	
 	
 

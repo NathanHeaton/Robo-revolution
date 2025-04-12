@@ -21,6 +21,7 @@ UpgradeData="*res://Globals/upgrade_data.gd"
 Money="*res://Globals/money.gd"
 LocationData="*res://Globals/Location_Data.gd"
 UpgradeManager="*res://Globals/upgrade_manager.gd"
+GlobalThemes="*res://Globals/global_themes.gd"
 
 [display]
 

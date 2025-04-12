@@ -8,11 +8,13 @@ var max_level = 0
 var scaling =0
 var pos # sprite position
 var description = ""
+var first_description = ""
 var title = ""
 var buyable_levels = 0
 var affordable_price = cost
 var id
 var maxed = false
+var location =""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,7 +26,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_pos,t_title, t_id):
+func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_pos,t_title, t_id, t_first_desciption, t_location):
 	cost = t_base_cost
 	scaling = t_scaling
 	level = t_level
@@ -33,19 +35,24 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 	description = t_description
 	title = t_title
 	id = t_id
-	
+	first_description =t_first_desciption
+	location = t_location
 	_change_title()
+	_change_theme()
 	_change_Description()
 	_change_sprite()
 	_change_cost()
 	_cal_max_buy()
 	_change_level()
 
+func _change_theme():
+	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.theme = GlobalThemes.themes.get(location)
+	
 
 func _update_level(t_id):
 	if (id == t_id):
-		cost = UpgradeManager.get_upgrade_id(id,"Scrapyard")["cost"]
-		level = UpgradeManager.get_upgrade_id(id,"Scrapyard")["level"]
+		cost = UpgradeManager.get_upgrade_id(id,location)["cost"]
+		level = UpgradeManager.get_upgrade_id(id,location)["level"]
 		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
 		if (level >= max_level):
 			_set_has_maxed()
@@ -125,8 +132,8 @@ func _set_has_maxed():
 
 func _on_buy_pressed() -> void:
 	
-	UpgradeManager.apply_upgrade(id,level,1,cost)
+	UpgradeManager.apply_upgrade(id,level,1,cost,location)
 
 
 func _on_max_pressed() -> void:
-	UpgradeManager.apply_upgrade(id,level,buyable_levels,affordable_price,)
+	UpgradeManager.apply_upgrade(id,level,buyable_levels,affordable_price,location)

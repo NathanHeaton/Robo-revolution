@@ -19,6 +19,8 @@ var location_to_enum = {
 }
 
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
@@ -28,22 +30,19 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlocked,t_key_needed):
+func get_inital_data(t_description,t_pos,t_title, t_cost, t_unlocked,t_key_needed):
 	pos = t_pos
 	description = t_description
 	title = t_title
 	cost = t_cost
-	priColour = t_pri
-	secColour = t_sec
+
 	unlocked = t_unlocked
 	key_needed = t_key_needed
-
-	
+	_change_theme()
 	_change_title()
 	_change_unlocked()
 	_change_Description()
 	_change_sprite()
-	_change_button_colour()
 
 
 func _change_unlocked():
@@ -64,12 +63,8 @@ func _change_title() -> void:
 func _change_Description() -> void:
 	$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Description.text = str(description)
 
-func _change_button_colour() -> void:
-	#var stylebox = $"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/1X".get_theme_stylebox("panel")
-	var new_stylebox_normal = $"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".get_theme_stylebox("normal").duplicate()
-	new_stylebox_normal.border_color = Color(secColour)
-	new_stylebox_normal.bg_color = Color(priColour)
-	$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".add_theme_stylebox_override("normal",new_stylebox_normal)
+func _change_theme():
+	$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button.theme = GlobalThemes.themes.get(title)
 
 	
 

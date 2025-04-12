@@ -60,7 +60,7 @@ position = Vector2(0, -4)
 position = Vector2(0.999942, 9.99992)
 rotation = 1.5708
 scale = Vector2(2.60882, 17.4885)
-polygon = PackedVector2Array(-13.7993, 2.40159, -3.06643, 2.6303, -3.06656, -2.74467, -19.1658, -2.57312, -13.0327, 3.72157e-06, -19.9323, 2.23005)
+polygon = PackedVector2Array(-13.7993, 2.40159, -3.06643, 2.6303, -3.06656, -2.74467, -23.7656, -2.63029, -15.7159, 5.1707e-06, -23.7655, 2.23005)
 
 [node name="player_body" type="CollisionShape2D" parent="."]
 position = Vector2(1, 5)
