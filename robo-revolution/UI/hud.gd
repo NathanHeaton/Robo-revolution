@@ -11,6 +11,9 @@ func _ready() -> void:
 	var card = location_card_scene.instantiate()
 	$Scrapyard_upgrade_panel.hide()
 	$Locations_panel.hide()
+	$Underground_upgrade_panel.hide()
+	$Ocean_upgrade_panel.hide()
+	$Alien_upgrade_panel.hide()
 	generate_upgrade_cards()
 	generate_location_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
@@ -42,27 +45,15 @@ func _on_message_timer_timeout():
 	$Message.hide()
 
 
-
-func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
-
-	if(toggled_on):
-		$Scrapyard_upgrade_panel.show()
-	else:
-		$Scrapyard_upgrade_panel.hide()
-
-
-func _on_scrapyard_close_button_pressed() -> void:
-	# close the scrapyard upgarde panel
-	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.button_pressed = false
-	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.emit_signal("toggled", false)
-	
-
 func generate_upgrade_cards() -> void:
-	for locations in UpgradeData.upgrades.keys():
-		var location: Dictionary = UpgradeData.upgrades[locations].duplicate() # might need to change if alter dict values
+	for currentLocationCard in UpgradeData.upgrades.keys():
+		var location: Dictionary = UpgradeData.upgrades[currentLocationCard].duplicate() # might need to change if alter dict values
 		for upgrade in location:
 			var card = upgrade_card_scene.instantiate()
-			$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
+			var path = "" + str(currentLocationCard) + "_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades"
+			print(path)
+			print(get_node(path))
+			get_node(path).add_child(card)
 			card.get_inital_data(location[upgrade].get("description"),
 			location[upgrade].get("base_cost"),
 			location[upgrade].get("cost_scaling"),
@@ -72,7 +63,7 @@ func generate_upgrade_cards() -> void:
 			location[upgrade].get("name"),
 			location[upgrade].get("id"),
 			location[upgrade].get("descriptiont_first_description")
-			,"Scrapyard")
+			,currentLocationCard)
 	
 	
 
@@ -97,8 +88,11 @@ func generate_location_cards() -> void:
 
 
 func _on_location_button_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrades_Locations_nav/Location_Button"
+	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Locations_panel.show()
+		previousCard = currentCard
 	else:
 		$Locations_panel.hide()
 
@@ -106,3 +100,66 @@ func _on_location_button_toggled(toggled_on: bool) -> void:
 func _on_locations_close_button_pressed() -> void:
 	$MarginContainer/upgrades_Locations_nav/Location_Button.button_pressed = false
 	$MarginContainer/upgrades_Locations_nav/Location_Button.emit_signal("toggled", false)
+
+
+func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades"
+	_handle_popup_screens(currentCard)
+	if(toggled_on):
+		$Scrapyard_upgrade_panel.show()
+		previousCard = currentCard
+	else:
+		$Scrapyard_upgrade_panel.hide()
+
+func _on_underground_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrades_Locations_nav/Underground_Upgrades"
+	_handle_popup_screens(currentCard)
+	if(toggled_on):
+		$Underground_upgrade_panel.show()
+		previousCard = currentCard
+	else:
+		$Underground_upgrade_panel.hide()
+	
+
+func _on_ocean_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrades_Locations_nav/Ocean_Upgrades"
+	_handle_popup_screens(currentCard)
+	if(toggled_on):
+		$Ocean_upgrade_panel.show()
+		previousCard = currentCard
+	else:
+		$Ocean_upgrade_panel.hide()
+
+
+func _on_alien_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrades_Locations_nav/Alien_Upgrades"
+	_handle_popup_screens(currentCard)
+	if(toggled_on):
+		$Alien_upgrade_panel.show()
+		previousCard = currentCard
+	else:
+		$Alien_upgrade_panel.hide()
+
+
+func _on_scrapyard_close_button_pressed() -> void:
+	# close the scrapyard upgarde panel
+	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.button_pressed = false
+	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.emit_signal("toggled", false)
+	
+
+func _on_underground_close_button_pressed() -> void:
+	# close the Undergound upgarde panel
+	$MarginContainer/upgrades_Locations_nav/Underground_Upgrades.button_pressed = false
+	$MarginContainer/upgrades_Locations_nav/Underground_Upgrades.emit_signal("toggled", false)
+
+
+
+
+var previousCard = null
+
+func _handle_popup_screens(currentCard):
+	
+	if (previousCard && currentCard != previousCard):
+		get_node(previousCard).button_pressed = false
+		get_node(previousCard).emit_signal("toggled", false)
+	

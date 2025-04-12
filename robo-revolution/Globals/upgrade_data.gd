@@ -118,7 +118,7 @@ var upgrades: Dictionary = {
 		},
 	},
 	"Underground":{
-		"Surge Redistributor":{
+		"SurgeRedistributor":{
 			"id": 8,
 			"name": "Surge Redistributor",
 			"level": 0,
@@ -146,7 +146,7 @@ var upgrades: Dictionary = {
 			"description": "Further increases rare item chances",
 			"sprite_position": Vector2(1,2),
 		},
-		"Super Combo": {
+		"SuperCombo": {
 			"id": 10,
 			"name": "Super Combo",
 			"level": 0,
@@ -160,7 +160,7 @@ var upgrades: Dictionary = {
 			"description": "Increases super combo duration window",
 			"sprite_position": Vector2(2,2),
 		},
-		"Super Combo Aligner": {
+		"SuperComboAligner": {
 			"id": 11,
 			"name": "Super Combo Aligner",
 			"level": 0,
@@ -174,7 +174,7 @@ var upgrades: Dictionary = {
 			"description": "Reduces time needed for super combo",
 			"sprite_position": Vector2(3,2),
 		},
-		"Basic Waterproofing": {
+		"BasicWaterproofing": {
 			"id": 12,
 			"name": "Basic Waterproofing",
 			"level": 0,
@@ -188,7 +188,7 @@ var upgrades: Dictionary = {
 			"description": "Increases underwater survival time",
 			"sprite_position": Vector2(0,3),
 		},
-		"Surge Chances": {
+		"SurgeChances": {
 			"id": 13,
 			"name": "Surge Chances",
 			"level": 0,
@@ -246,49 +246,21 @@ var upgrades: Dictionary = {
 			"description": "Further increases item value multiplier",
 			"sprite_position": Vector2(0,4),
 		},
-		"Companion Speed": {
+		"CompanionUpgrades": {
 			"id": 17,
-			"name": "Companion Speed",
+			"name": "Companion Upgrades",
 			"level": 0,
 			"max_level": 10,
 			"base_cost": 15000,
 			"cost": 15000,
 			"cost_scaling": 1.5,
 			"type": "stat",
-			"first_upgrade": false,
+			"first_upgrade": true,
 			"first_description": "",
-			"description": "Increases companion movement speed",
+			"description": "Unlocks companion upgrades",
 			"sprite_position": Vector2(1,4),
 		},
-		"Companion Strength": {
-			"id": 18,
-			"name": "Companion Strength",
-			"level": 0,
-			"max_level": 10,
-			"base_cost": 15000,
-			"cost": 15000,
-			"cost_scaling": 1.5,
-			"type": "stat",
-			"first_upgrade": false,
-			"first_description": "",
-			"description": "Allows companion to push heavier items",
-			"sprite_position": Vector2(2,4),
-		},
-		"Companion Size": {
-			"id": 19,
-			"name": "Companion Size",
-			"level": 0,
-			"max_level": 5,
-			"base_cost": 20000,
-			"cost": 20000,
-			"cost_scaling": 1.8,
-			"type": "stat",
-			"first_upgrade": false,
-			"first_description": "",
-			"description": "Increases companion collection range",
-			"sprite_position": Vector2(3,4),
-		},
-		"Water Proof": {
+		"WaterProof": {
 			"id": 20,
 			"name": "Water Proof",
 			"level": 0,
@@ -299,8 +271,8 @@ var upgrades: Dictionary = {
 			"type": "custom",
 			"first_upgrade": true,
 			"first_description": "Enables unlimited underwater operation",
-			"description": "",
-			"sprite_position": Vector2(0,5),
+			"description": "Enables unlimited underwater operation",
+			"sprite_position": Vector2(2,4),
 		},
 		"Prestige": {
 			"id": 21,
@@ -313,10 +285,10 @@ var upgrades: Dictionary = {
 			"type": "custom",
 			"first_upgrade": true,
 			"first_description": "Resets progress for power crystals",
-			"description": "",
-			"sprite_position": Vector2(1,5),
+			"description": "Resets progress for power crystals",
+			"sprite_position": Vector2(3,4),
 		},
-		"Sea Drill": {
+		"SeaDrill": {
 			"id": 22,
 			"name": "Sea Drill",
 			"level": 0,
@@ -328,9 +300,9 @@ var upgrades: Dictionary = {
 			"first_upgrade": true,
 			"first_description": "Automatically generates income",
 			"description": "Increases drill production rate",
-			"sprite_position": Vector2(2,5),
+			"sprite_position": Vector2(0,5),
 		},
-		"Drill Burst": {
+		"DrillBurst": {
 			"id": 23,
 			"name": "Drill Burst",
 			"level": 0,
@@ -342,7 +314,7 @@ var upgrades: Dictionary = {
 			"first_upgrade": true,
 			"first_description": "Drill occasionally spawns loot items",
 			"description": "Increases burst item quantity",
-			"sprite_position": Vector2(3,5),
+			"sprite_position": Vector2(1,5),
 		},
 	},
 	"Alien":{
@@ -374,7 +346,7 @@ var upgrades: Dictionary = {
 			"description": "Increases player health",
 			"sprite_position": Vector2(1,6),
 		},
-		"Auto Combo": {
+		"AutoCombo": {
 			"id": 26,
 			"name": "Auto Combo",
 			"level": 0,
@@ -388,7 +360,7 @@ var upgrades: Dictionary = {
 			"description": "Increases auto-combo speed",
 			"sprite_position": Vector2(2,6),
 		},
-		"Alien Interface": {
+		"AlienInterface": {
 			"id": 27,
 			"name": "Alien Interface",
 			"level": 0,
@@ -402,7 +374,7 @@ var upgrades: Dictionary = {
 			"description": "Increases conversion chance",
 			"sprite_position": Vector2(3,6),
 		},
-		"Alien Refinement": {
+		"AlienRefinement": {
 			"id": 28,
 			"name": "Alien Refinement",
 			"level": 0,
@@ -430,7 +402,7 @@ var upgrades: Dictionary = {
 			"description": "Reduces required companion count",
 			"sprite_position": Vector2(1,7),
 		},
-		"Alien Signal": {
+		"AlienSignal": {
 			"id": 30,
 			"name": "Alien Signal",
 			"level": 0,
@@ -444,7 +416,7 @@ var upgrades: Dictionary = {
 			"description": "Increases patrol spawn frequency",
 			"sprite_position": Vector2(2,7),
 		},
-		"Alien Controller": {
+		"AlienController": {
 			"id": 31,
 			"name": "Alien Controller",
 			"level": 0,
