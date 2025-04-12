@@ -3,13 +3,13 @@ extends Node
 @export var scrap_treasure: PackedScene
 # Called when the node enters the scene tree for the first time.
 
-var rarity_lvl = 5
+var rarity_lvl = 0
 
 var item_spawn_region
 
 func _ready() -> void:
 	newGame()
-	Money.MONEY = 500000000
+	Money.MONEY = 51
 	item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 
@@ -37,25 +37,47 @@ func newGame():
 	
 
 func _upgrade(upgrade):
-	print("strength: ")
 	match upgrade["name"]:
 		"Spawn Rate":
-			spawnrate_upgrade(upgrade["level"])
+			_spawnrate_upgrade(upgrade["level"])
 		"Rarity":
-			rarity_upgrade(upgrade["level"])
+			_rarity_upgrade(upgrade["level"])
+		"Rarity+":
+			_rarity_upgrade_plus(upgrade["level"])
+		"Rarity++":
+			_rarity_upgrade_2plus(upgrade["level"])
+		"Rarity+++":
+			_rarity_upgrade_3plus(upgrade["level"])
 		"Item Focuser":
-			item_focuser_upgrade(upgrade["level"])
+			_item_focuser_upgrade(upgrade["level"])
+		
 
-func spawnrate_upgrade(level: int):
+func _spawnrate_upgrade(level: int):
 	var wait = snapped(clamp(4 +log(level +1)*-1.15,0.1,5),0.01)
-	print(wait)
 	$loot_spawn_timer.wait_time = wait
 	print("Applying Spawn Rate upgrade, level:", level)
 
-func rarity_upgrade(level: int):
-	print("Applying Rarity upgrade, level:", level)
+func _rarity_upgrade(level: int):
+	if (level == 1):
+		rarity_lvl +=1
+	print("Applying Rarity upgrade, level:", level," ",rarity_lvl )
 
-func item_focuser_upgrade(level: int):
+func _rarity_upgrade_plus(level: int):
+	if (level == 1):
+		rarity_lvl +=1
+	print("Applying Rarity+ upgrade, level:", level," ",rarity_lvl )
+
+func _rarity_upgrade_2plus(level: int):
+	if (level == 1):
+		rarity_lvl +=1
+	print("Applying Rarity++ upgrade, level:", level," ",rarity_lvl )
+	
+func _rarity_upgrade_3plus(level: int):
+	if (level == 1):
+		rarity_lvl +=1
+	print("Applying Rarity+++ upgrade, level:", level," ",rarity_lvl )
+
+func _item_focuser_upgrade(level: int):
 	var x = 30+log(level+1)* 150
 	item_spawn_region = [Vector2(x,x),Vector2(1920 - x, 1080 - x)]
 	print("Applying Item Focuser upgrade, level:", level, item_spawn_region)

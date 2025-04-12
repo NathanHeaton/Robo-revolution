@@ -210,13 +210,10 @@ func spawn_item(rarity: int, location: String, type: String, item_scene):
 func pick_item(rarity: int, location: String, type: String ):
 	var item # the specific loot item that is picked
 	var keys = item_data.keys()
-	
 	for items in item_data: # goes through all items to find the right item
 		if (item_data[items].get("rarity") <= rarity && _in_correct_location(items) ):
 			item = item_data[items]
 			pickable_items.append(item)# adds the valid item that can be chosen from to an array
-		
-	
 	item = pickable_items.pick_random()
 	
 	return item
@@ -233,10 +230,7 @@ func _process(delta: float) -> void:
 func _in_correct_location(items) -> bool:
 	var in_location = false
 	var locations = item_data[items].get("locations")
-	print(locations)
-	
 	for location in locations:
 		if (location == LocationData.CURRENT_LOCATION):
 			in_location = true
-	
 	return in_location
