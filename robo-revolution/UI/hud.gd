@@ -11,7 +11,7 @@ func _ready() -> void:
 	var card = location_card_scene.instantiate()
 	$Scrapyard_upgrade_panel.hide()
 	$Locations_panel.hide()
-	generate_scrapyard_upgrades()
+	generate_upgrade_cards()
 	generate_location_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
@@ -57,30 +57,31 @@ func _on_scrapyard_close_button_pressed() -> void:
 	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.emit_signal("toggled", false)
 	
 
-func generate_scrapyard_upgrades() -> void:
-	var Scrapyard_Upgrades: Dictionary = UpgradeData.upgrades["Scrapyard"].duplicate() # might need to change if alter dict values
-	for upgrade in Scrapyard_Upgrades:
-		var card = upgrade_card_scene.instantiate()
-		$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
-		card.get_inital_data(Scrapyard_Upgrades[upgrade].get("description"),
-		Scrapyard_Upgrades[upgrade].get("base_cost"),
-		Scrapyard_Upgrades[upgrade].get("cost_scaling"),
-		Scrapyard_Upgrades[upgrade].get("level"),
-		Scrapyard_Upgrades[upgrade].get("max_level"),
-		Scrapyard_Upgrades[upgrade].get("sprite_position"),
-		Scrapyard_Upgrades[upgrade].get("name"),
-		Scrapyard_Upgrades[upgrade].get("id"),
-		Scrapyard_Upgrades[upgrade].get("descriptiont_first_description")
-		,"Scrapyard")
-	
+func generate_upgrade_cards() -> void:
+	for locations in UpgradeData.upgrades.keys():
+		var location: Dictionary = UpgradeData.upgrades[locations].duplicate() # might need to change if alter dict values
+		for upgrade in location:
+			var card = upgrade_card_scene.instantiate()
+			$Scrapyard_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades.add_child(card)
+			card.get_inital_data(location[upgrade].get("description"),
+			location[upgrade].get("base_cost"),
+			location[upgrade].get("cost_scaling"),
+			location[upgrade].get("level"),
+			location[upgrade].get("max_level"),
+			location[upgrade].get("sprite_position"),
+			location[upgrade].get("name"),
+			location[upgrade].get("id"),
+			location[upgrade].get("descriptiont_first_description")
+			,"Scrapyard")
 	
 	
 
+
 func generate_location_cards() -> void:
+	
 	var locations:Dictionary = LocationData.location_data
 	for location in LocationData.location_data:
 		var card = location_card_scene.instantiate()
-		print(card)
 		$Locations_panel/Locations_content/ScrollContainer/locations.add_child(card)
 		#get_inital_data(t_description,t_pos,t_title, t_cost, t_pri, t_sec, t_unlocked, t_first_description)
 		card.get_inital_data(
