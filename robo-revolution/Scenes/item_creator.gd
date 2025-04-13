@@ -196,10 +196,12 @@ var item_data: Dictionary = {
 }
 
 var pickable_items = []
+var pickable_scrap =[]
+var pickable_treasure =[]
 
-func spawn_item(rarity: int, location: String, type: String, item_scene):
+func spawn_item(location: String, type: String, item_scene):
 	
-	var item = pick_item(rarity, location, type)
+	var item = pick_item(location, type)
 	
 	var item_instance = item_scene.instantiate()
 	item_instance.z_index = -1
@@ -207,16 +209,34 @@ func spawn_item(rarity: int, location: String, type: String, item_scene):
 	
 	return item_instance
 
-func pick_item(rarity: int, location: String, type: String ):
+func pick_item(location: String, type: String ):
 	var item # the specific loot item that is picked
-	var keys = item_data.keys()
+	
 	for items in item_data: # goes through all items to find the right item
-		if (item_data[items].get("rarity") <= rarity && _in_correct_location(items) ):
+		if (item_data[items].get("rarity") <= GameStats.rarity_lvl && _in_correct_location(items) ):
 			item = item_data[items]
-			pickable_items.append(item)# adds the valid item that can be chosen from to an array
+			if (item_data[items].get("type") == "scrap"):
+				pickable_scrap.append(item)# adds the valid item that can be chosen from to an array
+			else :
+				pickable_treasure.append(item)
+	
+	_decide_luck()
 	item = pickable_items.pick_random()
 	
 	return item
+
+func _decide_luck():
+	randomize()# makes vbarients more random
+	var items = pickable_scrap
+	var luck_roll =0
+	
+	luck_roll = randi_range(0,50)
+	
+	var luck_needed = 43 - (GameStats.luck_lvl - (5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 0))# if it is the scrapyard
+	
+	if (luck_roll >= luck_needed):
+		items = pickable_treasure
+	pickable_items = items
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

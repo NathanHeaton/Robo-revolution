@@ -687,7 +687,8 @@ shader = ExtResource("2_2rhct")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_vkjuh"]
 noise_type = 0
-frequency = 0.0005
+seed = 5
+frequency = 0.0004
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wh3vy"]
 width = 80

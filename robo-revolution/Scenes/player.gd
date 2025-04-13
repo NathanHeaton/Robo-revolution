@@ -1,15 +1,7 @@
 extends CharacterBody2D
 signal push
 
-@export var speed = 400
-@export var health = 100
-
-var item_spawn_region
-
 var screen_size
-var strength = 15
-var surge_protection = 0
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y +=1
 	
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity = velocity.normalized() * GameStats.speed
 		$AnimatedSprite2D.play()
 	else:	
 		$AnimatedSprite2D.stop()
@@ -56,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	for body in $pushing_area.get_overlapping_bodies():  # Use Area2D method
 		if body is RigidBody2D:
 			var push_direction = (body.position - position).normalized()
-			body.apply_central_impulse(push_direction * strength)  # Adjust push force
+			body.apply_central_impulse(push_direction * GameStats.strength)  # Adjust push force
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -83,12 +75,10 @@ func _upgrade(upgrade):
 
 
 func strength_upgrade(level: int):
-	strength = 1 + log(level +2)* 15 +(level/5)
-	print("strength: "+ str(strength))
+	GameStats.strength = 1 + log(level +2)* 15 +(level/5)
 
 func speed_upgrade(level: int):
-	speed = 400+log(level+2)* 50
-	print("speed: "+ str(strength))
+	GameStats.speed = 400+log(level+2)* 50
 
 
 
@@ -99,5 +89,5 @@ func combo_increase_upgrade(level: int):
 	print("Applying Combo Increase upgrade, level:", level)
 
 func surge_protection_upgrade(level: int):
-	surge_protection = level
+	GameStats.surge_protection = level
 	print("Surge Protection :", level)
