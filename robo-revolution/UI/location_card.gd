@@ -4,26 +4,18 @@ extends Control
 var pos # sprite position
 var description = ""
 var title = ""
+var location_enum
 var unlocked = false
 var cost
 var priColour =""
 var secColour = ""
 var key_needed = false
 
-var location_to_enum = {
-	"Alien":3,
-	"Scrapyard":0,
-	"Underground":1,
-	"Ocean":2,
-	
-}
-
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
+	UpgradeManager.connect("unlock_location", Callable(self, "_unlock"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,6 +26,7 @@ func get_inital_data(t_description,t_pos,t_title, t_cost, t_unlocked,t_key_neede
 	pos = t_pos
 	description = t_description
 	title = t_title
+	location_enum = LocationData.location_to_enum.get(title)
 	cost = t_cost
 
 	unlocked = t_unlocked
@@ -43,6 +36,12 @@ func get_inital_data(t_description,t_pos,t_title, t_cost, t_unlocked,t_key_neede
 	_change_unlocked()
 	_change_Description()
 	_change_sprite()
+	_update_button_state()
+
+func _unlock():
+	unlocked = LocationData.location_data[location_enum]["unlocked"]
+	_update_button_state()
+	_change_unlocked()
 
 
 func _change_unlocked():
@@ -69,11 +68,10 @@ func _change_theme():
 	
 
 func _update_button_state():
-	pass
-	#if (Money.MONEY < cost):
-		#$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".disabled = true
-	#else:
-		#$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/1X".disabled = false
+	if (Money.MONEY < cost && unlocked == false):
+		$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button.disabled = true
+	else:
+		$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button.disabled = false
 
 func _change_sprite():
 	pass
@@ -91,4 +89,7 @@ func _change_cost():
 
 
 func _on_location_button_pressed() -> void:
-	LocationData.CURRENT_LOCATION = location_to_enum.get(title)
+	if (unlocked == false):
+		UpgradeManager.buy_location(cost,location_enum)
+	else:
+		LocationData.CURRENT_LOCATION = location_enum

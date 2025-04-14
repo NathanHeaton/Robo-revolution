@@ -2,6 +2,7 @@ extends Node
 
 signal level_changed(id)
 signal upgrade(upgrade)
+signal unlock_location
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -37,3 +38,9 @@ func get_upgrade_id(id, location):
 			return locations_upgrades[upgrade]
 	
 	
+
+func buy_location(cost,location):
+	detuct_money(cost)
+	LocationData.CURRENT_LOCATION = location
+	LocationData.location_data[location]["unlocked"] = true
+	emit_signal("unlock_location")

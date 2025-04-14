@@ -18,7 +18,16 @@ var CURRENT_LOCATION: locations = locations.Scrapyard:
 		CURRENT_LOCATION_SAFE = value
 		emit_signal("change_location")
 	
+
+
+var location_to_enum = {
+	"Alien":3,
+	"Scrapyard":0,
+	"Underground":1,
+	"Ocean":2,
 	
+}
+
 var location_data: Dictionary = {
 	locations.Scrapyard:{
 		"id": 0,

@@ -11,7 +11,9 @@ func _ready() -> void:
 	
 
 func _spawn_loot_type(item):
-	
+	if (item == null):
+		print("error: item is null")
+		return
 	$AnimatedSprite2D.play(item.name)
 	var rnd_frame = randi_range(0,item.variants-1)
 	$AnimatedSprite2D.frame = rnd_frame

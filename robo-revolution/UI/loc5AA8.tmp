@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgh71pk7i2w1n"]
+
+[ext_resource type="Script" path="res://UI/location_card.gd" id="1_ebauc"]
+[ext_resource type="Texture2D" uid="uid://bictl1ubjaau0" path="res://assets/Basic Items.png" id="2_1e3ij"]
+[ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_os820"]
+[ext_resource type="Theme" uid="uid://bokwcgf3l1ogg" path="res://Themes/Scrapyard_buttons.tres" id="4_y1kcm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eq3nb"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p6nn"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o80yt"]
+atlas = ExtResource("2_1e3ij")
+region = Rect2(0, 0, 32, 32)
+
+[node name="location_card" type="Control"]
+layout_direction = 1
+layout_mode = 3
+anchor_right = 0.521
+anchor_bottom = 0.185
+offset_right = -0.320068
+offset_bottom = 0.199997
+size_flags_vertical = 3
+script = ExtResource("1_ebauc")
+
+[node name="location_panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eq3nb")
+
+[node name="MarginContainer" type="MarginContainer" parent="location_panel"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Upgarde_Content_Panel" type="Panel" parent="location_panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0p6nn")
+
+[node name="MarginContainer" type="MarginContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Upgarde_Content" type="HBoxContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Upgrade_Icons" type="TextureRect" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content"]
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_o80yt")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_os820")
+theme_override_font_sizes/font_size = 30
+text = "place holder"
+
+[node name="Description" type="Label" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+theme_override_font_sizes/font_size = 24
+text = "placeholder"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="location_button" type="Button" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("4_y1kcm")
+theme_override_font_sizes/font_size = 28
+text = "Travel
+"
+
+[connection signal="pressed" from="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button" to="." method="_on_location_button_pressed"]
