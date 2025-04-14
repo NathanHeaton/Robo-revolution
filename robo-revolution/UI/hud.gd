@@ -18,6 +18,8 @@ func _ready() -> void:
 	generate_location_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
+	GameStats.connect("health_changed", Callable(self, "_update_health"))
+	_update_health()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,7 +36,16 @@ func show_message(text):
 func _on_money_changed():
 	update_money()
 
-	
+func _update_health():
+	$MarginContainer/right_hud/health.anchor_left = 0
+	$MarginContainer/right_hud/health_text.text = "health (" + str(GameStats.health) + "/" + str(GameStats.max_health) + ")"
+	if (GameStats.health == 0):
+		$MarginContainer/right_hud/health.anchor_right = 0
+	else:
+		$MarginContainer/right_hud/health.anchor_right = (GameStats.health / GameStats.max_health)
+		print((GameStats.health / GameStats.max_health))
+
+
 func update_money():
 	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + Money.covert_Scientific_format(Money.MONEY)
 
@@ -51,8 +62,6 @@ func generate_upgrade_cards() -> void:
 		for upgrade in location:
 			var card = upgrade_card_scene.instantiate()
 			var path = "" + str(currentLocationCard) + "_upgrade_panel/Scrapyard_content/ScrollContainer/Upgrades"
-			print(path)
-			print(get_node(path))
 			get_node(path).add_child(card)
 			card.get_inital_data(location[upgrade].get("description"),
 			location[upgrade].get("base_cost"),

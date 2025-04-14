@@ -210,7 +210,6 @@ func spawn_item(location: String, type: String, item_scene):
 
 func pick_item(location: String, type: String ):
 	var item # the specific loot item that is picked
-	GameStats.rarity_lvl = 5
 	for items in item_data: # goes through all items to find the right item
 		if (item_data[items].get("rarity") <= GameStats.rarity_lvl && _in_correct_location(items)):
 			item = item_data[items]
@@ -231,13 +230,11 @@ func _decide_luck():
 	var luck_roll =0
 	
 	luck_roll = randi_range(0,50)
-	
 	var luck_needed = 43 - (GameStats.sum_luck_lvl() - (5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 0))# if it is the scrapyard
 	
 	if (luck_roll >= luck_needed):
 		items = pickable_treasure
 	pickable_items = items
-	print(pickable_items)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

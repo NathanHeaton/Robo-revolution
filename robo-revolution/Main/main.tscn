@@ -35,6 +35,12 @@ position = Vector2(800, 500)
 
 [node name="Item_creator" parent="." instance=ExtResource("8_7cs6e")]
 
+[node name="power_surge" type="Timer" parent="."]
+wait_time = 20.0
+
+[node name="surge_duration" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="push" from="Player" to="." method="_on_player_push"]
 [connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]
 [connection signal="collect" from="Item_Collector" to="." method="_on_item_collector_collect"]

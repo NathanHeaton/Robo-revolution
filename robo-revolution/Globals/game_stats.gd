@@ -4,7 +4,16 @@ extends Node
 var strength = 15
 var surge_protection = 0
 var speed = 400
-var health = 100
+
+signal health_changed
+var _health:float = 100
+var health:float = _health:
+	get:
+		return _health
+	set(value):
+		_health = _health - value
+		emit_signal("health_changed")
+var max_health:float = 100
 
 #spawn stats
 var rarity_lvl = 0

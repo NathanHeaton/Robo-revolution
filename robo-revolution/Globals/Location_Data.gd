@@ -61,7 +61,7 @@ var location_data: Dictionary = {
 		"name": "Alien",
 		"description" : "Increase chance to spawn trash items",
 		"unlocked": false,
-		"base_cost": 57800000,
+		"base_cost": 5780000,
 		"key_needed": true,
 		"sprite_position": Vector2(1,1)
 	}

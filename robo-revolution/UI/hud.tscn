@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=37 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
@@ -97,12 +97,38 @@ content_margin_left = 20.0
 content_margin_top = 20.0
 content_margin_right = 20.0
 content_margin_bottom = 20.0
-bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+bg_color = Color(0, 0, 0, 0.627451)
 corner_radius_top_left = 20
 expand_margin_left = 20.0
 expand_margin_top = 20.0
-expand_margin_right = 20.0
-expand_margin_bottom = 20.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8iysq"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.513726, 0.113725, 0.533333, 1)
+border_color = Color(0.376471, 0.0235294, 0.396078, 1)
+corner_radius_bottom_left = 20
+corner_detail = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpfd5"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.288957, 0.0430702, 0.301036, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.145293, 0.00366851, 0.154403, 1)
+corner_radius_bottom_left = 27
+corner_detail = 6
+expand_margin_left = 7.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugnei"]
 content_margin_top = 20.0
@@ -339,18 +365,64 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="right_hud" type="Panel" parent="MarginContainer"]
-custom_minimum_size = Vector2(400, 120)
+custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_bm0kg")
 
 [node name="location" type="Label" parent="MarginContainer/right_hud"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 20.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -279.0
+offset_top = -4.0
+offset_right = -3.0
+offset_bottom = 63.0
+grow_horizontal = 0
 theme_override_font_sizes/font_size = 18
-text = "Location: Scraoyard"
+text = "Scrapyard"
+horizontal_alignment = 2
+
+[node name="health" type="Panel" parent="MarginContainer/right_hud"]
+z_index = 2
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8iysq")
+
+[node name="back" type="Panel" parent="MarginContainer/right_hud"]
+z_index = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpfd5")
+
+[node name="health_text" type="Label" parent="MarginContainer/right_hud"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -33.0
+offset_right = 32.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Health ( 100/100 )"
 
 [node name="Scrapyard_upgrade_panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(1160, 760)
