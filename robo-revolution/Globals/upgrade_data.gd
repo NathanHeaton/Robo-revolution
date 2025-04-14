@@ -267,7 +267,7 @@ var upgrades: Dictionary = {
 			"max_level": 4,
 			"base_cost": 40000,
 			"cost": 40000,
-			"cost_scaling": 1.0,
+			"cost_scaling": 1.1,
 			"type": "custom",
 			"first_upgrade": true,
 			"first_description": "Enables unlimited underwater operation",

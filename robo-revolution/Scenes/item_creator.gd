@@ -9,7 +9,7 @@ var item_data: Dictionary = {
 		"rarity": 0,
 		"type": "scrap",
 		"weight": 3,
-		"locations":[LocationData.locations.Scrapyard,LocationData.locations.Underground,LocationData.locations.Ocean], 
+		"locations":[LocationData.locations.Scrapyard,LocationData.locations.Underground,LocationData.locations.Ocean,LocationData.locations.Alien], 
 		"variants": 4
 	},
 	"plastic":{
@@ -232,7 +232,7 @@ func _decide_luck():
 	luck_roll = randi_range(0,50)
 	var luck_needed = 43 - (GameStats.sum_luck_lvl() - (5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 0))# if it is the scrapyard
 	
-	if (luck_roll >= luck_needed):
+	if (luck_roll >= luck_needed && pickable_treasure):
 		items = pickable_treasure
 	pickable_items = items
 

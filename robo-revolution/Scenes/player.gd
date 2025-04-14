@@ -59,7 +59,6 @@ func _on_body_entered(body: Node2D) -> void:
 	
 
 func _upgrade(upgrade):
-	print("strength: ")
 	match upgrade["name"]:
 		"Speed":
 			speed_upgrade(upgrade["level"])
@@ -71,11 +70,21 @@ func _upgrade(upgrade):
 			combo_increase_upgrade(upgrade["level"])
 		"Surge Protection":
 			surge_protection_upgrade(upgrade["level"])
-		
+		"Armour":
+			Armour_upgrade(upgrade["level"])
+		"Water Proof":
+			Water_Proof_upgrade(upgrade["level"])
+		"Basic Waterproofing":
+			Basic_Waterproofing_upgrade(upgrade["level"])
+		"Surge Redistributor":
+			Surge_Redistributor_upgrade(upgrade["level"])
 
-
+var strength_prev_lvl = 0
 func strength_upgrade(level: int):
 	GameStats.strength = 1 + log(level +2)* 15 +(level/5)
+	for i in range(strength_prev_lvl,level):
+		strength_prev_lvl += 1
+		GameStats.max_health += 15
 
 func speed_upgrade(level: int):
 	GameStats.speed = 400+log(level+2)* 50
@@ -91,3 +100,31 @@ func combo_increase_upgrade(level: int):
 func surge_protection_upgrade(level: int):
 	GameStats.surge_protection = level
 	print("Surge Protection :", level)
+
+func Armour_upgrade(level: int) -> void:
+	GameStats.armour_mult = snapped(1 + log(level) * 2,0.1)
+	print(GameStats.armour_mult, "armour lvl", level)
+
+var water_prev_lvl = 0
+func Water_Proof_upgrade(level: int) -> void:
+	if (level == 1):
+		GameStats.water_proof = true
+	for i in range(water_prev_lvl,level):
+		water_prev_lvl += 1
+		GameStats.max_health += 100
+
+
+func Basic_Waterproofing_upgrade(level: int) -> void:
+		GameStats.basic_water_proof = level
+
+
+
+func Surge_Redistributor_upgrade(level: int) -> void:
+	# Mitigate electric hazard damage or similar
+	print("Applying Surge Redistributor upgrade, level:", level)
+	# GameStats.electric_resistance += level * 3
+
+
+func _on_regen_timeout() -> void:
+	if(GameStats.health < GameStats.max_health && LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard):
+		GameStats.health += 2

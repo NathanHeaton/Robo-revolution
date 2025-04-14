@@ -66,3 +66,9 @@ polygon = PackedVector2Array(-13.7993, 2.40159, -3.06643, 2.6303, -3.06656, -2.7
 position = Vector2(1, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6lt8k")
+
+[node name="regen" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="regen" to="." method="_on_regen_timeout"]

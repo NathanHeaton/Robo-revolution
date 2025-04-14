@@ -43,7 +43,6 @@ func _update_health():
 		$MarginContainer/right_hud/health.anchor_right = 0
 	else:
 		$MarginContainer/right_hud/health.anchor_right = (GameStats.health / GameStats.max_health)
-		print((GameStats.health / GameStats.max_health))
 
 
 func update_money():

@@ -14,10 +14,34 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	match LocationData.CURRENT_LOCATION:
+		LocationData.locations.Scrapyard:
+			pass
+		LocationData.locations.Underground:
+			_underground_hazards()
+		LocationData.locations.Ocean:
+			_ocean_hazards()
+		LocationData.locations.Alien:
+			print("in Alien")
+			
 
+func _ocean_hazards():
+	if (GameStats.water_proof):
+		return
+	elif ( GameStats.basic_water_proof > 0):
+		GameStats.health = GameStats.health - (4 - GameStats.basic_water_proof)
+	else:
+		GameStats.health = GameStats.health - 4
 
+var first_time_in_underground = true
 
+func _underground_hazards():
+	if (first_time_in_underground):
+		$power_surge.start()
+		first_time_in_underground = false
+	
+
+	
 func _on_item_collector_collect(body: Node) -> void:
 	Money.MONEY += body.get_value()
 	$HUD.update_money()
@@ -26,6 +50,7 @@ func _on_item_collector_collect(body: Node) -> void:
 	body.collect()
 	
 	
+
 
 func newGame():
 	Money.MONEY = 0
@@ -48,7 +73,7 @@ func _upgrade(upgrade):
 			_rarity_upgrade_3plus(upgrade["level"])
 		"Item Focuser":
 			_item_focuser_upgrade(upgrade["level"])
-		
+
 
 func _spawnrate_upgrade(level: int):
 	var wait = snapped(clamp(4 +log(level +1)*-1.15,0.1,5),0.01)
@@ -113,3 +138,23 @@ func _spawn_loot() -> void:
 func _on_hud_start_game() -> void:
 	newGame()
 	
+
+var time_for_surge = 20
+func _on_power_surge_timeout() -> void:
+	$surge_duration.start()
+	
+	GameStats.health = GameStats.health - 10
+	
+	
+	
+func _update_surge_time():
+	time_for_surge = randf_range(time_for_surge-3,time_for_surge+3)
+	$power_surge.wait_time = time_for_surge
+	
+
+
+func _on_surge_duration_timeout() -> void:# surge has ended
+	print("surge has ended")
+	_update_surge_time()
+	$power_surge.start()
+	print(	$power_surge.wait_time, " is the new surge wait time")
