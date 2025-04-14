@@ -45,7 +45,6 @@ func _unlock():
 
 
 func _change_unlocked():
-	
 	if (unlocked):
 		$"location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button".text = "Travel"
 	else:

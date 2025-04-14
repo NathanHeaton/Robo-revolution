@@ -225,6 +225,7 @@ func pick_item(location: String, type: String ):
 	
 	return item
 
+
 func _decide_luck():
 	randomize()# makes vbarients more random
 	var items = pickable_scrap
@@ -232,7 +233,7 @@ func _decide_luck():
 	
 	luck_roll = randi_range(0,50)
 	
-	var luck_needed = 43 - (GameStats.luck_lvl - (5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 0))# if it is the scrapyard
+	var luck_needed = 43 - (GameStats.sum_luck_lvl() - (5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 0))# if it is the scrapyard
 	
 	if (luck_roll >= luck_needed):
 		items = pickable_treasure

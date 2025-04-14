@@ -7,7 +7,7 @@ extends Node
 
 func _ready() -> void:
 	newGame()
-	Money.MONEY = 5100
+	Money.MONEY = 51000000
 	GameStats.item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 
@@ -57,21 +57,22 @@ func _spawnrate_upgrade(level: int):
 func _rarity_upgrade(level: int):
 	if (level == 1):
 		GameStats.rarity_lvl +=1
-	GameStats.luck_lvl = level
+	GameStats.luck_lvl[0] = level
 
 func _rarity_upgrade_plus(level: int):
 	if (level == 1):
 		GameStats.rarity_lvl +=1
+	GameStats.luck_lvl[1] = level
 
 func _rarity_upgrade_2plus(level: int):
 	if (level == 1):
 		GameStats.rarity_lvl +=1
-	GameStats.luck_lvl += 1
+	GameStats.luck_lvl[2] = level
 	
 func _rarity_upgrade_3plus(level: int):
 	if (level == 1):
 		GameStats.rarity_lvl +=1
-	GameStats.luck_lvl += 1
+	GameStats.luck_lvl[3] = level
 	print(GameStats.luck_lvl)
 
 func _item_focuser_upgrade(level: int):

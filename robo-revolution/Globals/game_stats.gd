@@ -9,13 +9,18 @@ var health = 100
 #spawn stats
 var rarity_lvl = 0
 var item_spawn_region
-var luck_lvl = 0
+var luck_lvl = [0,0,0,0]
 
 #other
 var companions = 0
 var water_proof = false
 
-
+func sum_luck_lvl()-> int:
+	var luck = 0
+	for nums in luck_lvl:
+		luck += nums
+	print("luck: ", luck)
+	return luck
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

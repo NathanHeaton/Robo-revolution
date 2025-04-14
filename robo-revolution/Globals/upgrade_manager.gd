@@ -41,6 +41,5 @@ func get_upgrade_id(id, location):
 
 func buy_location(cost,location):
 	detuct_money(cost)
-	LocationData.CURRENT_LOCATION = location
 	LocationData.location_data[location]["unlocked"] = true
 	emit_signal("unlock_location")
