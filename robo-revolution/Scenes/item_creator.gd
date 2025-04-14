@@ -165,7 +165,6 @@ var item_data: Dictionary = {
 		"locations": [LocationData.locations.Underground],
 		"variants": 1  # Unique appearance
 	},
-
 	"pearls": {
 		"name": "pearls",
 		"value": 9000,
@@ -211,9 +210,9 @@ func spawn_item(location: String, type: String, item_scene):
 
 func pick_item(location: String, type: String ):
 	var item # the specific loot item that is picked
-	
+	GameStats.rarity_lvl = 5
 	for items in item_data: # goes through all items to find the right item
-		if (item_data[items].get("rarity") <= GameStats.rarity_lvl && _in_correct_location(items) ):
+		if (item_data[items].get("rarity") <= GameStats.rarity_lvl && _in_correct_location(items)):
 			item = item_data[items]
 			if (item_data[items].get("type") == "scrap"):
 				pickable_scrap.append(item)# adds the valid item that can be chosen from to an array
@@ -238,6 +237,7 @@ func _decide_luck():
 	if (luck_roll >= luck_needed):
 		items = pickable_treasure
 	pickable_items = items
+	print(pickable_items)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -250,8 +250,9 @@ func _process(delta: float) -> void:
 
 func _in_correct_location(items) -> bool:
 	var in_location = false
-	var locations = item_data[items].get("locations")
+	var locations = item_data[items]["locations"]
 	for location in locations:
 		if (location == LocationData.CURRENT_LOCATION):
 			in_location = true
+			return in_location
 	return in_location

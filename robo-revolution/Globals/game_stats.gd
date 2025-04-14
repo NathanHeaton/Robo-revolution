@@ -19,7 +19,6 @@ func sum_luck_lvl()-> int:
 	var luck = 0
 	for nums in luck_lvl:
 		luck += nums
-	print("luck: ", luck)
 	return luck
 
 # Called when the node enters the scene tree for the first time.

@@ -7,7 +7,7 @@ extends Node
 
 func _ready() -> void:
 	newGame()
-	Money.MONEY = 51000000
+	Money.MONEY = 51000000000
 	GameStats.item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 

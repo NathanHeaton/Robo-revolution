@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func apply_upgrade(id, lvl, amount, cost,location):
+func apply_upgrade(id, lvl, amount, cost, location):
 	detuct_money(cost)
 	update_level(amount,id,location)
 
