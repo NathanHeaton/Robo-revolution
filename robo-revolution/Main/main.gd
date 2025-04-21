@@ -115,9 +115,9 @@ func item_spawn_location() -> Vector2: # picks where to spawn the loot items and
 	randi_range(GameStats.item_spawn_region[0].x,GameStats.item_spawn_region[1].x),
 	randi_range(GameStats.item_spawn_region[0].y,GameStats.item_spawn_region[1].y)
 	)
-	if (rndLocation.x > 820 && rndLocation.x < 1150):
+	if (rndLocation.x > 820 && rndLocation.x < 1150):#spawned ontop of the collector
 		if(rndLocation.y > 325 && rndLocation.y < 725):
-			rndLocation = Vector2(rndLocation.x + 400, rndLocation.y+ 400)
+			item_spawn_location()
 	
 	return rndLocation
 
