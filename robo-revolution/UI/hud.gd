@@ -14,6 +14,8 @@ func _ready() -> void:
 	$Underground_upgrade_panel.hide()
 	$Ocean_upgrade_panel.hide()
 	$Alien_upgrade_panel.hide()
+	$Power_Crystal_upgrade_panel.hide()
+	$Companion_upgrade_panel.hide()
 	generate_upgrade_cards()
 	generate_location_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
@@ -182,3 +184,23 @@ func _handle_popup_screens(currentCard):
 		get_node(previousCard).button_pressed = false
 		get_node(previousCard).emit_signal("toggled", false)
 	
+
+
+func _on_companion_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrades_Locations_nav/Companion_Upgrades"
+	_handle_popup_screens(currentCard)
+	if(toggled_on):
+		$Companion_upgrade_panel.show()
+		previousCard = currentCard
+	else:
+		$Companion_upgrade_panel.hide()
+
+
+func _on_power_c_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrades_Locations_nav/PowerC_Upgrades"
+	_handle_popup_screens(currentCard)
+	if(toggled_on):
+		$Power_Crystal_upgrade_panel.show()
+		previousCard = currentCard
+	else:
+		$Power_Crystal_upgrade_panel.hide()

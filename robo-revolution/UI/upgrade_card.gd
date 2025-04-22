@@ -120,7 +120,7 @@ func _update_button_state():
 func _change_sprite():
 	var icon_rect = Rect2(Vector2(pos.x *FRAME_SIZE,pos.y *FRAME_SIZE),Vector2(FRAME_SIZE,FRAME_SIZE))
 	var atlas_texture = AtlasTexture.new() # makes new atlas texture
-	atlas_texture.atlas = load("res://assets/Basic Items.png") # loads upgrades
+	atlas_texture.atlas = load("res://assets/Upgrades.png") # loads upgrades
 	atlas_texture.set_region(icon_rect) # sets rext for icons
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/Upgrade_Icons.texture = atlas_texture
 	
