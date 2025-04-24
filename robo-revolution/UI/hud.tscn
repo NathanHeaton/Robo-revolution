@@ -1,9 +1,10 @@
-[gd_scene load_steps=49 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=55 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
 [ext_resource type="Texture2D" uid="uid://bisrwqsp3i7ac" path="res://assets/upgrade_icons.png" id="3_80ti6"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_sgyd2"]
+[ext_resource type="Theme" uid="uid://xnk1sn3p84f7" path="res://Themes/Alien_buttons.tres" id="5_8pnjh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0poq"]
 atlas = ExtResource("2_yatbj")
@@ -136,6 +137,14 @@ events = [SubResource("InputEventKey_pwxqf")]
 atlas = ExtResource("3_80ti6")
 region = Rect2(64, 32, 32, 32)
 
+[sub_resource type="InputEventKey" id="InputEventKey_x0rio"]
+device = -1
+keycode = 56
+unicode = 56
+
+[sub_resource type="Shortcut" id="Shortcut_wp8v4"]
+events = [SubResource("InputEventKey_x0rio")]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_sa5gu"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(96, 32, 32, 32)
@@ -247,6 +256,18 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tjxso"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m40mi"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe6n0"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o78p2"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_left = 20
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -464,11 +485,13 @@ shortcut = SubResource("Shortcut_8tb3k")
 texture_normal = SubResource("AtlasTexture_ir2vc")
 stretch_mode = 0
 
-[node name="Prestiege" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+[node name="Prestige" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+toggle_mode = true
+shortcut = SubResource("Shortcut_wp8v4")
 texture_normal = SubResource("AtlasTexture_sa5gu")
 stretch_mode = 5
 
@@ -1089,6 +1112,131 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
+[node name="Prestige_panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1160, 400)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 394.0
+offset_right = 1182.0
+offset_bottom = -98.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Alien_Icon" type="TextureRect" parent="Prestige_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_m40mi")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Prestige_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.554793, 0.989348, 0.855077, 1)
+theme_override_font_sizes/font_size = 40
+text = "Pretiege
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Alien_Close_Button" type="Button" parent="Prestige_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Scrapyard_content" type="VBoxContainer" parent="Prestige_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Prestige_panel/Scrapyard_content"]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Prestige_panel/Scrapyard_content/Panel"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Upgarde_Content_Panel" type="Panel" parent="Prestige_panel/Scrapyard_content/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Description" type="Label" parent="Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+theme_override_font_sizes/font_size = 24
+text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
+"
+autowrap_mode = 3
+
+[node name="Upgarde_Content" type="HBoxContainer" parent="Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Buy" type="Button" parent="Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("5_8pnjh")
+theme_override_font_sizes/font_size = 28
+text = "Prestige"
+
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades" to="." method="_on_underground_upgrades_toggled"]
@@ -1097,6 +1245,7 @@ theme_override_constants/separation = 20
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Companion_Upgrades" to="." method="_on_companion_upgrades_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button" to="." method="_on_location_button_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/PowerC_Upgrades" to="." method="_on_power_c_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Prestige" to="." method="_on_prestige_toggled"]
 [connection signal="pressed" from="Scrapyard_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
 [connection signal="pressed" from="Locations_panel/Locations_Close_Button" to="." method="_on_locations_close_button_pressed"]
 [connection signal="pressed" from="Underground_upgrade_panel/Underground_Close_Button" to="." method="_on_underground_close_button_pressed"]
@@ -1104,3 +1253,4 @@ theme_override_constants/separation = 20
 [connection signal="pressed" from="Alien_upgrade_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="Power_Crystal_upgrade_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="Companion_upgrade_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
+[connection signal="pressed" from="Prestige_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]

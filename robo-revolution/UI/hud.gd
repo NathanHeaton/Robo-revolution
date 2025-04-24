@@ -16,6 +16,7 @@ func _ready() -> void:
 	$Alien_upgrade_panel.hide()
 	$Power_Crystal_upgrade_panel.hide()
 	$Companion_upgrade_panel.hide()
+	$Prestige_panel.hide()
 	generate_upgrade_cards()
 	generate_location_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
@@ -211,3 +212,13 @@ func _on_power_c_upgrades_toggled(toggled_on: bool) -> void:
 		previousCard = currentCard
 	else:
 		$Power_Crystal_upgrade_panel.hide()
+
+
+func _on_prestige_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Prestige"
+	_handle_popup_screens(currentCard)
+	if(toggled_on):
+		$Prestige_panel.show()
+		previousCard = currentCard
+	else:
+		$Prestige_panel.hide()
