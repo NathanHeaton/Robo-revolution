@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 var FRAME_SIZE = 32
 
@@ -15,6 +15,7 @@ var affordable_price = cost
 var id
 var maxed = false
 var location =""
+var currency = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,7 +27,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_pos,t_title, t_id, t_first_desciption, t_location):
+func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_pos,t_title, t_id, t_first_desciption, t_location, t_currency):
 	cost = t_base_cost
 	scaling = t_scaling
 	level = t_level
@@ -37,6 +38,7 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 	id = t_id
 	first_description = t_first_desciption
 	location = t_location
+	currency = t_currency
 	_change_title()
 	_change_theme()
 	_change_Description()
@@ -44,6 +46,7 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 	_change_cost()
 	_cal_max_buy()
 	_change_level()
+	_set_icon()
 
 func _change_theme():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.theme = GlobalThemes.themes.get(location)
@@ -83,29 +86,32 @@ func _change_Description() -> void:
 		
 
 func _cal_max_buy():# add code to calculate the amount that can be bought
-	var current_money = Money.MONEY
-	var max_amount = 0
-	var remainingLevels = max_level - level
-	
-	if(current_money > 0):
-		var var1:float= current_money/cost
+	if (max_level != 1):
+		var current_money = Money.MONEY
+		var max_amount = 0
+		var remainingLevels = max_level - level
 		
-		buyable_levels = log(((scaling-1)*current_money)/cost) / log(scaling) + 1
-		affordable_price = current_money/buyable_levels
-		buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
-	
-	affordable_price = cost * (((scaling ** buyable_levels)-1)/(scaling - 1))
+		if(current_money > 0):
+			var var1:float= current_money/cost
+			
+			buyable_levels = log(((scaling-1)*current_money)/cost) / log(scaling) + 1
+			affordable_price = current_money/buyable_levels
+			buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
+		
+		affordable_price = cost * (((scaling ** buyable_levels)-1)/(scaling - 1))
 
-	affordable_price = snapped(affordable_price, 1)
-	
-	if(buyable_levels == 0):
-		affordable_price = cost
-		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true
+		affordable_price = snapped(affordable_price, 1)
+		
+		if(buyable_levels == 0):
+			affordable_price = cost
+			$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true
+		else:
+			$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = false
+		
+		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = Money.covert_Scientific_format(affordable_price) + " | MAX ("+str(buyable_levels)+")"
 	else:
-		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = false
-	
-	$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = Money.covert_Scientific_format(affordable_price) + "$ | MAX ("+str(buyable_levels)+")"
-	
+		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".hide()
+		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section".vertical = SIZE_SHRINK_END
 
 func _update_button_state():
 	if (Money.MONEY < cost):
@@ -125,8 +131,19 @@ func _change_sprite():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/Upgrade_Icons.texture = atlas_texture
 	
 
+func _set_icon():
+	var icon_texture = ImageTexture.new()
+	var texture = load("res://assets/"+str(currency)+".png") as Texture2D
+	icon_texture.set_image(texture.get_image())
+
+	icon_texture.set_size_override(Vector2i(24,24))
+	
+	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.icon = icon_texture
+	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max.icon = icon_texture
+
 func _change_cost():
-	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.text = Money.covert_Scientific_format(cost) + "$ | 1X"
+
+	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.text = Money.covert_Scientific_format(cost) + " | 1X"
 
 func _set_has_maxed():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = true

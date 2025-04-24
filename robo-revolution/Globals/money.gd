@@ -1,6 +1,15 @@
 extends Node
 
 signal money_changed
+signal powerC_changed
+
+var powerC_back_up: float = 0
+var POWER_C : float = 0: # allows signals to be sent when money is updated
+	get:
+		return powerC_back_up
+	set(value):
+		powerC_back_up = snapped(value,1)
+		emit_signal("powerC_changed")
 
 var money_back_up: float = 0
 var MONEY: float = 0: # allows signals to be sent when money is updated
@@ -10,8 +19,6 @@ var MONEY: float = 0: # allows signals to be sent when money is updated
 		money_back_up = snapped(value,1)
 		emit_signal("money_changed")
 
-
-var POWER_CRYSTALS = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass

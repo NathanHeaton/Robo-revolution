@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://uarugnx1gljb"]
+[gd_scene load_steps=19 format=3 uid="uid://uarugnx1gljb"]
 
 [ext_resource type="Script" path="res://UI/upgrade_card.gd" id="1_benln"]
 [ext_resource type="Texture2D" uid="uid://cx3o0s8h4i681" path="res://assets/Upgrades.png" id="2_jnawc"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://cumvo6rguxrma" path="res://styles/Disabled_buy_button.tres" id="5_lcu3s"]
 [ext_resource type="StyleBox" uid="uid://b2mv4wr1odhnx" path="res://styles/normal_max_button.tres" id="6_17u43"]
 [ext_resource type="Theme" uid="uid://xnk1sn3p84f7" path="res://Themes/Alien_buttons.tres" id="7_bbq7k"]
+[ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="8_kbsp4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvyci"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -71,32 +72,28 @@ expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 anti_aliasing = false
 
-[node name="upgrade_card" type="Panel"]
-custom_minimum_size = Vector2(1000, 200)
+[sub_resource type="ImageTexture" id="ImageTexture_joqcy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ctac"]
+atlas = ExtResource("8_kbsp4")
+region = Rect2(0, 0, 16, 0)
+
+[node name="upgrade_card" type="PanelContainer"]
 offset_right = 1000.0
 offset_bottom = 200.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 6
-size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tvyci")
 script = ExtResource("1_benln")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(1000, 200)
-layout_mode = 0
-offset_right = 900.0
-offset_bottom = 200.0
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_56gpc")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 custom_minimum_size = Vector2(900, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
@@ -217,6 +214,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_asren")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_th0ea")
 theme_override_styles/normal = ExtResource("6_17u43")
 text = "100$  | MAX"
+icon = SubResource("ImageTexture_joqcy")
 
 [node name="spacer3" type="Control" parent="Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section"]
 layout_mode = 2
@@ -229,7 +227,8 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("7_bbq7k")
 theme_override_font_sizes/font_size = 28
-text = "100$  | MAX"
+text = " 100 | Buy"
+icon = SubResource("AtlasTexture_1ctac")
 
 [connection signal="pressed" from="Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max" to="." method="_on_max_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy" to="." method="_on_buy_pressed"]
