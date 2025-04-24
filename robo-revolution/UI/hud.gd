@@ -20,6 +20,7 @@ func _ready() -> void:
 	generate_location_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
+	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
 	GameStats.connect("health_changed", Callable(self, "_update_health"))
 	_update_health()
 	
@@ -49,6 +50,9 @@ func _update_health():
 
 func update_money():
 	$MarginContainer/money_panel/VBoxContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)
+
+func _on_powerC_changed():
+	$MarginContainer/money_panel/VBoxContainer/powerC_box/powerC.text = Money.covert_Scientific_format(Money.POWER_C)
 
 func _on_change_location():
 	$MarginContainer/right_hud/location.text = "Location: " + str(LocationData.location_data[LocationData.CURRENT_LOCATION].get("name"))

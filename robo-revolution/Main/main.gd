@@ -8,6 +8,7 @@ extends Node
 func _ready() -> void:
 	newGame()
 	Money.MONEY = 51000000000
+	Money.POWER_C = 25
 	GameStats.item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 
@@ -43,8 +44,11 @@ func _underground_hazards():
 
 	
 func _on_item_collector_collect(body: Node) -> void:
-	Money.MONEY += body.get_value()
-	$HUD.update_money()
+	if (body.get_type() == "money"):
+		Money.MONEY += body.get_value()
+	elif (body.get_type() == "powerC"):
+		Money.POWER_C += body.get_value()
+	#$HUD.update_money()
 	
 	
 	body.collect()

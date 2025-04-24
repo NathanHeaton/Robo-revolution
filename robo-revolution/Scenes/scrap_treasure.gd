@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var value = 0
+var item 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()# makes vbarients more random
@@ -10,7 +11,8 @@ func _ready() -> void:
 		linear_damp = 2.0  # Higher = more resistance
 	
 
-func _spawn_loot_type(item):
+func _spawn_loot_type(t_item):
+	item = t_item
 	if (item == null):
 		print("error: item is null")
 		return
@@ -38,6 +40,12 @@ func get_value() -> int:
 	return value
 	
 
+func get_type():
+	var type = "money"
+	if (item.name == "power_crystals"):
+		type = "powerC"
+		
+	return type
 
 func _on_despawn_start_timeout() -> void:
 	$fade_out_player.play("fade_out")

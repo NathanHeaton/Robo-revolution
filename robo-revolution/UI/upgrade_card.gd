@@ -20,6 +20,7 @@ var currency = ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
+	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
 	UpgradeManager.connect("level_changed", Callable(self, "_update_level"))
 
 
@@ -75,6 +76,13 @@ func _on_money_changed():
 	_cal_max_buy()
 	_update_button_state()
 
+func _on_powerC_changed():
+	if (level >= max_level):
+		_set_has_maxed()
+		return
+	_cal_max_buy()
+	_update_button_state()
+
 func _change_title() -> void:
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title.text = str(title)
 
@@ -87,7 +95,12 @@ func _change_Description() -> void:
 
 func _cal_max_buy():# add code to calculate the amount that can be bought
 	if (max_level != 1):
-		var current_money = Money.MONEY
+		var current_money
+		if (currency == "money"):
+			current_money = Money.MONEY
+		elif (currency == "powerC"):
+			current_money = Money.POWER_C
+		
 		var max_amount = 0
 		var remainingLevels = max_level - level
 		
@@ -114,7 +127,12 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section".vertical = SIZE_SHRINK_END
 
 func _update_button_state():
-	if (Money.MONEY < cost):
+	var current_cost
+	if (currency == "money"):
+		current_cost = Money.MONEY
+	elif (currency == "powerC"):
+		current_cost = Money.POWER_C
+	if (current_cost < cost):
 		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.disabled = true
 		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true
 	else:
@@ -154,8 +172,8 @@ func _set_has_maxed():
 
 func _on_buy_pressed() -> void:
 	
-	UpgradeManager.apply_upgrade(id,level,1,cost,location)
+	UpgradeManager.apply_upgrade(id,level,1,cost,location,currency)
 
 
 func _on_max_pressed() -> void:
-	UpgradeManager.apply_upgrade(id,level,buyable_levels,affordable_price,location)
+	UpgradeManager.apply_upgrade(id,level,buyable_levels,affordable_price,location,currency)

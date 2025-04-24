@@ -17,7 +17,7 @@ var max_health:float = 100
 var armour_mult = 1
 
 #spawn stats
-var rarity_lvl = 0
+var rarity_lvl = 5
 var item_spawn_region
 var luck_lvl = [0,0,0,0]
 

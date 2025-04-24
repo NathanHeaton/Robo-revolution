@@ -12,8 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func apply_upgrade(id, lvl, amount, cost, location):
-	detuct_money(cost)
+func apply_upgrade(id, lvl, amount, cost, location, currency):
+	detuct_cost(cost, currency)
 	update_level(amount,id,location)
 
 func update_level(amount,id,location):
@@ -26,9 +26,13 @@ func update_level(amount,id,location):
 	
 	
 
-func detuct_money(cost):
-	if (Money.MONEY - cost > 0):
+func detuct_cost(cost, currency):
+	if (currency == "money"):
 		Money.MONEY -= cost
+	elif (currency == "powerC"):
+		Money.POWER_C -= cost
+	
+
 
 
 func get_upgrade_id(id, location):
@@ -40,6 +44,6 @@ func get_upgrade_id(id, location):
 	
 
 func buy_location(cost,location):
-	detuct_money(cost)
+	detuct_cost(cost, "money")
 	LocationData.location_data[location]["unlocked"] = true
 	emit_signal("unlock_location")
