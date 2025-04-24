@@ -1,8 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=49 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
 [ext_resource type="Texture2D" uid="uid://bisrwqsp3i7ac" path="res://assets/upgrade_icons.png" id="3_80ti6"]
+[ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_sgyd2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0poq"]
 atlas = ExtResource("2_yatbj")
@@ -19,6 +20,37 @@ region = Rect2(64, 0, 32, 0)
 [sub_resource type="AtlasTexture" id="AtlasTexture_51pt6"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(96, 0, 32, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnq6s"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 0.627451)
+expand_margin_left = 24.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jitwc"]
+atlas = ExtResource("3_sgyd2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdtlg"]
+atlas = ExtResource("3_sgyd2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fronj"]
+atlas = ExtResource("3_sgyd2")
+region = Rect2(32, 0, 16, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dihul"]
+bg_color = Color(0, 0, 0, 0.627451)
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="InputEventKey" id="InputEventKey_ceg5h"]
 device = -1
@@ -104,7 +136,7 @@ events = [SubResource("InputEventKey_pwxqf")]
 atlas = ExtResource("3_80ti6")
 region = Rect2(64, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yegfb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa5gu"]
 atlas = ExtResource("3_80ti6")
 region = Rect2(96, 32, 32, 32)
 
@@ -206,6 +238,14 @@ region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgk42"]
 atlas = ExtResource("3_80ti6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf8m1"]
+atlas = ExtResource("3_80ti6")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjxso"]
+atlas = ExtResource("3_80ti6")
 region = Rect2(0, 32, 32, 32)
 
 [node name="HUD" type="Control"]
@@ -270,51 +310,102 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Collect Scrap and treasure"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="money_panel" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_constants/separation = 8
-alignment = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vnq6s")
 
-[node name="Money_Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 28
-text = "Money: 0"
-horizontal_alignment = 2
-
-[node name="Power_Crystals_Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 22
-text = "Power Crystals: 0"
-
-[node name="Companions_Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 22
-text = "Comapanions: 0"
-
-[node name="upgrades_Locations_nav" type="HBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(400, 80)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_constants/separation = 10
-
-[node name="Scrapyard_Upgrades" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/money_panel"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="money_box" type="HBoxContainer" parent="MarginContainer/money_panel/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Money"
+theme_override_constants/separation = 12
+
+[node name="money_icon" type="TextureRect" parent="MarginContainer/money_panel/VBoxContainer/money_box"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = SubResource("AtlasTexture_jitwc")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="money" type="Label" parent="MarginContainer/money_panel/VBoxContainer/money_box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="powerC_box" type="HBoxContainer" parent="MarginContainer/money_panel/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Power Crystals"
+theme_override_constants/separation = 12
+
+[node name="powerC_icon" type="TextureRect" parent="MarginContainer/money_panel/VBoxContainer/powerC_box"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = SubResource("AtlasTexture_gdtlg")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="powerC" type="Label" parent="MarginContainer/money_panel/VBoxContainer/powerC_box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="companions_box" type="HBoxContainer" parent="MarginContainer/money_panel/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Companions"
+theme_override_constants/separation = 12
+
+[node name="companion_icon" type="TextureRect" parent="MarginContainer/money_panel/VBoxContainer/companions_box"]
+clip_contents = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = SubResource("AtlasTexture_fronj")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="companions" type="Label" parent="MarginContainer/money_panel/VBoxContainer/companions_box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="upgrade_nav_container" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(700, 70)
+layout_direction = 2
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_dihul")
+
+[node name="upgrades_Locations_nav" type="HBoxContainer" parent="MarginContainer/upgrade_nav_container"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+
+[node name="Scrapyard_Upgrades" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+tooltip_text = "Scrapyard Upgrades"
 toggle_mode = true
 shortcut = SubResource("Shortcut_6345e")
 texture_normal = SubResource("AtlasTexture_84ht1")
 stretch_mode = 0
 
-[node name="Underground_Upgrades" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="Underground_Upgrades" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -323,8 +414,8 @@ shortcut = SubResource("Shortcut_5qsbe")
 texture_normal = SubResource("AtlasTexture_bnhca")
 stretch_mode = 5
 
-[node name="Ocean_Upgrades" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="Ocean_Upgrades" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -333,8 +424,8 @@ shortcut = SubResource("Shortcut_h21ji")
 texture_normal = SubResource("AtlasTexture_8l8xg")
 stretch_mode = 5
 
-[node name="Alien_Upgrades" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="Alien_Upgrades" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -343,8 +434,8 @@ shortcut = SubResource("Shortcut_6smp1")
 texture_normal = SubResource("AtlasTexture_brdmd")
 stretch_mode = 5
 
-[node name="Companion_Upgrades" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="Companion_Upgrades" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -353,8 +444,8 @@ shortcut = SubResource("Shortcut_qoiai")
 texture_normal = SubResource("AtlasTexture_16lo6")
 stretch_mode = 0
 
-[node name="Location_Button" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="Location_Button" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -363,8 +454,8 @@ shortcut = SubResource("Shortcut_13tdr")
 texture_normal = SubResource("AtlasTexture_fo47e")
 stretch_mode = 0
 
-[node name="PowerC_Upgrades" type="TextureButton" parent="MarginContainer/upgrades_Locations_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="PowerC_Upgrades" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -373,14 +464,13 @@ shortcut = SubResource("Shortcut_8tb3k")
 texture_normal = SubResource("AtlasTexture_ir2vc")
 stretch_mode = 0
 
-[node name="Prestiege" type="MenuButton" parent="MarginContainer/upgrades_Locations_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="Prestiege" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-icon = SubResource("AtlasTexture_yegfb")
-icon_alignment = 1
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_sa5gu")
+stretch_mode = 5
 
 [node name="right_hud" type="Panel" parent="MarginContainer"]
 custom_minimum_size = Vector2(400, 80)
@@ -399,7 +489,7 @@ offset_top = -4.0
 offset_right = -3.0
 offset_bottom = 63.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 24
 text = "Scrapyard"
 horizontal_alignment = 2
 
@@ -443,6 +533,7 @@ grow_vertical = 0
 text = "Health ( 100/100 )"
 
 [node name="Scrapyard_upgrade_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -522,6 +613,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="Locations_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -597,6 +689,7 @@ texture = SubResource("AtlasTexture_8rnnb")
 expand_mode = 3
 
 [node name="Underground_upgrade_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -676,6 +769,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="Ocean_upgrade_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -755,6 +849,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="Alien_upgrade_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -834,6 +929,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="Power_Crystal_upgrade_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -851,7 +947,7 @@ layout_mode = 1
 offset_right = 60.0
 offset_bottom = 60.0
 size_flags_horizontal = 0
-texture = SubResource("AtlasTexture_bgk42")
+texture = SubResource("AtlasTexture_pf8m1")
 stretch_mode = 5
 
 [node name="Title" type="Label" parent="Power_Crystal_upgrade_panel"]
@@ -913,6 +1009,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="Companion_upgrade_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -930,7 +1027,7 @@ layout_mode = 1
 offset_right = 60.0
 offset_bottom = 60.0
 size_flags_horizontal = 0
-texture = SubResource("AtlasTexture_bgk42")
+texture = SubResource("AtlasTexture_tjxso")
 stretch_mode = 5
 
 [node name="Title" type="Label" parent="Companion_upgrade_panel"]
@@ -993,13 +1090,13 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
-[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
-[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Underground_Upgrades" to="." method="_on_underground_upgrades_toggled"]
-[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Ocean_Upgrades" to="." method="_on_ocean_upgrades_toggled"]
-[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Alien_Upgrades" to="." method="_on_alien_upgrades_toggled"]
-[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Companion_Upgrades" to="." method="_on_companion_upgrades_toggled"]
-[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/Location_Button" to="." method="_on_location_button_toggled"]
-[connection signal="toggled" from="MarginContainer/upgrades_Locations_nav/PowerC_Upgrades" to="." method="_on_power_c_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades" to="." method="_on_underground_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades" to="." method="_on_ocean_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades" to="." method="_on_alien_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Companion_Upgrades" to="." method="_on_companion_upgrades_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button" to="." method="_on_location_button_toggled"]
+[connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/PowerC_Upgrades" to="." method="_on_power_c_upgrades_toggled"]
 [connection signal="pressed" from="Scrapyard_upgrade_panel/Scrapyard_Close_Button" to="." method="_on_scrapyard_close_button_pressed"]
 [connection signal="pressed" from="Locations_panel/Locations_Close_Button" to="." method="_on_locations_close_button_pressed"]
 [connection signal="pressed" from="Underground_upgrade_panel/Underground_Close_Button" to="." method="_on_underground_close_button_pressed"]

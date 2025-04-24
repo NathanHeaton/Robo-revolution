@@ -48,7 +48,7 @@ func _update_health():
 
 
 func update_money():
-	$MarginContainer/VBoxContainer/Money_Label.text = "Money: " + Money.covert_Scientific_format(Money.MONEY)
+	$MarginContainer/money_panel/VBoxContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)
 
 func _on_change_location():
 	$MarginContainer/right_hud/location.text = "Location: " + str(LocationData.location_data[LocationData.CURRENT_LOCATION].get("name"))
@@ -97,8 +97,9 @@ func generate_location_cards() -> void:
 	
 
 
+
 func _on_location_button_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrades_Locations_nav/Location_Button"
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button"
 	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Locations_panel.show()
@@ -108,12 +109,12 @@ func _on_location_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_locations_close_button_pressed() -> void:
-	$MarginContainer/upgrades_Locations_nav/Location_Button.button_pressed = false
-	$MarginContainer/upgrades_Locations_nav/Location_Button.emit_signal("toggled", false)
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button.button_pressed = false
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button.emit_signal("toggled", false)
 
 
 func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades"
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades"
 	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Scrapyard_upgrade_panel.show()
@@ -122,7 +123,7 @@ func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
 		$Scrapyard_upgrade_panel.hide()
 
 func _on_underground_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrades_Locations_nav/Underground_Upgrades"
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades"
 	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Underground_upgrade_panel.show()
@@ -132,7 +133,7 @@ func _on_underground_upgrades_toggled(toggled_on: bool) -> void:
 	
 
 func _on_ocean_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrades_Locations_nav/Ocean_Upgrades"
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades"
 	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Ocean_upgrade_panel.show()
@@ -141,14 +142,14 @@ func _on_ocean_upgrades_toggled(toggled_on: bool) -> void:
 		$Ocean_upgrade_panel.hide()
 
 func _on_ocean_close_button_pressed() -> void:
-	$MarginContainer/upgrades_Locations_nav/Ocean_Upgrades.button_pressed = false
-	$MarginContainer/upgrades_Locations_nav/Ocean_Upgrades.emit_signal("toggled", false)
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades.button_pressed = false
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades.emit_signal("toggled", false)
 	
 
 
 
 func _on_alien_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrades_Locations_nav/Alien_Upgrades"
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades"
 	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Alien_upgrade_panel.show()
@@ -157,21 +158,21 @@ func _on_alien_upgrades_toggled(toggled_on: bool) -> void:
 		$Alien_upgrade_panel.hide()
 
 func _on_alien_close_button_pressed() -> void:
-	$MarginContainer/upgrades_Locations_nav/Alien_Upgrades.button_pressed = false
-	$MarginContainer/upgrades_Locations_nav/Alien_Upgrades.emit_signal("toggled", false)
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades.button_pressed = false
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades.emit_signal("toggled", false)
 
 
 
 func _on_scrapyard_close_button_pressed() -> void:
 	# close the scrapyard upgarde panel
-	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.button_pressed = false
-	$MarginContainer/upgrades_Locations_nav/Scrapyard_Upgrades.emit_signal("toggled", false)
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades.button_pressed = false
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades.emit_signal("toggled", false)
 	
 
 func _on_underground_close_button_pressed() -> void:
 	# close the Undergound upgarde panel
-	$MarginContainer/upgrades_Locations_nav/Underground_Upgrades.button_pressed = false
-	$MarginContainer/upgrades_Locations_nav/Underground_Upgrades.emit_signal("toggled", false)
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades.button_pressed = false
+	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades.emit_signal("toggled", false)
 
 
 
@@ -187,7 +188,7 @@ func _handle_popup_screens(currentCard):
 
 
 func _on_companion_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrades_Locations_nav/Companion_Upgrades"
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Companion_Upgrades"
 	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Companion_upgrade_panel.show()
@@ -197,7 +198,7 @@ func _on_companion_upgrades_toggled(toggled_on: bool) -> void:
 
 
 func _on_power_c_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrades_Locations_nav/PowerC_Upgrades"
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/PowerC_Upgrades"
 	_handle_popup_screens(currentCard)
 	if(toggled_on):
 		$Power_Crystal_upgrade_panel.show()
