@@ -11,6 +11,7 @@ func _ready() -> void:
 	Money.POWER_C = 25
 	GameStats.item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
+	$HUD.connect("prestiged", Callable(self, "_prestige"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,11 +56,13 @@ func _on_item_collector_collect(body: Node) -> void:
 	
 	
 
+func _prestige():
+	Money.POWER_C += Money.MONEY / GameStats.powerC_conversion_rate
+	Money.MONEY = 0
 
 func newGame():
 	Money.MONEY = 0
 	$HUD.show_message("Collect Scrap and treasure")
-	$HUD.update_money()
 	#$Player.position($Start_Position.position)
 	
 

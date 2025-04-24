@@ -4,6 +4,7 @@ var upgrade_card_scene = preload("res://UI/upgrade_card.tscn")
 var location_card_scene = preload("res://UI/location_card.tscn")
 
 signal start_game
+signal prestiged
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,7 +39,13 @@ func show_message(text):
 	
 
 func _on_money_changed():
-	update_money()
+	$MarginContainer/money_panel/VBoxContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)
+	_prestige_handeler()
+	
+
+func _prestige_handeler():
+	$Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer/MarginContainer/conversion/PanelContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)
+	$Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer/MarginContainer/conversion/PanelContainer3/powerC_box/powerC.text = Money.covert_Scientific_format(Money.MONEY / GameStats.powerC_conversion_rate)
 
 func _update_health():
 	$MarginContainer/right_hud/health.anchor_left = 0
@@ -47,10 +54,6 @@ func _update_health():
 		$MarginContainer/right_hud/health.anchor_right = 0
 	else:
 		$MarginContainer/right_hud/health.anchor_right = (GameStats.health / GameStats.max_health)
-
-
-func update_money():
-	$MarginContainer/money_panel/VBoxContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)
 
 func _on_powerC_changed():
 	$MarginContainer/money_panel/VBoxContainer/powerC_box/powerC.text = Money.covert_Scientific_format(Money.POWER_C)
@@ -222,3 +225,7 @@ func _on_prestige_toggled(toggled_on: bool) -> void:
 		previousCard = currentCard
 	else:
 		$Prestige_panel.hide()
+
+
+func _on_prestige_pressed() -> void:
+	emit_signal("prestiged")

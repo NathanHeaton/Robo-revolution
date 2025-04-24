@@ -25,6 +25,7 @@ var luck_lvl = [0,0,0,0]
 var companions = 0
 var water_proof = false
 var basic_water_proof = 0
+var powerC_conversion_rate = 10000
 
 func sum_luck_lvl()-> int:
 	var luck = 0
