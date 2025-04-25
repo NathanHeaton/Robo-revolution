@@ -58,10 +58,7 @@ func _on_item_collector_collect(body: Node) -> void:
 	#$HUD.update_money()
 	print(cost_display)
 	_handle_collected_item_text(body,gain)
-
-
 	body.collect()
-	
 
 func _handle_collected_item_text(body,gain):
 	var cost_display_scene = cost_display.instantiate()
@@ -72,6 +69,17 @@ func _handle_collected_item_text(body,gain):
 func _prestige():
 	Money.POWER_C += Money.MONEY / GameStats.powerC_conversion_rate
 	Money.MONEY = 0
+	_reset_upgrades()
+	
+
+func _reset_upgrades():
+	for upgradeSections in UpgradeData.upgrades.keys():
+		for upgrades in UpgradeData.upgrades[upgradeSections]:
+			var current = UpgradeData.upgrades[upgradeSections][upgrades]
+			current["cost"] = current["base_cost"]
+			current["level"] = 0
+			UpgradeManager.emit_signal("level_changed", current["id"])
+
 
 func newGame():
 	Money.MONEY = 0
