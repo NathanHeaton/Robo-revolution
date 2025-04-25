@@ -59,7 +59,7 @@ func calculate_max_buy(remainingLevels,currency_amount,cost ,scaling):
 	if(current_money > 0):
 		var var1:float= current_money/cost
 		
-		buyable_levels = log((scaling-1)*current_money/cost) / log(scaling) + 1
+		buyable_levels = log((scaling-1)*current_money/cost + 1) / log(scaling)
 		affordable_price = current_money/buyable_levels
 		buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
 
