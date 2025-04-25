@@ -1,6 +1,7 @@
 extends Node
 
 @export var scrap_treasure: PackedScene
+@export var cost_display: PackedScene
 # Called when the node enters the scene tree for the first time.
 
 
@@ -50,11 +51,18 @@ func _on_item_collector_collect(body: Node) -> void:
 	elif (body.get_type() == "powerC"):
 		Money.POWER_C += body.get_value()
 	#$HUD.update_money()
-	
-	
+	print(cost_display)
+	_handle_collected_item_text(body)
+
+
 	body.collect()
 	
-	
+
+func _handle_collected_item_text(body):
+	var cost_display_scene = cost_display.instantiate()
+	cost_display_scene.position = body.position
+	cost_display_scene.setup_animation(body.get_value(),body.get_type())
+	add_child(cost_display_scene)
 
 func _prestige():
 	Money.POWER_C += Money.MONEY / GameStats.powerC_conversion_rate

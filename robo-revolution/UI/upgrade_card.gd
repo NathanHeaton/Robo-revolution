@@ -108,7 +108,6 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 
 		affordable_price = info["price"]
 		buyable_levels = info["levels"]
-		print(currency_amount, title,affordable_price)
 		if(buyable_levels == 0):
 			affordable_price = cost
 			$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true

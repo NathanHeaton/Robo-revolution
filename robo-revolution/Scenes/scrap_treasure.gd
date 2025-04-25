@@ -58,14 +58,10 @@ func _on_fade_out_player_animation_finished(anim_name: StringName) -> void:
 func collect():
 	$fade_out_player.stop()
 	$CollisionShape2D.disabled = true
-	display_value_animation()
 	$collect.play("collect")
 	
 	
 
-func display_value_animation():
-	$Value.text = Money.covert_Scientific_format(value)
-	
 
 
 func _on_collect_animation_finished(anim_name: StringName) -> void:

@@ -21,7 +21,8 @@ var MONEY: float = 0: # allows signals to be sent when money is updated
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	calculate_max_buy(150,36,10,2.5)
+	pass
+	#calculate_max_buy(150,36,10,2.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,7 +59,7 @@ func calculate_max_buy(remainingLevels,currency_amount,cost ,scaling):
 	if(current_money > 0):
 		var var1:float= current_money/cost
 		
-		buyable_levels = log((scaling-1)*current_money/cost) / log(scaling)
+		buyable_levels = log((scaling-1)*current_money/cost) / log(scaling) + 1
 		affordable_price = current_money/buyable_levels
 		buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
 

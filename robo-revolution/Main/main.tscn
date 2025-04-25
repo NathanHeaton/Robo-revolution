@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=10 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_l0ipk"]
 [ext_resource type="PackedScene" uid="uid://cypyv08he7eys" path="res://Scenes/scrap_treasure.tscn" id="2_yxho2"]
+[ext_resource type="PackedScene" uid="uid://ct4icsg4o81hl" path="res://UI/cost_display.tscn" id="3_aj5xg"]
 [ext_resource type="PackedScene" uid="uid://cpky4ajurmwss" path="res://Scenes/location_sprites.tscn" id="3_cn8wn"]
 [ext_resource type="PackedScene" uid="uid://chxff3xxo7qn2" path="res://Scenes/player.tscn" id="4_pkabt"]
 [ext_resource type="PackedScene" uid="uid://dkgn3ys5nt1ao" path="res://Scenes/item_collector.tscn" id="5_looat"]
@@ -12,6 +13,7 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_l0ipk")
 scrap_treasure = ExtResource("2_yxho2")
+cost_display = ExtResource("3_aj5xg")
 metadata/_edit_vertical_guides_ = [824.0, 1143.0, 964.0]
 metadata/_edit_horizontal_guides_ = [325.0, 725.0, 517.0]
 
