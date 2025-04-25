@@ -44,24 +44,29 @@ func _underground_hazards():
 		first_time_in_underground = false
 	
 
-	
+func _apply_mult_to_collected_item(value):
+	value = (value * GameStats.powerC_mult)
+	return value
+
 func _on_item_collector_collect(body: Node) -> void:
+	var gain
 	if (body.get_currency() == "money"):
-		Money.MONEY += body.get_value()
+		gain = _apply_mult_to_collected_item(body.get_value())
+		Money.MONEY += gain
 	elif (body.get_currency() == "powerC"):
 		Money.POWER_C += body.get_value()
 	#$HUD.update_money()
 	print(cost_display)
-	_handle_collected_item_text(body)
+	_handle_collected_item_text(body,gain)
 
 
 	body.collect()
 	
 
-func _handle_collected_item_text(body):
+func _handle_collected_item_text(body,gain):
 	var cost_display_scene = cost_display.instantiate()
 	cost_display_scene.position = body.position
-	cost_display_scene.setup_animation(body.get_value(),body.get_currency(),body.get_type())
+	cost_display_scene.setup_animation(body.get_value(),body.get_currency(),body.get_type(),gain)
 	add_child(cost_display_scene)
 
 func _prestige():
@@ -88,7 +93,8 @@ func _upgrade(upgrade):
 			_rarity_upgrade_3plus(upgrade["level"])
 		"Item Focuser":
 			_item_focuser_upgrade(upgrade["level"])
-
+		"3X Sell Value":
+			_3X_Sell_Value_upgrade(upgrade["level"])
 
 func _spawnrate_upgrade(level: int):
 	var wait = snapped(clamp(4 +log(level +1)*-1.15,0.1,5),0.01)
@@ -114,6 +120,9 @@ func _rarity_upgrade_3plus(level: int):
 		GameStats.rarity_lvl +=1
 	GameStats.luck_lvl[3] = level
 	print(GameStats.luck_lvl)
+
+func _3X_Sell_Value_upgrade(level: int):
+	GameStats.powerC_mult = level * 3
 
 func _item_focuser_upgrade(level: int):
 	var x = 30+log(level+1)* 150

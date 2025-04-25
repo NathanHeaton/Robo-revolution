@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_stats_toggled(toggled_on: bool) -> void:
-	print(get_parent().get_parent())
+	get_parent().get_parent().get_node("stats_panel")

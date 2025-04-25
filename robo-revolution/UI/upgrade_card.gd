@@ -58,16 +58,21 @@ func _update_level(t_id):
 		cost = UpgradeManager.get_upgrade_id(id,location)["cost"]
 		level = UpgradeManager.get_upgrade_id(id,location)["level"]
 		_change_Description() 
-		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
+		
 		if (level >= max_level):
 			_set_has_maxed()
+			$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "MAX"
 			return
+		else:
+			$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
 		_change_cost()
 		_update_button_state()
 		_cal_max_buy()
 
 func _change_level():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "("+str(level)+"/"+str(max_level)+")"
+	if (maxed):
+		$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer/Title/level_panel/level.text = "MAX"
 
 func _on_money_changed():
 	if (level >= max_level):

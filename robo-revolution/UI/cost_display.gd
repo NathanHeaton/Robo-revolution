@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func setup_animation(t_value,t_currency,t_type):
+func setup_animation(t_value,t_currency,t_type, t_gain):
 	print(t_type)
 	if( t_type == "treasure"):
 		print("treasure collected")
@@ -24,7 +24,7 @@ func setup_animation(t_value,t_currency,t_type):
 		currencey_icon.set_region(Rect2(Vector2(16,0),Vector2(16,16)))
 		$Label/TextureRect.texture = currencey_icon
 	
-	$Label.text = "+" + str(Money.covert_Scientific_format(t_value))
+	$Label.text = "+" + str(Money.covert_Scientific_format(t_gain))
 	$AnimationPlayer.play("fade out")
 
 
