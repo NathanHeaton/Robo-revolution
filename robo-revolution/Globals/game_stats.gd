@@ -16,6 +16,24 @@ var health:float = _health:
 var max_health:float = 100
 var armour_mult = 1
 
+#mult
+
+var powerC_mult = 1
+#combos
+var combo = false
+var super_combo = false
+var combo_mult = 2
+var super_combo_mult = 10
+var super_combo_chance = 12 # 12% maybe
+var powerC_combo_mult
+
+var refinment = 1 # 1%
+var refinement_cap = 1000 # 1000%
+var surge_mult = 5
+var alien_refinement = 10 # 10%
+var alien_refinement_cap = 100000 # 1e6%
+var synergy_mult = 777 # 777X
+
 #spawn stats
 var rarity_lvl = 5
 var item_spawn_region

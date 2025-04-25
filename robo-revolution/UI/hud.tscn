@@ -1,25 +1,33 @@
-[gd_scene load_steps=58 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=60 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
+[ext_resource type="Script" path="res://UI/top_nav_container.gd" id="2_4mt7s"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
 [ext_resource type="Texture2D" uid="uid://bisrwqsp3i7ac" path="res://assets/upgrade_icons.png" id="3_80ti6"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_sgyd2"]
 [ext_resource type="Theme" uid="uid://xnk1sn3p84f7" path="res://Themes/Alien_buttons.tres" id="5_8pnjh"]
 [ext_resource type="Texture2D" uid="uid://cnpsp8yns21na" path="res://assets/arrow.png" id="5_jhnrn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0poq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dihul"]
+bg_color = Color(0, 0, 0, 0.627451)
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlr4c"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(0, 0, 32, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fars7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f82f"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(32, 0, 32, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_siikn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm8i0"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(64, 0, 32, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_51pt6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_37pkm"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(96, 0, 32, 0)
 
@@ -46,13 +54,6 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fronj"]
 atlas = ExtResource("3_sgyd2")
 region = Rect2(32, 0, 16, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dihul"]
-bg_color = Color(0, 0, 0, 0.627451)
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
 
 [sub_resource type="InputEventKey" id="InputEventKey_ceg5h"]
 device = -1
@@ -280,6 +281,10 @@ bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j84uf"]
 atlas = ExtResource("5_jhnrn")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_565ar"]
+atlas = ExtResource("2_yatbj")
+region = Rect2(96, 0, 32, 0)
+
 [node name="HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -304,36 +309,49 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="top_nav" type="HBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(400, 80)
+[node name="top_nav_container" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 64)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dihul")
+script = ExtResource("2_4mt7s")
+
+[node name="top_nav" type="HBoxContainer" parent="MarginContainer/top_nav_container"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="Settings" type="MenuButton" parent="MarginContainer/top_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="settings" type="TextureButton" parent="MarginContainer/top_nav_container/top_nav"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-icon = SubResource("AtlasTexture_p0poq")
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_nlr4c")
+stretch_mode = 5
 
-[node name="Profile" type="MenuButton" parent="MarginContainer/top_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="profile" type="TextureButton" parent="MarginContainer/top_nav_container/top_nav"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-icon = SubResource("AtlasTexture_fars7")
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_3f82f")
+stretch_mode = 5
 
-[node name="Achievements" type="MenuButton" parent="MarginContainer/top_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="achievements" type="TextureButton" parent="MarginContainer/top_nav_container/top_nav"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-icon = SubResource("AtlasTexture_siikn")
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_rm8i0")
+stretch_mode = 5
 
-[node name="Stats" type="MenuButton" parent="MarginContainer/top_nav"]
-custom_minimum_size = Vector2(80, 80)
+[node name="stats" type="TextureButton" parent="MarginContainer/top_nav_container/top_nav"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-icon = SubResource("AtlasTexture_51pt6")
-expand_icon = true
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_37pkm")
+stretch_mode = 5
 
 [node name="Message" type="Label" parent="MarginContainer"]
 layout_mode = 2
@@ -411,7 +429,7 @@ theme_override_font_sizes/font_size = 24
 text = "0"
 
 [node name="upgrade_nav_container" type="PanelContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(700, 70)
+custom_minimum_size = Vector2(70, 70)
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 0
@@ -1124,6 +1142,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="Prestige_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 400)
 layout_mode = 1
 anchors_preset = 9
@@ -1306,7 +1325,121 @@ theme = ExtResource("5_8pnjh")
 theme_override_font_sizes/font_size = 28
 text = "Prestige"
 
+[node name="stats_panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1160, 400)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 122.0
+offset_right = 1181.0
+offset_bottom = -370.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Alien_Icon" type="TextureRect" parent="stats_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_565ar")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="stats_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.554793, 0.989348, 0.855077, 1)
+theme_override_font_sizes/font_size = 40
+text = "Player Statistics"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Alien_Close_Button" type="Button" parent="stats_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Scrapyard_content" type="VBoxContainer" parent="stats_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="stats_panel/Scrapyard_content"]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="MarginContainer" type="MarginContainer" parent="stats_panel/Scrapyard_content/Panel"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Upgarde_Content_Panel" type="Panel" parent="stats_panel/Scrapyard_content/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
+
+[node name="MarginContainer" type="MarginContainer" parent="stats_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="stats_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Description" type="Label" parent="stats_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+theme_override_font_sizes/font_size = 24
+text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
+"
+autowrap_mode = 3
+
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
+[connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/stats" to="MarginContainer/top_nav_container" method="_on_stats_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades" to="." method="_on_underground_upgrades_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades" to="." method="_on_ocean_upgrades_toggled"]
@@ -1324,3 +1457,4 @@ text = "Prestige"
 [connection signal="pressed" from="Companion_upgrade_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="Prestige_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Prestige" to="." method="_on_prestige_pressed"]
+[connection signal="pressed" from="stats_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]

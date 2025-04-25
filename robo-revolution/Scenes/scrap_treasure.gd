@@ -40,12 +40,15 @@ func get_value() -> int:
 	return value
 	
 
-func get_type():
+func get_currency():
 	var type = "money"
 	if (item.name == "power_crystals"):
 		type = "powerC"
 		
 	return type
+
+func get_type():
+	return item["type"]
 
 func _on_despawn_start_timeout() -> void:
 	$fade_out_player.play("fade_out")

@@ -8,7 +8,7 @@ var POWER_C : float = 0: # allows signals to be sent when money is updated
 	get:
 		return powerC_back_up
 	set(value):
-		powerC_back_up = value
+		powerC_back_up = snapped(value,1)
 		emit_signal("powerC_changed")
 
 var money_back_up: float = 0
@@ -16,7 +16,7 @@ var MONEY: float = 0: # allows signals to be sent when money is updated
 	get:
 		return money_back_up
 	set(value):
-		money_back_up = value
+		money_back_up = maxf(snapped(value,1),0)
 		emit_signal("money_changed")
 
 # Called when the node enters the scene tree for the first time.

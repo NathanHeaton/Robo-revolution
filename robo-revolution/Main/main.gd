@@ -46,9 +46,9 @@ func _underground_hazards():
 
 	
 func _on_item_collector_collect(body: Node) -> void:
-	if (body.get_type() == "money"):
+	if (body.get_currency() == "money"):
 		Money.MONEY += body.get_value()
-	elif (body.get_type() == "powerC"):
+	elif (body.get_currency() == "powerC"):
 		Money.POWER_C += body.get_value()
 	#$HUD.update_money()
 	print(cost_display)
@@ -61,7 +61,7 @@ func _on_item_collector_collect(body: Node) -> void:
 func _handle_collected_item_text(body):
 	var cost_display_scene = cost_display.instantiate()
 	cost_display_scene.position = body.position
-	cost_display_scene.setup_animation(body.get_value(),body.get_type())
+	cost_display_scene.setup_animation(body.get_value(),body.get_currency(),body.get_type())
 	add_child(cost_display_scene)
 
 func _prestige():

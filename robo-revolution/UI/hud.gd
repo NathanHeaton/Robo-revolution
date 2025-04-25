@@ -229,3 +229,7 @@ func _on_prestige_toggled(toggled_on: bool) -> void:
 
 func _on_prestige_pressed() -> void:
 	emit_signal("prestiged")
+
+
+func _on_stats_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
