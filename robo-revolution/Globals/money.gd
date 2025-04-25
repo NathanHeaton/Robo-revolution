@@ -21,7 +21,7 @@ var MONEY: float = 0: # allows signals to be sent when money is updated
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	calculate_max_buy(150,36,10,2.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,3 +48,22 @@ func covert_Scientific_format(num: float):
 	sci_format = sci_format + "e" + str(digits - 1)
 	return sci_format
 	
+	
+
+func calculate_max_buy(remainingLevels,currency_amount,cost ,scaling):
+	var current_money = currency_amount
+	var affordable_price = 0
+	var buyable_levels = 0
+	
+	if(current_money > 0):
+		var var1:float= current_money/cost
+		
+		buyable_levels = log((scaling-1)*current_money/cost) / log(scaling)
+		affordable_price = current_money/buyable_levels
+		buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
+
+		affordable_price = cost * (((scaling ** buyable_levels)-1)/(scaling - 1))
+		affordable_price = snapped(affordable_price, 1)
+	
+	var max_buy_info = {"price":affordable_price ,"levels":buyable_levels}
+	return max_buy_info

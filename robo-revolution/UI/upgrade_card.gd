@@ -95,26 +95,20 @@ func _change_Description() -> void:
 
 func _cal_max_buy():# add code to calculate the amount that can be bought
 	if (max_level != 1):
-		var current_money
+		var currency_amount
 		if (currency == "money"):
-			current_money = Money.MONEY
+			currency_amount = Money.MONEY
 		elif (currency == "powerC"):
-			current_money = Money.POWER_C
-		
-		var max_amount = 0
+			currency_amount = Money.POWER_C
+			
+
 		var remainingLevels = max_level - level
 		
-		if(current_money > 0):
-			var var1:float= current_money/cost
-			
-			buyable_levels = log(((scaling-1)*current_money)/cost) / log(scaling) + 1
-			affordable_price = current_money/buyable_levels
-			buyable_levels =clamp(int(buyable_levels),0,remainingLevels)
-		
-		affordable_price = cost * (((scaling ** buyable_levels)-1)/(scaling - 1))
+		var info = Money.calculate_max_buy(remainingLevels,currency_amount,cost ,scaling)
 
-		affordable_price = snapped(affordable_price, 1)
-		
+		affordable_price = info["price"]
+		buyable_levels = info["levels"]
+		print(currency_amount, title,affordable_price)
 		if(buyable_levels == 0):
 			affordable_price = cost
 			$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".disabled = true
@@ -124,7 +118,6 @@ func _cal_max_buy():# add code to calculate the amount that can be bought
 		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".text = Money.covert_Scientific_format(affordable_price) + " | MAX ("+str(buyable_levels)+")"
 	else:
 		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Max".hide()
-		$"Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section".vertical = SIZE_SHRINK_END
 
 func _update_button_state():
 	var current_cost

@@ -8,7 +8,7 @@ extends Node
 func _ready() -> void:
 	newGame()
 	Money.MONEY = 51000000000
-	Money.POWER_C = 25
+	Money.POWER_C = 35
 	GameStats.item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
