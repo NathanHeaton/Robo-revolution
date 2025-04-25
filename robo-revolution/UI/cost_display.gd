@@ -11,7 +11,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	position.y += -0.2
 
 func setup_animation(t_value,t_type):
 	$Label.text = "+" + str(Money.covert_Scientific_format(t_value))
