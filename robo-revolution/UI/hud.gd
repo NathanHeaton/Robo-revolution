@@ -108,69 +108,19 @@ func generate_location_cards() -> void:
 
 
 
-func _on_location_button_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Locations_panel.show()
-		previousCard = currentCard
-	else:
-		$Locations_panel.hide()
-
-
 func _on_locations_close_button_pressed() -> void:
 	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button.button_pressed = false
 	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button.emit_signal("toggled", false)
 
-
-func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Scrapyard_upgrade_panel.show()
-		previousCard = currentCard
-	else:
-		$Scrapyard_upgrade_panel.hide()
-
-func _on_underground_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Underground_upgrade_panel.show()
-		previousCard = currentCard
-	else:
-		$Underground_upgrade_panel.hide()
-	
-
-func _on_ocean_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Ocean_upgrade_panel.show()
-		previousCard = currentCard
-	else:
-		$Ocean_upgrade_panel.hide()
 
 func _on_ocean_close_button_pressed() -> void:
 	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades.button_pressed = false
 	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades.emit_signal("toggled", false)
 	
 
-
-
-func _on_alien_upgrades_toggled(toggled_on: bool) -> void:
-	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Alien_upgrade_panel.show()
-		previousCard = currentCard
-	else:
-		$Alien_upgrade_panel.hide()
-
 func _on_alien_close_button_pressed() -> void:
 	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades.button_pressed = false
 	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades.emit_signal("toggled", false)
-
 
 
 func _on_scrapyard_close_button_pressed() -> void:
@@ -185,51 +135,103 @@ func _on_underground_close_button_pressed() -> void:
 	$MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades.emit_signal("toggled", false)
 
 
-
-
 var previousCard = null
 
-func _handle_popup_screens(currentCard):
+func _handle_popup_screens(currentCard, open_panel, t_toggled):
 	
 	if (previousCard && currentCard != previousCard):
 		get_node(previousCard).button_pressed = false
 		get_node(previousCard).emit_signal("toggled", false)
 	
+	match open_panel:
+		"achievements_panel":
+			$achievements_panel.visible = t_toggled
+		"Scrapyard_upgrade_panel":
+			$Scrapyard_upgrade_panel.visible = t_toggled
+		"Locations_panel":
+			$Locations_panel.visible = t_toggled
+		"Underground_upgrade_panel":
+			$Underground_upgrade_panel.visible = t_toggled
+		"Ocean_upgrade_panel":
+			$Ocean_upgrade_panel.visible = t_toggled
+		"Alien_upgrade_panel":
+			$Alien_upgrade_panel.visible = t_toggled
+		"Companion_upgrade_panel":
+			$Companion_upgrade_panel.visible = t_toggled
+		"Power_Crystal_upgrade_panel":
+			$Power_Crystal_upgrade_panel.visible = t_toggled
+		"Prestige_panel":
+			$Prestige_panel.visible = t_toggled
+		"stats_panel":
+			$stats_panel.visible = t_toggled
+		"profile_panel":
+			$profile_panel.visible = t_toggled
+		"settings_panel":
+			$settings_panel.visible = t_toggled
+		"none":
+			0
+	
+	previousCard = currentCard
 
+func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades"
+	var open_panel = "Scrapyard_upgrade_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
+
+func _on_location_button_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Location_Button"
+	var open_panel = "Locations_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
+
+func _on_underground_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades"
+	var open_panel = "Underground_upgrade_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
+
+func _on_ocean_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades"
+	var open_panel = "Ocean_upgrade_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
+
+func _on_alien_upgrades_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Alien_Upgrades"
+	var open_panel = "Alien_upgrade_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
 
 func _on_companion_upgrades_toggled(toggled_on: bool) -> void:
 	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Companion_Upgrades"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Companion_upgrade_panel.show()
-		previousCard = currentCard
-	else:
-		$Companion_upgrade_panel.hide()
-
+	var open_panel = "Companion_upgrade_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
 
 func _on_power_c_upgrades_toggled(toggled_on: bool) -> void:
 	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/PowerC_Upgrades"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Power_Crystal_upgrade_panel.show()
-		previousCard = currentCard
-	else:
-		$Power_Crystal_upgrade_panel.hide()
-
+	var open_panel = "Power_Crystal_upgrade_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
 
 func _on_prestige_toggled(toggled_on: bool) -> void:
 	var currentCard = "MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Prestige"
-	_handle_popup_screens(currentCard)
-	if(toggled_on):
-		$Prestige_panel.show()
-		previousCard = currentCard
-	else:
-		$Prestige_panel.hide()
+	var open_panel = "Prestige_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
 
+func _on_stats_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/top_nav_container/top_nav/stats"
+	var open_panel = "stats_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
+
+func _on_achievements_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/top_nav_container/top_nav/achievements"
+	var open_panel = "achievements_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
+
+func _on_profile_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/top_nav_container/top_nav/profile"
+	var open_panel = "profile_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
+
+func _on_settings_toggled(toggled_on: bool) -> void:
+	var currentCard = "MarginContainer/top_nav_container/top_nav/settings"
+	var open_panel = "settings_panel"
+	_handle_popup_screens(currentCard, open_panel, toggled_on)
 
 func _on_prestige_pressed() -> void:
 	emit_signal("prestiged")
-
-
-func _on_stats_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.

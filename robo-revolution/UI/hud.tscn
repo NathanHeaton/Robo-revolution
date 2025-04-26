@@ -1,7 +1,6 @@
-[gd_scene load_steps=60 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=68 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
-[ext_resource type="Script" path="res://UI/top_nav_container.gd" id="2_4mt7s"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
 [ext_resource type="Texture2D" uid="uid://bisrwqsp3i7ac" path="res://assets/upgrade_icons.png" id="3_80ti6"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_sgyd2"]
@@ -15,17 +14,48 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
+[sub_resource type="InputEventKey" id="InputEventKey_c52ww"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_cstsd"]
+events = [SubResource("InputEventKey_c52ww")]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlr4c"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(0, 0, 32, 0)
+
+[sub_resource type="InputEventKey" id="InputEventKey_4e5cr"]
+device = -1
+keycode = 80
+unicode = 112
+
+[sub_resource type="Shortcut" id="Shortcut_l0qga"]
+events = [SubResource("InputEventKey_4e5cr")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3f82f"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(32, 0, 32, 0)
 
+[sub_resource type="InputEventKey" id="InputEventKey_vmmll"]
+device = -1
+keycode = 76
+unicode = 108
+
+[sub_resource type="Shortcut" id="Shortcut_m8d7q"]
+events = [SubResource("InputEventKey_vmmll")]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rm8i0"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(64, 0, 32, 0)
+
+[sub_resource type="InputEventKey" id="InputEventKey_hw8pr"]
+device = -1
+keycode = 73
+unicode = 105
+
+[sub_resource type="Shortcut" id="Shortcut_8dpjp"]
+events = [SubResource("InputEventKey_hw8pr")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37pkm"]
 atlas = ExtResource("2_yatbj")
@@ -281,6 +311,10 @@ bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j84uf"]
 atlas = ExtResource("5_jhnrn")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_spryk"]
+atlas = ExtResource("2_yatbj")
+region = Rect2(64, 0, 32, 0)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_565ar"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(96, 0, 32, 0)
@@ -316,7 +350,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dihul")
-script = ExtResource("2_4mt7s")
 
 [node name="top_nav" type="HBoxContainer" parent="MarginContainer/top_nav_container"]
 layout_mode = 2
@@ -328,6 +361,8 @@ theme_override_constants/separation = 10
 clip_contents = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_cstsd")
 texture_normal = SubResource("AtlasTexture_nlr4c")
 stretch_mode = 5
 
@@ -335,6 +370,8 @@ stretch_mode = 5
 clip_contents = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_l0qga")
 texture_normal = SubResource("AtlasTexture_3f82f")
 stretch_mode = 5
 
@@ -342,6 +379,8 @@ stretch_mode = 5
 clip_contents = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_m8d7q")
 texture_normal = SubResource("AtlasTexture_rm8i0")
 stretch_mode = 5
 
@@ -350,6 +389,7 @@ clip_contents = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 toggle_mode = true
+shortcut = SubResource("Shortcut_8dpjp")
 texture_normal = SubResource("AtlasTexture_37pkm")
 stretch_mode = 5
 
@@ -1329,6 +1369,347 @@ theme = ExtResource("5_8pnjh")
 theme_override_font_sizes/font_size = 28
 text = "Prestige"
 
+[node name="achievements_panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1160, 400)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 92.0
+offset_right = 1202.0
+offset_bottom = -400.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Alien_Icon" type="TextureRect" parent="achievements_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_spryk")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="achievements_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.554793, 0.989348, 0.855077, 1)
+theme_override_font_sizes/font_size = 40
+text = "Achievements"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Alien_Close_Button" type="Button" parent="achievements_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Scrapyard_content" type="VBoxContainer" parent="achievements_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="achievements_panel/Scrapyard_content"]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="MarginContainer" type="MarginContainer" parent="achievements_panel/Scrapyard_content/Panel"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Upgarde_Content_Panel" type="Panel" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
+
+[node name="MarginContainer" type="MarginContainer" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Description" type="Label" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+theme_override_font_sizes/font_size = 24
+text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
+"
+autowrap_mode = 3
+
+[node name="profile_panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1160, 400)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = 62.0
+offset_right = 1223.0
+offset_bottom = -430.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Alien_Icon" type="TextureRect" parent="profile_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_565ar")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="profile_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.554793, 0.989348, 0.855077, 1)
+theme_override_font_sizes/font_size = 40
+text = "Profiles
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Alien_Close_Button" type="Button" parent="profile_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Scrapyard_content" type="VBoxContainer" parent="profile_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="profile_panel/Scrapyard_content"]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="MarginContainer" type="MarginContainer" parent="profile_panel/Scrapyard_content/Panel"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Upgarde_Content_Panel" type="Panel" parent="profile_panel/Scrapyard_content/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
+
+[node name="MarginContainer" type="MarginContainer" parent="profile_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="profile_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Description" type="Label" parent="profile_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+theme_override_font_sizes/font_size = 24
+text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
+"
+autowrap_mode = 3
+
+[node name="settings_panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1160, 400)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 92.0
+offset_right = 1202.0
+offset_bottom = -400.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
+
+[node name="Alien_Icon" type="TextureRect" parent="settings_panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_565ar")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="settings_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.554793, 0.989348, 0.855077, 1)
+theme_override_font_sizes/font_size = 40
+text = "setttings
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Alien_Close_Button" type="Button" parent="settings_panel"]
+clip_children = 2
+z_index = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
+text = "x"
+
+[node name="Scrapyard_content" type="VBoxContainer" parent="settings_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="settings_panel/Scrapyard_content"]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="MarginContainer" type="MarginContainer" parent="settings_panel/Scrapyard_content/Panel"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Upgarde_Content_Panel" type="Panel" parent="settings_panel/Scrapyard_content/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
+
+[node name="MarginContainer" type="MarginContainer" parent="settings_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="settings_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Description" type="Label" parent="settings_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+theme_override_font_sizes/font_size = 24
+text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
+"
+autowrap_mode = 3
+
 [node name="stats_panel" type="Panel" parent="."]
 visible = false
 custom_minimum_size = Vector2(1160, 400)
@@ -1443,7 +1824,10 @@ text = "When you prestige all of your money is converted into power crystals, AL
 autowrap_mode = 3
 
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
-[connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/stats" to="MarginContainer/top_nav_container" method="_on_stats_toggled"]
+[connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/settings" to="." method="_on_settings_toggled"]
+[connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/profile" to="." method="_on_profile_toggled"]
+[connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/achievements" to="." method="_on_achievements_toggled"]
+[connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/stats" to="." method="_on_stats_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Scrapyard_Upgrades" to="." method="_on_scrapyard_upgrades_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Underground_Upgrades" to="." method="_on_underground_upgrades_toggled"]
 [connection signal="toggled" from="MarginContainer/upgrade_nav_container/upgrades_Locations_nav/Ocean_Upgrades" to="." method="_on_ocean_upgrades_toggled"]
@@ -1461,4 +1845,7 @@ autowrap_mode = 3
 [connection signal="pressed" from="Companion_upgrade_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="Prestige_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Prestige" to="." method="_on_prestige_pressed"]
+[connection signal="pressed" from="achievements_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
+[connection signal="pressed" from="profile_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
+[connection signal="pressed" from="settings_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="stats_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
