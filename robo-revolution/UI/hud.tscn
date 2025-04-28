@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=69 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
@@ -294,7 +294,11 @@ atlas = ExtResource("3_80ti6")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe6n0"]
-bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0, 0, 0, 1)
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o78p2"]
@@ -318,6 +322,10 @@ region = Rect2(64, 0, 32, 0)
 [sub_resource type="AtlasTexture" id="AtlasTexture_565ar"]
 atlas = ExtResource("2_yatbj")
 region = Rect2(96, 0, 32, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tou0s"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 25
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -1765,63 +1773,50 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
 text = "x"
 
-[node name="Scrapyard_content" type="VBoxContainer" parent="stats_panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -500.0
-offset_top = -200.0
-offset_right = 500.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="PanelContainer" parent="stats_panel/Scrapyard_content"]
-custom_minimum_size = Vector2(1000, 400)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
-
-[node name="MarginContainer" type="MarginContainer" parent="stats_panel/Scrapyard_content/Panel"]
-custom_minimum_size = Vector2(900, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="Upgarde_Content_Panel" type="Panel" parent="stats_panel/Scrapyard_content/Panel/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
-
-[node name="MarginContainer" type="MarginContainer" parent="stats_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="stats_panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="stats_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
-custom_minimum_size = Vector2(350, 0)
+[node name="Scrapyard_content" type="VBoxContainer" parent="stats_panel/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/separation = 5
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
-[node name="Description" type="Label" parent="stats_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
+[node name="physical_stats" type="PanelContainer" parent="stats_panel/ScrollContainer/Scrapyard_content"]
+custom_minimum_size = Vector2(1000, 400)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
-theme_override_font_sizes/font_size = 24
-text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
-"
-autowrap_mode = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="stats_panel_content" type="HFlowContainer" parent="stats_panel/ScrollContainer/Scrapyard_content/physical_stats"]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+
+[node name="Label" type="Label" parent="stats_panel/ScrollContainer/Scrapyard_content/physical_stats/stats_panel_content"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Physical stats"
+
+[node name="Panel" type="Panel" parent="stats_panel/ScrollContainer/Scrapyard_content/physical_stats/stats_panel_content"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tou0s")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="stats_panel/ScrollContainer/Scrapyard_content/physical_stats/stats_panel_content/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="stats_panel/ScrollContainer/Scrapyard_content/physical_stats/stats_panel_content/Panel/HBoxContainer"]
+layout_mode = 2
 
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
 [connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/settings" to="." method="_on_settings_toggled"]

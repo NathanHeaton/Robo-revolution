@@ -211,7 +211,7 @@ func spawn_item(location: String, type: String, item_scene):
 func pick_item(location: String, type: String ):
 	var item # the specific loot item that is picked
 	for items in item_data: # goes through all items to find the right item
-		if (item_data[items].get("rarity") <= GameStats.rarity_lvl && _in_correct_location(items)):
+		if (item_data[items].get("rarity") <= GameStats.stats["luck"]["rarity_lvl"] && _in_correct_location(items)):
 			item = item_data[items]
 			if (item_data[items].get("type") == "scrap"):
 				pickable_scrap.append(item)# adds the valid item that can be chosen from to an array
@@ -230,7 +230,7 @@ func _decide_luck():
 	var luck_roll =0
 	
 	luck_roll = randi_range(0,50)
-	var luck_needed = 43 - int(GameStats.sum_luck_lvl() * (0.5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 1))# if it is the scrapyard
+	var luck_needed = 43 - int(GameStats.stats["luck"]["scrapyard"] * (0.5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 1))# if it is the scrapyard
 	
 	if (luck_roll >= luck_needed && pickable_treasure):
 		items = pickable_treasure

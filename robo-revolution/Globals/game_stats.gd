@@ -1,54 +1,71 @@
 extends Node
 
-# player stats
-var strength = 15
-var surge_protection = 0
-var speed = 400
 
-signal health_changed
-var _health:float = 100
-var health:float = _health:
-	get:
-		return _health
-	set(value):
-		_health = clamp(value,0,max_health)
-		emit_signal("health_changed")
-var max_health:float = 100
-var armour_mult = 1
+signal stats_changed(type, stat)
 
-#mult
 
-var powerC_mult = 1
 #combos
 var combo = false
 var super_combo = false
-var combo_mult = 2
-var super_combo_mult = 10
-var super_combo_chance = 12 # 12% maybe
-var powerC_combo_mult
 
-var refinment = 1 # 1%
-var refinement_cap = 1000 # 1000%
-var surge_mult = 5
-var alien_refinement = 10 # 10%
-var alien_refinement_cap = 100000 # 1e6%
-var synergy_mult = 777 # 777X
+var stats = {
+	"physical":{
+		"strength" : 15,
+		"surge_protection" : 0,
+		"speed" : 400,
+		"health": 100,
+		"max_health": 100,
+		"armour_mult" : 1,
+		"water_proof" : false,
+		"basic_water_proof" : 0
+	},
+	"luck":{
+		"rarity_lvl" : 5,
+		"spawn_time": 4,
+		"item_spawn_region" : Rect2(),
+		"scrapyard" : 0,
+		"underground": 0,
+		"ocean": 0,
+		"alien": 0
+	},
+	"mult":{
+		"powerC_mult" : 1,
+		"refinment" : 1, # 1%
+		"refinement_cap" : 1000, # 1000%
+		"surge_mult" : 5,
+		"alien_refinement" : 10, # 10%
+		"alien_refinement_cap" : 100000, # 1e6%
+		"synergy_mult" : 777 # 777X
+	},
+	"combo":{
+		"combo_mult" : 2,
+		"super_combo_mult" : 10,
+		"super_combo_chance" : 12,
+		"powerC_combo_mult": 2,
+	},
+	"companion":{
+		"amount": 0,
+		"strength": 4,
+		"speed": 50,
+		"capacity": 1
+	},
+	"other":{
+		"powerC_conversion_rate" : 10000
+	}
+}
 
-#spawn stats
-var rarity_lvl = 5
-var item_spawn_region
-var luck_lvl = [0,0,0,0]
+func set_stat(type : String,stat : String,value):
+	if (value == null):
+		emit_signal("stats_changed", type,stat)
+		return
+	stats[type][stat] = value
+	emit_signal("stats_changed", type,stat)
 
-#other
-var companions = 0
-var water_proof = false
-var basic_water_proof = 0
-var powerC_conversion_rate = 10000
 
-func sum_luck_lvl()-> int:
+func sum_luck_lvl()-> int: # fix later
 	var luck = 0
-	for nums in luck_lvl:
-		luck += nums
+	#for nums in stats["luck"]["luck_lvl"]:
+		#luck += nums
 	return luck
 
 # Called when the node enters the scene tree for the first time.

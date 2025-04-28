@@ -10,6 +10,17 @@ signal prestiged
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var card = location_card_scene.instantiate()
+	_hide_panels()
+	generate_upgrade_cards()
+	generate_location_cards()
+	LocationData.connect("change_location", Callable(self, "_on_change_location"))
+	Money.connect("money_changed", Callable(self, "_on_money_changed"))
+	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
+	GameStats.connect("stats_changed", Callable(self, "_manage_stat_change"))
+	_update_health()
+	
+
+func _hide_panels():
 	$Scrapyard_upgrade_panel.hide()
 	$Locations_panel.hide()
 	$Underground_upgrade_panel.hide()
@@ -18,14 +29,10 @@ func _ready() -> void:
 	$Power_Crystal_upgrade_panel.hide()
 	$Companion_upgrade_panel.hide()
 	$Prestige_panel.hide()
-	generate_upgrade_cards()
-	generate_location_cards()
-	LocationData.connect("change_location", Callable(self, "_on_change_location"))
-	Money.connect("money_changed", Callable(self, "_on_money_changed"))
-	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
-	GameStats.connect("health_changed", Callable(self, "_update_health"))
-	_update_health()
-	
+	$profile_panel.hide()
+	$stats_panel.hide()
+	$settings_panel.hide()
+	$achievements_panel.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -43,17 +50,22 @@ func _on_money_changed():
 	_prestige_handeler()
 	
 
+func _manage_stat_change(type,stat):
+	match stat:
+		"health":
+			_update_health()
+
 func _prestige_handeler():
 	$Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer/MarginContainer/conversion/PanelContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)
-	$Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer/MarginContainer/conversion/PanelContainer3/powerC_box/powerC.text = Money.covert_Scientific_format(Money.MONEY / GameStats.powerC_conversion_rate)
+	$Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer/MarginContainer/conversion/PanelContainer3/powerC_box/powerC.text = Money.covert_Scientific_format(Money.MONEY / GameStats.stats["other"]["powerC_conversion_rate"])
 
 func _update_health():
 	$MarginContainer/right_hud/health.anchor_left = 0
-	$MarginContainer/right_hud/health_text.text = "health (" + str(GameStats.health) + "/" + str(GameStats.max_health) + ")"
-	if (GameStats.health == 0):
+	$MarginContainer/right_hud/health_text.text = "health (" + str(GameStats.stats["physical"]["health"]) + "/" + str(GameStats.stats["physical"]["max_health"]) + ")"
+	if (GameStats.stats["physical"]["health"] == 0):
 		$MarginContainer/right_hud/health.anchor_right = 0
 	else:
-		$MarginContainer/right_hud/health.anchor_right = (GameStats.health / GameStats.max_health)
+		$MarginContainer/right_hud/health.anchor_right = (GameStats.stats["physical"]["health"]/ GameStats.stats["physical"]["max_health"])
 
 func _on_powerC_changed():
 	$MarginContainer/money_panel/VBoxContainer/powerC_box/powerC.text = Money.covert_Scientific_format(Money.POWER_C)

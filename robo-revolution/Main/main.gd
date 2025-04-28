@@ -10,7 +10,7 @@ func _ready() -> void:
 	newGame()
 	Money.MONEY = 51000000000
 	Money.POWER_C = 35
-	GameStats.item_spawn_region = [Vector2(30,30),Vector2(1920 - 60, 1080 - 60)]
+	GameStats.set_stat("luck","item_spawn_regionitem", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
 
@@ -105,36 +105,40 @@ func _upgrade(upgrade):
 			_3X_Sell_Value_upgrade(upgrade["level"])
 
 func _spawnrate_upgrade(level: int):
-	var wait = snapped(clamp(4 +log(level +1)*-1.15,0.1,5),0.01)
-	$loot_spawn_timer.wait_time = wait
+	GameStats.set_stat("luck","spawn_time",snapped(clamp(4 + log(level + 1) * -1.15, 0.1, 5), 0.01))
+	$loot_spawn_timer.wait_time = GameStats.stats["luck"]["spawn_time"]
 
 func _rarity_upgrade(level: int):
-	if (level == 1):
-		GameStats.rarity_lvl +=1
-	GameStats.luck_lvl[0] = level
+	if 	GameStats.stats["luck"]["scrapyard"] < 1:
+		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.set_stat("luck", "rarity_lvl",null )
+	GameStats.set_stat("luck","scrapyard", level)
 
 func _rarity_upgrade_plus(level: int):
-	if (level == 1):
-		GameStats.rarity_lvl +=1
-	GameStats.luck_lvl[1] = level
+	if GameStats.stats["luck"]["underground"] < 1:
+		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.set_stat("luck", "rarity_lvl", null)
+	GameStats.set_stat("luck","underground", level)
 
 func _rarity_upgrade_2plus(level: int):
-	if (level == 1):
-		GameStats.rarity_lvl +=1
-	GameStats.luck_lvl[2] = level
-	
+	if (GameStats.stats["luck"]["ocean"] < 1):
+		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.set_stat("luck", "rarity_lvl",null )
+	GameStats.set_stat("luck","ocean", level)
+
 func _rarity_upgrade_3plus(level: int):
-	if (level == 1):
-		GameStats.rarity_lvl +=1
-	GameStats.luck_lvl[3] = level
-	print(GameStats.luck_lvl)
+	if (GameStats.stats["luck"]["alien"] < 1):
+		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.set_stat("luck", "rarity_lvl",null )
+	GameStats.set_stat("luck","alien", level)
 
 func _3X_Sell_Value_upgrade(level: int):
-	GameStats.powerC_mult = level * 3
+	GameStats.set_stat("mult", "powerC_mult", level * 3)
 
 func _item_focuser_upgrade(level: int):
-	var x = 30+log(level+1)* 150
-	GameStats.item_spawn_region = [Vector2(x,x),Vector2(1920 - x, 1080 - x)]
+	var x = 30 + log(level + 1) * 150
+	GameStats.set_stat("luck", "item_spawn_region", Rect2(Vector2(x, x), Vector2(1920 - x, 1080 - x)))
+
 
 
 func respawn():
@@ -144,8 +148,8 @@ func respawn():
 
 func item_spawn_location() -> Vector2: # picks where to spawn the loot items and avoids the center of the screen
 	var rndLocation = Vector2(
-	randi_range(GameStats.item_spawn_region[0].x,GameStats.item_spawn_region[1].x),
-	randi_range(GameStats.item_spawn_region[0].y,GameStats.item_spawn_region[1].y)
+	randi_range(GameStats.stats["luck"]["item_spawn_region"].position.x,GameStats.stats["luck"]["item_spawn_region"].position.y),
+	randi_range(GameStats.stats["luck"]["item_spawn_region"].size.x,GameStats.stats["luck"]["item_spawn_region"].size.y)
 	)
 	if (rndLocation.x > 820 && rndLocation.x < 1150):#spawned ontop of the collector
 		if(rndLocation.y > 325 && rndLocation.y < 725):
