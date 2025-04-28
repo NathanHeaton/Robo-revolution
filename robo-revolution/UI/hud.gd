@@ -2,6 +2,7 @@ extends Control
 
 var upgrade_card_scene = preload("res://UI/upgrade_card.tscn")
 var location_card_scene = preload("res://UI/location_card.tscn")
+var stats_cards_scene = preload("res://UI/stats_cards.tscn")
 
 signal start_game
 signal prestiged
@@ -9,10 +10,10 @@ signal prestiged
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var card = location_card_scene.instantiate()
 	_hide_panels()
 	generate_upgrade_cards()
 	generate_location_cards()
+	generate_stats_cards()
 	LocationData.connect("change_location", Callable(self, "_on_change_location"))
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
 	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
@@ -116,20 +117,11 @@ func generate_location_cards() -> void:
 
 func generate_stats_cards() -> void: # finish later
 	for types in GameStats.stats.keys():
-		var type: Dictionary = GameStats.stats[types].duplicate # might need to change if alter dict values
-		#card.get_inital_data(location[upgrade].get("description"),
-		#location[upgrade].get("base_cost"),
-		#location[upgrade].get("cost_scaling"),
-		#location[upgrade].get("level"),
-		#location[upgrade].get("max_level"),
-		#location[upgrade].get("sprite_position"),
-		#location[upgrade].get("name"),
-		#location[upgrade].get("id"),
-		#location[upgrade].get("first_description"),
-		#currentLocationCard,
-		#location[upgrade]["currency"]
-		#)
-	
+		var data: Dictionary = GameStats.stats[types].duplicate() # might need to change if alter dict values
+		var card = stats_cards_scene.instantiate()
+		$stats_panel/stats_content/ScrollContainer/stats.add_child(card)
+		card.get_inital_data(types,data)
+
 
 
 func _on_locations_close_button_pressed() -> void:

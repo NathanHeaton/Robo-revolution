@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://b10x87svwieui"]
+
+[ext_resource type="Script" path="res://UI/stats_cards.gd" id="1_sfhh6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfpre"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4p0rg"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 25
+
+[node name="stats_cards" type="Panel"]
+custom_minimum_size = Vector2(0, 400)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_bottom = 400.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_sfhh6")
+
+[node name="stat_box" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1000, 400)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_yfpre")
+
+[node name="stats_panel_content" type="HFlowContainer" parent="stat_box"]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+
+[node name="title" type="Label" parent="stat_box/stats_panel_content"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Physical stats"
+
+[node name="stat" type="Panel" parent="stat_box/stats_panel_content"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4p0rg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="stat_box/stats_panel_content/stat"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="stat_box/stats_panel_content/stat/HBoxContainer"]
+layout_mode = 2
