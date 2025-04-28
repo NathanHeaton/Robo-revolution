@@ -97,9 +97,6 @@ func generate_upgrade_cards() -> void:
 			location[upgrade]["currency"]
 			)
 	
-	
-
-
 func generate_location_cards() -> void:
 	
 	var locations:Dictionary = LocationData.location_data
@@ -116,8 +113,23 @@ func generate_location_cards() -> void:
 			locations[location].get("key_needed"),
 		)
 	
-	
 
+func generate_stats_cards() -> void:
+	for types in GameStats.stats.keys():
+		var type: Dictionary = GameStats.stats[types].duplicate # might need to change if alter dict values
+		#card.get_inital_data(location[upgrade].get("description"),
+		#location[upgrade].get("base_cost"),
+		#location[upgrade].get("cost_scaling"),
+		#location[upgrade].get("level"),
+		#location[upgrade].get("max_level"),
+		#location[upgrade].get("sprite_position"),
+		#location[upgrade].get("name"),
+		#location[upgrade].get("id"),
+		#location[upgrade].get("first_description"),
+		#currentLocationCard,
+		#location[upgrade]["currency"]
+		#)
+	
 
 
 func _on_locations_close_button_pressed() -> void:
