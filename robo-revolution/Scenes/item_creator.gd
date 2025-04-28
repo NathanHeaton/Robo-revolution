@@ -195,17 +195,14 @@ var item_data: Dictionary = {
 }
 
 var pickable_items = []
-var pickable_scrap =[]
-var pickable_treasure =[]
+var pickable_scrap = []
+var pickable_treasure = []
 
 func spawn_item(location: String, type: String, item_scene):
-	
 	var item = pick_item(location, type)
-	
 	var item_instance = item_scene.instantiate()
 	item_instance.z_index = -1
 	item_instance._spawn_loot_type(item)
-	
 	return item_instance
 
 func pick_item(location: String, type: String ):
@@ -217,20 +214,17 @@ func pick_item(location: String, type: String ):
 				pickable_scrap.append(item)# adds the valid item that can be chosen from to an array
 			else :
 				pickable_treasure.append(item)
-	
 	_decide_luck()
 	item = pickable_items.pick_random()
 	
 	return item
 
-
 func _decide_luck():
 	randomize()# makes vbarients more random
 	var items = pickable_scrap
 	var luck_roll =0
-	
 	luck_roll = randi_range(0,50)
-	var luck_needed = 43 - int(GameStats.stats["luck"]["scrapyard"] * (0.5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 1))# if it is the scrapyard
+	var luck_needed = 43 #- int(GameStats.stats["luck"]["scrapyard"] * (0.5 if LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard else 1))# if it is the scrapyard
 	
 	if (luck_roll >= luck_needed && pickable_treasure):
 		items = pickable_treasure
@@ -239,7 +233,6 @@ func _decide_luck():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

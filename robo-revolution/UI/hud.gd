@@ -114,7 +114,7 @@ func generate_location_cards() -> void:
 		)
 	
 
-func generate_stats_cards() -> void:
+func generate_stats_cards() -> void: # finish later
 	for types in GameStats.stats.keys():
 		var type: Dictionary = GameStats.stats[types].duplicate # might need to change if alter dict values
 		#card.get_inital_data(location[upgrade].get("description"),

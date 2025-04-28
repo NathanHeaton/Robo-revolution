@@ -10,7 +10,7 @@ func _ready() -> void:
 	newGame()
 	Money.MONEY = 51000000000
 	Money.POWER_C = 35
-	GameStats.set_stat("luck","item_spawn_regionitem", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
+	GameStats.set_stat("luck","item_spawn_region", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
 
@@ -29,12 +29,12 @@ func _process(delta: float) -> void:
 			
 
 func _ocean_hazards():
-	if (GameStats.water_proof):
+	if (GameStats.stats["physical"]["water_proof"]):
 		return
-	elif ( GameStats.basic_water_proof > 0):
-		GameStats.health = GameStats.health - (4 - GameStats.basic_water_proof)
+	elif (GameStats.stats["physical"]["basic_water_proof"] > 0):
+		GameStats.set_stat("physical", "health", GameStats.stats["physical"]["health"] - (4 - GameStats.stats["physical"]["basic_water_proof"]))
 	else:
-		GameStats.health = GameStats.health - 4
+		GameStats.set_stat("physical", "health", GameStats.stats["physical"]["health"] - 4)
 
 var first_time_in_underground = true
 
@@ -67,7 +67,7 @@ func _handle_collected_item_text(body,gain):
 	add_child(cost_display_scene)
 
 func _prestige():
-	Money.POWER_C += Money.MONEY / GameStats.powerC_conversion_rate
+	Money.POWER_C += Money.MONEY / GameStats.stats["other"]["powerC_conversion_rate"]
 	Money.MONEY = 0
 	_reset_upgrades()
 	
@@ -139,12 +139,9 @@ func _item_focuser_upgrade(level: int):
 	var x = 30 + log(level + 1) * 150
 	GameStats.set_stat("luck", "item_spawn_region", Rect2(Vector2(x, x), Vector2(1920 - x, 1080 - x)))
 
-
-
 func respawn():
 	Money.MONEY = Money.MONEY * 0.1
 	#$Player.start($Start_Position.position)
-	
 
 func item_spawn_location() -> Vector2: # picks where to spawn the loot items and avoids the center of the screen
 	var rndLocation = Vector2(
@@ -154,40 +151,28 @@ func item_spawn_location() -> Vector2: # picks where to spawn the loot items and
 	if (rndLocation.x > 820 && rndLocation.x < 1150):#spawned ontop of the collector
 		if(rndLocation.y > 325 && rndLocation.y < 725):
 			item_spawn_location()
-	
 	return rndLocation
-
-
 
 func _spawn_loot() -> void:
 	var loot = $Item_creator.spawn_item("Scrapyard", "scrap", scrap_treasure)
-	
 	var rotation_dir = 0
 	rotation_dir = randf_range(-PI / 4, PI/4)
-	
+	add_child(loot) #adds loot to main scene
 	loot.position = item_spawn_location()
 	loot.rotation = rotation_dir
-	
-	add_child(loot) #adds loot to main scene
-
 
 func _on_hud_start_game() -> void:
 	newGame()
-	
 
 var time_for_surge = 20
 func _on_power_surge_timeout() -> void:
 	$surge_duration.start()
-	
-	GameStats.health = GameStats.health - 10
-	
-	
-	
+	GameStats.health = GameStats.set_stat("physical", "health", GameStats.stats["physical"]["health"] - 10)
+
 func _update_surge_time():
 	time_for_surge = randf_range(time_for_surge-3,time_for_surge+3)
 	$power_surge.wait_time = time_for_surge
 	
-
 
 func _on_surge_duration_timeout() -> void:# surge has ended
 	print("surge has ended")

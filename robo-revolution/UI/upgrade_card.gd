@@ -23,7 +23,6 @@ func _ready() -> void:
 	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
 	UpgradeManager.connect("level_changed", Callable(self, "_update_level"))
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -51,7 +50,6 @@ func get_inital_data(t_description,t_base_cost,t_scaling,t_level,t_max_level,t_p
 
 func _change_theme():
 	$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/buy_section/Buy.theme = GlobalThemes.themes.get(location)
-	
 
 func _update_level(t_id):
 	if (id == t_id):
