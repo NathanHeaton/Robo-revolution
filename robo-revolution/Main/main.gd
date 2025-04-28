@@ -45,7 +45,7 @@ func _underground_hazards():
 	
 
 func _apply_mult_to_collected_item(value):
-	value = (value * GameStats.powerC_mult)
+	value = (value * GameStats.stats["mult"]["powerC_mult"])
 	return value
 
 func _on_item_collector_collect(body: Node) -> void:
@@ -145,8 +145,8 @@ func respawn():
 
 func item_spawn_location() -> Vector2: # picks where to spawn the loot items and avoids the center of the screen
 	var rndLocation = Vector2(
-	randi_range(GameStats.stats["luck"]["item_spawn_region"].position.x,GameStats.stats["luck"]["item_spawn_region"].position.y),
-	randi_range(GameStats.stats["luck"]["item_spawn_region"].size.x,GameStats.stats["luck"]["item_spawn_region"].size.y)
+	randi_range(GameStats.stats["luck"]["item_spawn_region"].position.x,GameStats.stats["luck"]["item_spawn_region"].size.x),
+	randi_range(GameStats.stats["luck"]["item_spawn_region"].position.y,GameStats.stats["luck"]["item_spawn_region"].size.y)
 	)
 	if (rndLocation.x > 820 && rndLocation.x < 1150):#spawned ontop of the collector
 		if(rndLocation.y > 325 && rndLocation.y < 725):
