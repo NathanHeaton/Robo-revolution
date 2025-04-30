@@ -3,6 +3,34 @@ extends Node
 
 signal stats_changed(type, stat)
 
+# player sprites/skins
+enum player_states {
+	rusted,
+	normal,
+	waterproof,
+	armoured
+}
+
+var player_skins = {
+	player_states.rusted:{
+		"name": "rusted",
+		"unlocked": true,
+		},
+	player_states.normal:{
+		"name": "normal",
+		"unlocked": false,
+		},
+	player_states.waterproof: {
+		"name": "waterproof",
+		"unlocked": false,
+		},
+	player_states.armoured: {
+		"name": "armoured",
+		"unlocked": false,
+		}
+}
+
+var current_state = player_states.rusted
 
 #combos
 var combo = false

@@ -167,7 +167,7 @@ func _on_hud_start_game() -> void:
 var time_for_surge = 20
 func _on_power_surge_timeout() -> void:
 	$surge_duration.start()
-	GameStats.health = GameStats.set_stat("physical", "health", GameStats.stats["physical"]["health"] - 10)
+	GameStats.set_stat("physical", "health", GameStats.stats["physical"]["health"] - 10)
 
 func _update_surge_time():
 	time_for_surge = randf_range(time_for_surge-3,time_for_surge+3)

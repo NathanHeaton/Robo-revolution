@@ -3,6 +3,9 @@ signal push
 
 var screen_size
 
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -30,9 +33,9 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * GameStats.stats["physical"]["speed"]
-		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.play("walking_" + GameStats.player_skins[GameStats.current_state]["name"])
 	else:	
-		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.play("idle_" + GameStats.player_skins[GameStats.current_state]["name"])
 	
 
 	$AnimatedSprite2D.rotation = angle_to_mouse
@@ -102,10 +105,12 @@ func surge_protection_upgrade(level: int):
 func Armour_upgrade(level: int) -> void:
 	var new_armour_mult = snapped(1 + log(level) * 2, 0.1)
 	GameStats.set_stat("physical", "armour_mult", new_armour_mult)
+	upgrade_state(GameStats.player_states.armoured)
 	print(new_armour_mult, "armour lvl", level)
 
 func Water_Proof_upgrade(level: int) -> void:
 	GameStats.set_stat("physical", "water_proof", true)
+	upgrade_state(GameStats.player_states.waterproof)
 	GameStats.set_stat("physical", "max_health", GameStats.stats["physical"]["max_health"] + level * 100)
 
 func Basic_Waterproofing_upgrade(level: int) -> void:
@@ -113,9 +118,16 @@ func Basic_Waterproofing_upgrade(level: int) -> void:
 
 
 func Surge_Redistributor_upgrade(level: int) -> void:
-	pass
+	upgrade_state(GameStats.player_states.normal)
 
-
+func upgrade_state(skin):
+	GameStats.player_skins[skin]["unlocked"] = true
+	if (GameStats.player_skins[GameStats.player_states.armoured]["unlocked"] == true):
+		GameStats.current_state = GameStats.player_states.armoured
+	elif (GameStats.player_skins[GameStats.player_states.waterproof]["unlocked"] == true):
+		GameStats.current_state = GameStats.player_states.waterproof
+	elif (GameStats.player_skins[GameStats.player_states.normal]["unlocked"] == true):
+		GameStats.current_state = GameStats.player_states.normal
 func _on_regen_timeout() -> void:
 	if(GameStats.stats["physical"]["health"] < GameStats.stats["physical"]["max_health"] && LocationData.CURRENT_LOCATION == LocationData.locations.Scrapyard):
 		GameStats.set_stat("physical","health", GameStats.stats["physical"]["health"] + 2)
