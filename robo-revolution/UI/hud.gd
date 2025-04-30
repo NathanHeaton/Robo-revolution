@@ -2,7 +2,7 @@ extends Control
 
 var upgrade_card_scene = preload("res://UI/upgrade_card.tscn")
 var location_card_scene = preload("res://UI/location_card.tscn")
-var stats_cards_scene = preload("res://UI/stats_cards.tscn")
+var stats_categories_scene = preload("res://UI/stats_categories.tscn")
 
 signal start_game
 signal prestiged
@@ -118,7 +118,7 @@ func generate_location_cards() -> void:
 func generate_stats_cards() -> void: # finish later
 	for types in GameStats.stats.keys():
 		var data: Dictionary = GameStats.stats[types].duplicate() # might need to change if alter dict values
-		var card = stats_cards_scene.instantiate()
+		var card = stats_categories_scene.instantiate()
 		$stats_panel/stats_content/ScrollContainer/stats.add_child(card)
 		card.get_inital_data(types,data)
 

@@ -1715,14 +1715,14 @@ text = "When you prestige all of your money is converted into power crystals, AL
 autowrap_mode = 3
 
 [node name="stats_panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(1160, 600)
+custom_minimum_size = Vector2(1160, 500)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 22.0
 offset_top = 113.0
 offset_right = 1182.0
-offset_bottom = -93.0
+offset_bottom = -154.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -1769,19 +1769,20 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_iwkk5")
 text = "x"
 
 [node name="stats_content" type="VBoxContainer" parent="stats_panel"]
+custom_minimum_size = Vector2(0, 480)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 85.0
-offset_right = 4.0
-offset_bottom = 297.0
+offset_left = 1.0
+offset_top = 75.0
+offset_right = 1.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="stats_panel/stats_content"]
-custom_minimum_size = Vector2(0, 800)
+custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2

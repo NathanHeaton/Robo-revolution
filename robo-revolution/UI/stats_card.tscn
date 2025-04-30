@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dstx3gsjfi0gq"]
+
+[ext_resource type="Script" path="res://stats_card.gd" id="1_tfvnh"]
+[ext_resource type="Texture2D" uid="uid://cx3o0s8h4i681" path="res://assets/Upgrades.png" id="2_0ynxn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rueew"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_bottom_left = 10
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xavx"]
+atlas = ExtResource("2_0ynxn")
+region = Rect2(32, 0, 32, 32)
+
+[node name="stats_card" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 32)
+offset_right = 45.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rueew")
+script = ExtResource("1_tfvnh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_3xavx")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="title_value" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Speed: 0"
+vertical_alignment = 1
