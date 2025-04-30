@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://bo78udtb0svk0"]
+
+[ext_resource type="Script" path="res://companion.gd" id="1_nhkka"]
+[ext_resource type="Texture2D" uid="uid://1bt0fm2qrtfb" path="res://assets/companions-Sheet.png" id="2_ad3xe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imxmg"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xvlm"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c7by"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h7rx"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1nck"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s14e"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icuul"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpker"]
+atlas = ExtResource("2_ad3xe")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8b3v6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imxmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xvlm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c7by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h7rx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1nck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s14e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icuul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpker")
+}],
+"loop": true,
+"name": &"idle_companion",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xu824"]
+radius = 16.3333
+height = 45.3333
+
+[node name="companion" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_nhkka")
+
+[node name="animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8b3v6")
+animation = &"idle_companion"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xu824")

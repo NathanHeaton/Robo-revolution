@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=11 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_l0ipk"]
 [ext_resource type="PackedScene" uid="uid://cypyv08he7eys" path="res://Scenes/scrap_treasure.tscn" id="2_yxho2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://3pke8c3v8xbd" path="res://UI/hud.tscn" id="6_rxbsb"]
 [ext_resource type="PackedScene" uid="uid://bgplxom4d71ao" path="res://Scenes/walls.tscn" id="7_lbk8s"]
 [ext_resource type="PackedScene" uid="uid://cbh7nw33q7mn7" path="res://Scenes/item_creator.tscn" id="8_7cs6e"]
+[ext_resource type="PackedScene" uid="uid://bo78udtb0svk0" path="res://Scenes/companion.tscn" id="10_b0kjg"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_l0ipk")
@@ -42,6 +43,9 @@ wait_time = 5.0
 
 [node name="surge_duration" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="companion" parent="." instance=ExtResource("10_b0kjg")]
+position = Vector2(1509, 573)
 
 [connection signal="push" from="Player" to="." method="_on_player_push"]
 [connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]
