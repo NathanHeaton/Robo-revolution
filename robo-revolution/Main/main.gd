@@ -2,6 +2,7 @@ extends Node
 
 @export var scrap_treasure: PackedScene
 @export var cost_display: PackedScene
+@export var companions: PackedScene
 # Called when the node enters the scene tree for the first time.
 
 
@@ -13,9 +14,17 @@ func _ready() -> void:
 	GameStats.set_stat("luck","item_spawn_region", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
+	if (GameStats.stats["companion"]["amount"] > 0):
+		_spawn_companions()
+
+func _spawn_companions():
+	for companion in GameStats.stats["companion"]["amount"]:
+		var new_comp = companions.instantiate()
+		add_child(new_comp)
+		new_comp.position = Vector2(400, 800)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta: float) -> void:
 	match LocationData.CURRENT_LOCATION:
 		LocationData.locations.Scrapyard:

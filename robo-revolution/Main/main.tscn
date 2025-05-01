@@ -15,6 +15,7 @@
 script = ExtResource("1_l0ipk")
 scrap_treasure = ExtResource("2_yxho2")
 cost_display = ExtResource("3_aj5xg")
+companions = ExtResource("10_b0kjg")
 metadata/_edit_vertical_guides_ = [824.0, 1143.0, 964.0]
 metadata/_edit_horizontal_guides_ = [325.0, 725.0, 517.0]
 
@@ -43,9 +44,6 @@ wait_time = 5.0
 
 [node name="surge_duration" type="Timer" parent="."]
 wait_time = 5.0
-
-[node name="companion" parent="." instance=ExtResource("10_b0kjg")]
-position = Vector2(1509, 573)
 
 [connection signal="push" from="Player" to="." method="_on_player_push"]
 [connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]

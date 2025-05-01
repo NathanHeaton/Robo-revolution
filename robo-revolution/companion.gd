@@ -1,15 +1,41 @@
-extends CharacterBody2D
+extends Sprite2D
 
 
-const SPEED = 300.0
+var speed = 300.0
 const JUMP_VELOCITY = -400.0
+
+var focusing = false
+var focus_point = Vector2(0,0)
+const rotation_speed = 2
 
 func _ready() -> void:
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 	$animations.play("idle_companion")
+	
+func set_inital_stats(t_speed):
+	speed = t_speed
 
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
+func _process(delta: float) -> void:
 
-	move_and_slide()
+	if (focusing):
+		var focus_dir = get_angle_to(focus_point)
+		rotation = rotate_toward(rotation,focus_dir, deg_to_rad(15*rotation_speed) * -1 *delta)
+
+
+func _on_vision_body_entered(body: Node2D) -> void:
+	print(get_angle_to(body.position))
+
+	focus_point = body.position
+	focusing = true
+
+
+
+
+func _rotate_to_focus():
+	var focus_dir = get_angle_to(focus_point)
+
+
+func _on_vision_body_exited(body: Node2D) -> void:
+	print("not focusiing")
+	focusing = false

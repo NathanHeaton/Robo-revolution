@@ -72,7 +72,7 @@ var stats = {
 		"powerC_combo_mult": 2,
 	},
 	"companion":{
-		"amount": 0,
+		"amount": 1,
 		"strength": 4,
 		"speed": 50,
 		"capacity": 1
