@@ -222,7 +222,8 @@ shape = SubResource("CapsuleShape2D_m21cy")
 [node name="vision" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="vision"]
-polygon = PackedVector2Array(-11.3333, -10.6667, -68, -97.3333, 61.3333, -97.3333, 11, -10.6667)
+position = Vector2(1, 1)
+polygon = PackedVector2Array(-11.3334, -6.99996, -102.668, -235, -48.0009, -259.333, 32.3324, -259.333, 82.9991, -243.667, 8.66665, -6.00003)
 
 [connection signal="body_entered" from="vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="vision" to="." method="_on_vision_body_exited"]

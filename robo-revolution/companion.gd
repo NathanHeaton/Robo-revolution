@@ -24,9 +24,7 @@ func _process(delta: float) -> void:
 
 
 func _on_vision_body_entered(body: Node2D) -> void:
-	print(get_angle_to(body.position))
-
-	focus_point = body.position
+	focus_point = body.global_position
 	focusing = true
 
 
