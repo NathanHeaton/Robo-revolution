@@ -4,7 +4,7 @@ signal push
 var screen_size
 
 
-
+var pushing = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,9 +31,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_down"):
 		velocity.y +=1
 	
+
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * GameStats.stats["physical"]["speed"]
-		$AnimatedSprite2D.play("walking_" + GameStats.player_skins[GameStats.current_state]["name"])
+		if (pushing):
+			$AnimatedSprite2D.play("pushing_" + GameStats.player_skins[GameStats.current_state]["name"])
+		else:
+			$AnimatedSprite2D.play("walking_" + GameStats.player_skins[GameStats.current_state]["name"])
 	else:	
 		$AnimatedSprite2D.play("idle_" + GameStats.player_skins[GameStats.current_state]["name"])
 	
@@ -50,8 +54,11 @@ func _physics_process(delta: float) -> void:
 	
 	for body in $pushing_area.get_overlapping_bodies():  # Use Area2D method
 		if body is RigidBody2D:
+			pushing = true
 			var push_direction = (body.position - position).normalized()
 			body.apply_central_impulse(push_direction * GameStats.stats["physical"]["strength"])  # Adjust push force
+		else:
+			pushing = false
 
 
 func _on_body_entered(body: Node2D) -> void:
