@@ -3,6 +3,7 @@ extends Control
 var upgrade_card_scene = preload("res://UI/upgrade_card.tscn")
 var location_card_scene = preload("res://UI/location_card.tscn")
 var stats_categories_scene = preload("res://UI/stats_categories.tscn")
+var combo_scene = preload("res://UI/combo.tscn")
 
 signal start_game
 signal prestiged
@@ -19,6 +20,7 @@ func _ready() -> void:
 	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
 	GameStats.connect("stats_changed", Callable(self, "_manage_stat_change"))
 	_update_health()
+	_setup_combo()
 	
 
 func _hide_panels():
@@ -45,6 +47,10 @@ func show_message(text):
 	#$Message.show()
 	#$Message_Timer.start()
 	
+
+func _setup_combo():
+	var combo = combo_scene.instantiate()
+	add_child(combo)
 
 func _on_money_changed():
 	$MarginContainer/money_panel/VBoxContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)
