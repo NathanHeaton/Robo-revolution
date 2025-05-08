@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bgh71pk7i2w1n"]
 
 [ext_resource type="Script" path="res://UI/location_card.gd" id="1_ebauc"]
-[ext_resource type="Texture2D" uid="uid://bictl1ubjaau0" path="res://assets/Basic Items.png" id="2_1e3ij"]
+[ext_resource type="Texture2D" uid="uid://c6jjhyraw7f72" path="res://assets/Locations-Sheet.png" id="2_jsgf4"]
 [ext_resource type="FontFile" uid="uid://battadr66q4dj" path="res://assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_os820"]
 [ext_resource type="Theme" uid="uid://bokwcgf3l1ogg" path="res://Themes/Scrapyard_buttons.tres" id="4_y1kcm"]
 
@@ -13,9 +13,9 @@ corner_radius_bottom_left = 20
 bg_color = Color(0, 0, 0, 1)
 corner_radius_bottom_left = 20
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o80yt"]
-atlas = ExtResource("2_1e3ij")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0ybj"]
+atlas = ExtResource("2_jsgf4")
+region = Rect2(290, 65, 64, 64)
 
 [node name="location_card" type="Control"]
 layout_direction = 1
@@ -71,7 +71,7 @@ theme_override_constants/separation = 20
 z_as_relative = false
 layout_mode = 2
 size_flags_horizontal = 0
-texture = SubResource("AtlasTexture_o80yt")
+texture = SubResource("AtlasTexture_j0ybj")
 expand_mode = 3
 stretch_mode = 4
 

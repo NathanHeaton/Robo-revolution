@@ -17,6 +17,9 @@ func _spawn():
 	$CollisionShape2D.disabled = false
 	
 
+func _set_rarity_sprite(rarity):
+	$AnimatedSprite2D/rarities.play(rarity)
+
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -101,12 +104,14 @@ func speed_upgrade(level: int):
 
 func combo_upgrade(level: int):
 	print("Applying Combo upgrade, level:", level)
+	$AnimatedSprite2D/combos.play("combo")
 
 func combo_increase_upgrade(level: int):
 	print("Applying Combo Increase upgrade, level:", level)
 
 func surge_protection_upgrade(level: int):
 	GameStats.set_stat("physical", "surge_protection", level)
+	$AnimatedSprite2D/surge_protectors.play("surge_protector")
 	print("Surge Protection:", level)
 
 func Armour_upgrade(level: int) -> void:
@@ -126,6 +131,7 @@ func Basic_Waterproofing_upgrade(level: int) -> void:
 
 func Surge_Redistributor_upgrade(level: int) -> void:
 	upgrade_state(GameStats.player_states.normal)
+	$AnimatedSprite2D/surge_dist.play("surge_dist")
 
 func upgrade_state(skin):
 	GameStats.player_skins[skin]["unlocked"] = true

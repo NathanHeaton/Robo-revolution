@@ -6,6 +6,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 
 
+signal rarity_upgraded(rarity)
 
 func _ready() -> void:
 	newGame()
@@ -13,6 +14,7 @@ func _ready() -> void:
 	Money.POWER_C = 35
 	GameStats.set_stat("luck","item_spawn_region", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
+	connect("rarity_upgraded",Callable($Player, "_set_rarity_sprite"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
 	if (GameStats.stats["companion"]["amount"] > 0):
 		_spawn_companions()
@@ -58,12 +60,13 @@ func _apply_mult_to_collected_item(value):
 	return value
 
 func _on_item_collector_collect(body: Node) -> void:
-	var gain
+	var gain = 1
 	if (body.get_currency() == "money"):
 		gain = _apply_mult_to_collected_item(body.get_value())
 		Money.MONEY += gain
 	elif (body.get_currency() == "powerC"):
-		Money.POWER_C += body.get_value()
+		gain = body.get_value()
+		Money.POWER_C += gain
 	#$HUD.update_money()
 	print(cost_display)
 	_handle_collected_item_text(body,gain)
@@ -121,24 +124,28 @@ func _rarity_upgrade(level: int):
 	if 	GameStats.stats["luck"]["scrapyard"] < 1:
 		GameStats.stats["luck"]["rarity_lvl"] + 1
 		GameStats.set_stat("luck", "rarity_lvl",null )
+		emit_signal("rarity_upgraded","rarity")
 	GameStats.set_stat("luck","scrapyard", level)
 
 func _rarity_upgrade_plus(level: int):
 	if GameStats.stats["luck"]["underground"] < 1:
 		GameStats.stats["luck"]["rarity_lvl"] + 1
 		GameStats.set_stat("luck", "rarity_lvl", null)
+		emit_signal("rarity_upgraded","rarity+")
 	GameStats.set_stat("luck","underground", level)
 
 func _rarity_upgrade_2plus(level: int):
 	if (GameStats.stats["luck"]["ocean"] < 1):
 		GameStats.stats["luck"]["rarity_lvl"] + 1
 		GameStats.set_stat("luck", "rarity_lvl",null )
+		emit_signal("rarity_upgraded","rarity++")
 	GameStats.set_stat("luck","ocean", level)
 
 func _rarity_upgrade_3plus(level: int):
 	if (GameStats.stats["luck"]["alien"] < 1):
 		GameStats.stats["luck"]["rarity_lvl"] + 1
 		GameStats.set_stat("luck", "rarity_lvl",null )
+		emit_signal("rarity_upgraded","rarity+++")
 	GameStats.set_stat("luck","alien", level)
 
 func _3X_Sell_Value_upgrade(level: int):

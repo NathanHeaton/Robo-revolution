@@ -17,15 +17,16 @@ func setup_animation(t_value,t_currency,t_type, t_gain):
 	if( t_type == "treasure"):
 		print("treasure collected")
 		$Label.add_theme_color_override("font_color",Color("#FAE884"))
-	
 	if(t_currency == "powerC"): # sets texture for power crystals
 		var currencey_icon = AtlasTexture.new()
 		currencey_icon.atlas = load("res://assets/Mini_Icons.png")
 		currencey_icon.set_region(Rect2(Vector2(16,0),Vector2(16,16)))
 		$Label/TextureRect.texture = currencey_icon
-	
-	$Label.text = "+" + str(Money.covert_Scientific_format(t_gain))
-	$AnimationPlayer.play("fade out")
+	if (Money.covert_Scientific_format(t_gain) == null):
+		print(t_gain, "ERROR with function")
+	else:
+		$Label.text = "+" + str(Money.covert_Scientific_format(t_gain)) # fix the bug of invalid type nil
+		$AnimationPlayer.play("fade out")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
