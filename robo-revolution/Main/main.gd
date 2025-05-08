@@ -58,12 +58,13 @@ func _apply_mult_to_collected_item(value):
 	return value
 
 func _on_item_collector_collect(body: Node) -> void:
-	var gain
+	var gain = 1
 	if (body.get_currency() == "money"):
 		gain = _apply_mult_to_collected_item(body.get_value())
 		Money.MONEY += gain
 	elif (body.get_currency() == "powerC"):
-		Money.POWER_C += body.get_value()
+		gain = body.get_value()
+		Money.POWER_C += gain
 	#$HUD.update_money()
 	print(cost_display)
 	_handle_collected_item_text(body,gain)
