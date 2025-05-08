@@ -24,7 +24,7 @@ func setup_animation(t_value,t_currency,t_type, t_gain):
 		currencey_icon.set_region(Rect2(Vector2(16,0),Vector2(16,16)))
 		$Label/TextureRect.texture = currencey_icon
 	
-	$Label.text = "+" + str(Money.covert_Scientific_format(t_gain))
+	$Label.text = "+" + str(Money.covert_Scientific_format(t_gain)) # fix the bug of invalid type nil
 	$AnimationPlayer.play("fade out")
 
 
