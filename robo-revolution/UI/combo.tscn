@@ -17,11 +17,16 @@ atlas = ExtResource("4_a5lc6")
 region = Rect2(32, 0, 32, 32)
 
 [node name="Combo" type="Control"]
+custom_minimum_size = Vector2(280, 512)
 layout_direction = 3
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 script = ExtResource("1_dewhs")
