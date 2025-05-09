@@ -35,5 +35,4 @@ func _rotate_to_focus():
 
 
 func _on_vision_body_exited(body: Node2D) -> void:
-	print("not focusiing")
 	focusing = false

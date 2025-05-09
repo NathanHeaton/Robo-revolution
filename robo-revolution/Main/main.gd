@@ -35,9 +35,6 @@ func _process(delta: float) -> void:
 			_underground_hazards()
 		LocationData.locations.Ocean:
 			_ocean_hazards()
-		LocationData.locations.Alien:
-			print("in Alien")
-			
 
 func _ocean_hazards():
 	if (GameStats.stats["physical"]["water_proof"]):
@@ -68,7 +65,6 @@ func _on_item_collector_collect(body: Node) -> void:
 		gain = body.get_value()
 		Money.POWER_C += gain
 	#$HUD.update_money()
-	print(cost_display)
 	_handle_collected_item_text(body,gain)
 	body.collect()
 
@@ -195,7 +191,5 @@ func _update_surge_time():
 	
 
 func _on_surge_duration_timeout() -> void:# surge has ended
-	print("surge has ended")
 	_update_surge_time()
 	$power_surge.start()
-	print(	$power_surge.wait_time, " is the new surge wait time")

@@ -57,7 +57,7 @@ var items: Dictionary = {
 		"value": 10,
 		"rarity": 1,
 		"type": "scrap",
-		"weight": 15,
+		"weight": 4,
 		"locations": [LocationData.locations.Scrapyard, LocationData.locations.Underground],
 		"variants": 2,
 		"mainLocation": LocationData.locations.Scrapyard
@@ -77,7 +77,7 @@ var items: Dictionary = {
 		"value": 50,
 		"rarity": 2,
 		"type": "scrap",
-		"weight": 20,
+		"weight": 7,
 		"locations": [LocationData.locations.Underground],
 		"variants": 4,
 		"mainLocation": LocationData.locations.Underground
@@ -117,7 +117,7 @@ var items: Dictionary = {
 		"value": 1500,
 		"rarity": 3,
 		"type": "scrap",
-		"weight": 50,
+		"weight": 10,
 		"locations": [LocationData.locations.Ocean],
 		"variants": 4,
 		"mainLocation": LocationData.locations.Ocean
@@ -137,7 +137,7 @@ var items: Dictionary = {
 		"value": 4000,
 		"rarity": 4,
 		"type": "scrap",
-		"weight": 50,
+		"weight": 15,
 		"locations": [LocationData.locations.Alien],
 		"variants": 3,
 		"mainLocation": LocationData.locations.Alien
@@ -147,7 +147,7 @@ var items: Dictionary = {
 		"value": 3000,
 		"rarity": 4,
 		"type": "scrap",
-		"weight": 30,
+		"weight": 12,
 		"locations": [LocationData.locations.Alien],
 		"variants": 4,
 		"mainLocation": LocationData.locations.Alien
@@ -197,7 +197,7 @@ var items: Dictionary = {
 		"value": 50000,
 		"rarity": 4,
 		"type": "treasure",
-		"weight": 3,
+		"weight": 18,
 		"locations": [LocationData.locations.Alien],
 		"variants": 1,
 		"mainLocation": LocationData.locations.Alien
@@ -207,7 +207,7 @@ var items: Dictionary = {
 		"value": 1,
 		"rarity": 4,
 		"type": "treasure",
-		"weight": 1,
+		"weight": 3,
 		"locations": [LocationData.locations.Alien],
 		"variants": 1,
 		"mainLocation": LocationData.locations.Alien

@@ -8,7 +8,6 @@ var cards = {}
 
 func get_inital_data(t_title,t_cards):
 	title = t_title
-	print(t_title)
 	_change_title()
 	GameStats.connect("stats_changed",Callable(self, "_update_values"))
 	

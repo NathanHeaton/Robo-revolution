@@ -103,7 +103,6 @@ func speed_upgrade(level: int):
 	GameStats.set_stat("physical", "speed", new_speed)
 
 func combo_upgrade(level: int):
-	print("Applying Combo upgrade, level:", level)
 	$AnimatedSprite2D/combos.play("combo")
 
 func combo_increase_upgrade(level: int):
@@ -112,13 +111,11 @@ func combo_increase_upgrade(level: int):
 func surge_protection_upgrade(level: int):
 	GameStats.set_stat("physical", "surge_protection", level)
 	$AnimatedSprite2D/surge_protectors.play("surge_protector")
-	print("Surge Protection:", level)
 
 func Armour_upgrade(level: int) -> void:
 	var new_armour_mult = snapped(1 + log(level) * 2, 0.1)
 	GameStats.set_stat("physical", "armour_mult", new_armour_mult)
 	upgrade_state(GameStats.player_states.armoured)
-	print(new_armour_mult, "armour lvl", level)
 
 func Water_Proof_upgrade(level: int) -> void:
 	GameStats.set_stat("physical", "water_proof", true)

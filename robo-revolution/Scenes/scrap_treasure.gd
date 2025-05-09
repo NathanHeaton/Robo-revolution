@@ -31,12 +31,6 @@ func spawn_loot_type(t_item):
 	sprite.pause()
 	value = item.value
 	mass = item.weight
-	#print(scrap_treasure_types.filter( func(item): return item))
-	#print(scrap_treasure_types.filter( func(item): return item == "scarp"))
-	#$Item_sprites.animation = scrap_treasure_types.filter( func(item): return item == "scarp")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func get_value() -> int:
 	return value
