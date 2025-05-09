@@ -15,7 +15,7 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0ybj"]
 atlas = ExtResource("2_jsgf4")
-region = Rect2(290, 65, 64, 64)
+region = Rect2(800, 400, 64, 64)
 
 [node name="location_card" type="Control"]
 layout_direction = 1
@@ -67,7 +67,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Upgrade_Icons" type="TextureRect" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content"]
+[node name="location_icon" type="TextureRect" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content"]
 z_as_relative = false
 layout_mode = 2
 size_flags_horizontal = 0

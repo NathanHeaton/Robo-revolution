@@ -16,6 +16,7 @@ var key_needed = false
 func _ready() -> void:
 	Money.connect("money_changed", Callable(self, "_on_money_changed"))
 	UpgradeManager.connect("unlock_location", Callable(self, "_unlock"))
+	GameStats.connect("stats_changed", Callable(self, "_on_stat_change"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,9 +29,10 @@ func get_inital_data(t_description,t_pos,t_title, t_cost, t_unlocked,t_key_neede
 	title = t_title
 	location_enum = LocationData.location_to_enum.get(title)
 	cost = t_cost
-
 	unlocked = t_unlocked
 	key_needed = t_key_needed
+	
+	
 	_change_theme()
 	_change_title()
 	_change_unlocked()
@@ -51,7 +53,9 @@ func _change_unlocked():
 		_change_cost()
 	
 
-
+func _on_stat_change(type,stat):
+	_update_button_state()
+	
 func _on_money_changed():
 	_update_button_state()
 
@@ -67,18 +71,24 @@ func _change_theme():
 	
 
 func _update_button_state():
-	if (Money.MONEY < cost && unlocked == false):
+	if (Money.MONEY < cost && !unlocked):
+		$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button.disabled = true
+	elif (key_needed && GameStats.stats["other"]["alien_key"] == false):
 		$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button.disabled = true
 	else:
 		$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/MarginContainer/location_button.disabled = false
+	
+
+
+
+var FRAME_SIZE = 64
 
 func _change_sprite():
-	pass
-	#var icon_rect = Rect2(Vector2(pos.x *FRAME_SIZE,pos.y *FRAME_SIZE),Vector2(FRAME_SIZE,FRAME_SIZE))
-	#var atlas_texture = AtlasTexture.new() # makes new atlas texture
-	#atlas_texture.atlas = load("res://assets/Basic Items.png") # loads upgrades
-	#atlas_texture.set_region(icon_rect) # sets rext for icons
-	#$Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/Upgrade_Icons.texture = atlas_texture
+	var icon_rect = Rect2(Vector2(pos.x,pos.y),Vector2(FRAME_SIZE,FRAME_SIZE))
+	var atlas_texture = AtlasTexture.new() # makes new atlas texture
+	atlas_texture.atlas = load("res://assets/Locations-Sheet.png") # loads upgrades
+	atlas_texture.set_region(icon_rect) # sets rext for icons
+	$location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/location_icon.texture = atlas_texture
 	
 
 func _change_cost():

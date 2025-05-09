@@ -115,11 +115,15 @@ func _upgrade(upgrade):
 			_item_focuser_upgrade(upgrade["level"])
 		"3X Sell Value":
 			_3X_Sell_Value_upgrade(upgrade["level"])
+		"Alien Key":
+			_give_alien_key()
 
 func _spawnrate_upgrade(level: int):
 	GameStats.set_stat("luck","spawn_time",snapped(clamp(4 + log(level + 1) * -1.15, 0.1, 5), 0.01))
 	$loot_spawn_timer.wait_time = GameStats.stats["luck"]["spawn_time"]
 
+func _give_alien_key():
+	GameStats.set_stat("other","alien_key", true)
 func _rarity_upgrade(level: int):
 	if 	GameStats.stats["luck"]["scrapyard"] < 1:
 		GameStats.stats["luck"]["rarity_lvl"] + 1

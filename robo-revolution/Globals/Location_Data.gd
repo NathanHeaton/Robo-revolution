@@ -36,7 +36,7 @@ var location_data: Dictionary = {
 		"unlocked": true,
 		"key_needed": false,
 		"base_cost": 0,
-		"sprite_position": Vector2(0,0)
+		"sprite_position": Vector2(290,65)
 	},
 	locations.Underground:{
 		"id": 1,
@@ -45,7 +45,7 @@ var location_data: Dictionary = {
 		"unlocked": false,
 		"key_needed": false,
 		"base_cost": 5000,
-		"sprite_position": Vector2(1,0)
+		"sprite_position": Vector2(800,190)
 	},
 	locations.Ocean:{
 		"id": 2,
@@ -54,7 +54,7 @@ var location_data: Dictionary = {
 		"unlocked": false,
 		"base_cost": 45600,
 		"key_needed": false,
-		"sprite_position": Vector2(0,1)
+		"sprite_position": Vector2(32,285)
 	},
 	locations.Alien:{
 		"id": 3,
@@ -63,7 +63,7 @@ var location_data: Dictionary = {
 		"unlocked": false,
 		"base_cost": 5780000,
 		"key_needed": true,
-		"sprite_position": Vector2(1,1)
+		"sprite_position": Vector2(800,400)
 	}
 }
 

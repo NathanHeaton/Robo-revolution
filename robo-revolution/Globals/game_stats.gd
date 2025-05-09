@@ -78,7 +78,8 @@ var stats = {
 		"capacity": 1
 	},
 	"other":{
-		"powerC_conversion_rate" : 10000
+		"powerC_conversion_rate" : 10000,
+		"alien_key" : false
 	}
 }
 
