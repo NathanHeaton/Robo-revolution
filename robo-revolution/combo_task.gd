@@ -5,16 +5,30 @@ var amount = 0
 var difficulty = 0
 var item
 var step
+var complete = false
+var failed = false
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func get_complete() -> bool:
+	return complete
+
+func set_complete():
+	complete = true
+
+func set_failed():
+	failed = true
+
+func get_item():
+	return item
 
 func get_intial_data(t_amount, t_difficulty, t_step):
 	step = t_step
@@ -32,11 +46,12 @@ func _change_sprite():
 	sprite.play(item.name)
 	sprite.speed_scale = 0.1
 	sprite.centered = false
+	sprite.get_child(0).visible = false
 	$task/HBoxContainer/loot_texture.add_child(sprite)
 	
 
 func _change_description():
-	$task/HBoxContainer/loot_details.text = str(step)+ ". " + item["name"] + " " + str(amount)+ "x\nV"
+	$task/HBoxContainer/loot_details.text = str(step)+ ". " + item["name"] + " 0/" + str(amount)+ "\nV"
 	
 
 func _change_amount():

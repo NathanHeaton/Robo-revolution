@@ -1,7 +1,5 @@
 extends Area2D
 
-signal collect(body)
-
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,8 +17,8 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body is RigidBody2D:
-		emit_signal("collect", body)
+
+	if body is RigidBody2D && body.has_method("get_item"):
 		body.linear_velocity = Vector2.ZERO #cancels velocity
 		var direction = get_viewport_rect().size/2 - body.global_position
 		var distance = direction.length()
@@ -28,6 +26,7 @@ func _on_body_entered(body: Node) -> void:
 		var force = distance * 200
 		body.apply_central_impulse(force)
 		set_collection_animation()
+		ItemData.emit_signal("collected_item", body, body.get_item())
 		
 
 func set_collector():

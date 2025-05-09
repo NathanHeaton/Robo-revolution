@@ -15,6 +15,7 @@ func _ready() -> void:
 	GameStats.set_stat("luck","item_spawn_region", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	UpgradeManager.connect("upgrade", Callable(self, "_upgrade"))
 	connect("rarity_upgraded",Callable($Player, "_set_rarity_sprite"))
+	ItemData.connect("collected_item",Callable(self,"_on_item_collector_collect"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
 	if (GameStats.stats["companion"]["amount"] > 0):
 		_spawn_companions()
@@ -56,7 +57,8 @@ func _apply_mult_to_collected_item(value):
 	value = (value * GameStats.stats["mult"]["powerC_mult"])
 	return value
 
-func _on_item_collector_collect(body: Node) -> void:
+
+func _on_item_collector_collect(body,item):
 	var gain = 1
 	if (body.get_currency() == "money"):
 		gain = _apply_mult_to_collected_item(body.get_value())

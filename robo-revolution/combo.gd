@@ -11,9 +11,14 @@ enum difficulty { none,
  impossible
 }
 
+var current_step = 1
+var current_item_in_step
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_decide_combo_diffculty()
+	ItemData.connect("collected_item",Callable(self,"_update_combo"))
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -23,10 +28,19 @@ func generate_tasks(task_difficulty, rarity_lvl):
 	
 	for tasks in amount_of_tasks:
 		var task_panel = combo_task_scene.instantiate()
+		task_panel.name = "task" + str(tasks+ 1)
 		task_panel.get_intial_data(amount_of_tasks, 0, tasks + 1)
 		$background_panel/Panel/combo_content.add_child(task_panel)
 
+func _update_combo(body,collected_item):
 
+	var path = "background_panel/Panel/combo_content/task"+str(current_step)
+	var current_task = get_node(path)
+	current_item_in_step = current_task.get_item()
+	print(current_task.get_item())
+	if (current_item_in_step == collected_item):
+		print("good jopb")
+	
 
 func _decide_combo_diffculty():
 	var combos_completed : float = 20# GameStats.stats["combo"]["combos_completed"]
@@ -66,6 +80,7 @@ func _decide_num_of_tasks(t_difficulty):
 		total_task = 4
 	
 	return total_task
+
 
 
 func _decide_amount_per_task(t_difficulty):

@@ -1,5 +1,9 @@
 extends Node
 
+signal collected_item(body,item_name)
+
+func item_collected(body,item):
+	emit_signal("collected_item",body,item)
 
 var items: Dictionary = {
 	"scrap":{

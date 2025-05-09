@@ -47,7 +47,6 @@ wait_time = 5.0
 
 [connection signal="push" from="Player" to="." method="_on_player_push"]
 [connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]
-[connection signal="collect" from="Item_Collector" to="." method="_on_item_collector_collect"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="power_surge" to="." method="_on_power_surge_timeout"]
 [connection signal="timeout" from="surge_duration" to="." method="_on_surge_duration_timeout"]

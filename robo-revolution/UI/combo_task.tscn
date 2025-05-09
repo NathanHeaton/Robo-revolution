@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://boegokda70ft5"]
+[gd_scene load_steps=5 format=3 uid="uid://boegokda70ft5"]
 
+[ext_resource type="StyleBox" uid="uid://dakl1ewjnawnr" path="res://styles/combo_task_background.tres" id="1_bqb0w"]
 [ext_resource type="Script" path="res://combo_task.gd" id="1_e70fn"]
 [ext_resource type="Texture2D" uid="uid://emau8dp4fqpx" path="res://assets/Glow_Background.png" id="2_8wysx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h45jk"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au54g"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="combo_task" type="Panel"]
-anchors_preset = -1
-offset_right = 235.0
-offset_bottom = 81.0
+custom_minimum_size = Vector2(0, 80)
+offset_right = 263.0
+offset_bottom = 98.0
+theme_override_styles/panel = ExtResource("1_bqb0w")
 script = ExtResource("1_e70fn")
 
 [node name="task" type="Panel" parent="."]
@@ -20,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_h45jk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_au54g")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="task"]
 layout_mode = 1

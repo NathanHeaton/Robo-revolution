@@ -35,6 +35,9 @@ func spawn_loot_type(t_item):
 func get_value() -> int:
 	return value
 
+func get_item():
+	return item
+
 func get_currency():
 	var type = "money"
 	if (item.name == "power_crystals"):
