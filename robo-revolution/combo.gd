@@ -33,13 +33,15 @@ func generate_tasks(task_difficulty, rarity_lvl):
 		$background_panel/Panel/combo_content.add_child(task_panel)
 
 func _update_combo(body,collected_item):
-
-	var path = "background_panel/Panel/combo_content/task"+str(current_step)
-	var current_task = get_node(path)
+	var current_task = get_node("background_panel/Panel/combo_content/task"+str(current_step))
+	if(current_task.get_complete()):
+		current_step += 1
+		current_task = get_node("background_panel/Panel/combo_content/task"+str(current_step))
 	current_item_in_step = current_task.get_item()
-	print(current_task.get_item())
+	
+	
 	if (current_item_in_step == collected_item):
-		print("good jopb")
+		current_task.update_amount_collected()
 	
 
 func _decide_combo_diffculty():

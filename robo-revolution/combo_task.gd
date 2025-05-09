@@ -2,6 +2,7 @@ extends Panel
 
 var item_sprite_scene : PackedScene = preload("res://Scenes/item_sprites.tscn")
 var amount = 0
+var amount_completed = 0
 var difficulty = 0
 var item
 var step
@@ -29,6 +30,13 @@ func set_failed():
 
 func get_item():
 	return item
+	
+
+func update_amount_collected():
+	amount_completed += 1
+	if amount_completed == amount:
+		set_complete()
+	_change_description()
 
 func get_intial_data(t_amount, t_difficulty, t_step):
 	step = t_step
@@ -51,7 +59,7 @@ func _change_sprite():
 	
 
 func _change_description():
-	$task/HBoxContainer/loot_details.text = str(step)+ ". " + item["name"] + " 0/" + str(amount)+ "\nV"
+	$task/HBoxContainer/loot_details.text = str(step)+ ". " + item["name"] + " "+ str(amount_completed)+"/" + str(amount)+ "\nV"
 	
 
 func _change_amount():
