@@ -1,31 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://duh1bxkxexh5v"]
+[gd_scene load_steps=5 format=3 uid="uid://duh1bxkxexh5v"]
 
 [ext_resource type="Script" path="res://combo.gd" id="1_dewhs"]
 [ext_resource type="StyleBox" uid="uid://3ocy40xkcfs3" path="res://Themes/black_transparent_background.tres" id="2_1dyp4"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_frruh"]
-[ext_resource type="Texture2D" uid="uid://dsg2470af5hxa" path="res://assets/loot_items.png" id="4_a5lc6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llima"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 expand_margin_top = 16.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1tpn"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ieea"]
-atlas = ExtResource("4_a5lc6")
-region = Rect2(32, 0, 32, 32)
-
 [node name="Combo" type="Control"]
 custom_minimum_size = Vector2(280, 512)
 layout_direction = 3
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
+anchor_top = 0.263
+anchor_right = 0.146
+anchor_bottom = 0.737
+offset_top = 235.96
+offset_right = -240.32
+offset_bottom = -235.96
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -33,138 +25,56 @@ script = ExtResource("1_dewhs")
 
 [node name="background_panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(260, 512)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.929
+anchor_bottom = 1.0
+offset_right = -220.12
+offset_bottom = -472.0
 theme_override_styles/panel = ExtResource("2_1dyp4")
 
 [node name="Polygon2D" type="Polygon2D" parent="background_panel"]
 color = Color(0.117647, 0.117647, 0.117647, 1)
 polygon = PackedVector2Array(-16, 24, 248, 8, 248, 496, -16, 496)
 
-[node name="Panel" type="Panel" parent="background_panel/Polygon2D"]
-offset_left = -236.0
+[node name="Panel" type="Panel" parent="background_panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.969
+offset_left = 24.0
 offset_top = 32.0
 offset_right = -4.0
-offset_bottom = 496.0
-size_flags_horizontal = 4
+offset_bottom = -0.128021
 theme_override_styles/panel = SubResource("StyleBoxFlat_llima")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="background_panel/Polygon2D/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="background_panel/Polygon2D/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="background_panel/Panel"]
 layout_mode = 2
+offset_left = -8.0
+offset_right = 234.0
+offset_bottom = 17.0
 
-[node name="TextureButton" type="TextureButton" parent="background_panel/Polygon2D/Panel/VBoxContainer/HBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="background_panel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = ExtResource("3_frruh")
 
-[node name="Label" type="Label" parent="background_panel/Polygon2D/Panel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="background_panel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Combo"
 
-[node name="step1" type="Panel" parent="background_panel/Polygon2D/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o1tpn")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="background_panel/Polygon2D/Panel/VBoxContainer/step1"]
+[node name="combo_content" type="VBoxContainer" parent="background_panel/Panel"]
+custom_minimum_size = Vector2(232, 400)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = -0.034
+anchor_top = 0.056
+anchor_right = 1.009
 anchor_bottom = 1.0
+offset_left = -0.112
+offset_top = 0.0159988
+offset_right = -0.0880127
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="loot_texture1" type="TextureRect" parent="background_panel/Polygon2D/Panel/VBoxContainer/step1/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_0ieea")
-expand_mode = 3
-
-[node name="loot_details1" type="RichTextLabel" parent="background_panel/Polygon2D/Panel/VBoxContainer/step1/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-text = "1. Computer chips 2x V"
-scroll_active = false
-
-[node name="step2" type="Panel" parent="background_panel/Polygon2D/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o1tpn")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="background_panel/Polygon2D/Panel/VBoxContainer/step2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="loot_texture1" type="TextureRect" parent="background_panel/Polygon2D/Panel/VBoxContainer/step2/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_0ieea")
-expand_mode = 3
-
-[node name="loot_details1" type="RichTextLabel" parent="background_panel/Polygon2D/Panel/VBoxContainer/step2/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-text = "1. Computer chips 2x V"
-scroll_active = false
-
-[node name="step3" type="Panel" parent="background_panel/Polygon2D/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o1tpn")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="background_panel/Polygon2D/Panel/VBoxContainer/step3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="loot_texture1" type="TextureRect" parent="background_panel/Polygon2D/Panel/VBoxContainer/step3/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_0ieea")
-expand_mode = 3
-
-[node name="loot_details1" type="RichTextLabel" parent="background_panel/Polygon2D/Panel/VBoxContainer/step3/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-text = "1. Computer chips 2x V"
-scroll_active = false
-
-[node name="step4" type="Panel" parent="background_panel/Polygon2D/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o1tpn")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="background_panel/Polygon2D/Panel/VBoxContainer/step4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="loot_texture1" type="TextureRect" parent="background_panel/Polygon2D/Panel/VBoxContainer/step4/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_0ieea")
-expand_mode = 3
-
-[node name="loot_details1" type="RichTextLabel" parent="background_panel/Polygon2D/Panel/VBoxContainer/step4/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-text = "1. Computer chips 2x V"
-scroll_active = false
+theme_override_constants/separation = 96

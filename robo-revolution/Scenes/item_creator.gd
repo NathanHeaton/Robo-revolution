@@ -8,13 +8,13 @@ var pickable_scrap = []
 var pickable_treasure = []
 
 func spawn_item(location: String, type: String, item_scene):
-	var item = pick_item(location, type)
+	var item = pick_item()
 	var item_instance = item_scene.instantiate()
 	item_instance.z_index = -1
 	item_instance.spawn_loot_type(ItemData.items[item])
 	return item_instance
 
-func pick_item(location: String, type: String ):
+func pick_item():
 	var rnd_item # the specific loot item that is picked
 	for item in ItemData.items: # goes through all items to find the right item
 		if (ItemData.items[item].get("rarity") <= GameStats.stats["luck"]["rarity_lvl"] && _in_correct_location(item)):

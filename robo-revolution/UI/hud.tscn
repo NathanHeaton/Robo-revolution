@@ -793,7 +793,6 @@ texture = SubResource("AtlasTexture_8rnnb")
 expand_mode = 3
 
 [node name="Underground_upgrade_panel" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
@@ -1605,6 +1604,7 @@ text = "When you prestige all of your money is converted into power crystals, AL
 autowrap_mode = 3
 
 [node name="settings_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1160, 400)
 layout_mode = 1
 anchors_preset = 9

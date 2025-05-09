@@ -70,6 +70,7 @@ var stats = {
 		"super_combo_mult" : 10,
 		"super_combo_chance" : 12,
 		"powerC_combo_mult": 2,
+		"combos_completed": 0,
 	},
 	"companion":{
 		"amount": 1,

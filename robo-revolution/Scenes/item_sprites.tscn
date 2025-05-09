@@ -458,7 +458,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"scrap",
-"speed": 4.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -534,7 +534,7 @@ noise = SubResource("FastNoiseLite_l2a5m")
 clip_children = 2
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_oditx")
-animation = &"power_crystals"
+animation = &"vehicle_components"
 
 [node name="noise2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_dy55m")
