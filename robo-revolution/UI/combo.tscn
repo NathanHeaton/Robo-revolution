@@ -27,14 +27,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 script = ExtResource("1_dewhs")
 
-[node name="background_panel" type="Panel" parent="."]
+[node name="background_panel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(260, 512)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.929
 anchor_bottom = 1.0
-offset_right = -220.12
-offset_bottom = -472.0
+offset_right = -0.119995
 theme_override_styles/panel = ExtResource("2_1dyp4")
 
 [node name="Polygon2D" type="Polygon2D" parent="background_panel"]
@@ -42,22 +41,10 @@ color = Color(0.117647, 0.117647, 0.117647, 1)
 polygon = PackedVector2Array(-16, 24, 248, 8, 248, 496, -16, 496)
 
 [node name="Panel2" type="Panel" parent="background_panel"]
-layout_mode = 0
-offset_left = 256.0
-offset_top = 124.0
-offset_right = 320.0
-offset_bottom = 508.0
+layout_mode = 2
 
 [node name="Panel" type="PanelContainer" parent="background_panel"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.969
-offset_left = 24.0
-offset_top = 32.0
-offset_right = 4.0
-offset_bottom = -0.128021
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_llima")
 
 [node name="combo_content" type="VBoxContainer" parent="background_panel/Panel"]
@@ -76,13 +63,6 @@ texture_normal = ExtResource("3_frruh")
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Combo"
-
-[node name="strikes" type="Label" parent="background_panel/Panel/combo_content/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "Strikes 0 /1"
-vertical_alignment = 1
 
 [node name="reward" type="PanelContainer" parent="background_panel/Panel"]
 layout_mode = 2

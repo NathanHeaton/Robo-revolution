@@ -2,6 +2,8 @@ extends Control
 
 var combo_task_scene : PackedScene = preload("res://UI/combo_task.tscn")
 
+signal combo_completed
+
 enum difficulty { none,
  easy,
  medium,
@@ -11,41 +13,55 @@ enum difficulty { none,
  impossible
 }
 
-var current_step = 1
+var current_task_index = 1
 var current_item_in_step
+var total_task = 1
+
+var all_tasks_complete = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_decide_combo_diffculty()
 	ItemData.connect("collected_item",Callable(self,"_update_combo"))
+	connect("combo_completed",Callable(self,"_clear_tasks"))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _clear_tasks():
+	for tasks in total_task:
+		get_node("background_panel/Panel/combo_content/task"+str(tasks+1)).queue_free()
 
 func generate_tasks(task_difficulty, rarity_lvl):
-	var amount_of_tasks = _decide_num_of_tasks(task_difficulty)
+	_decide_num_of_tasks(task_difficulty)
 	
-	for tasks in amount_of_tasks:
+	for tasks in total_task:
 		var task_panel = combo_task_scene.instantiate()
 		task_panel.name = "task" + str(tasks+ 1)
-		task_panel.get_intial_data(amount_of_tasks, 0, tasks + 1)
+		task_panel.get_intial_data(_decide_amount_per_task(task_difficulty), 0, tasks + 1)
 		$background_panel/Panel/combo_content.add_child(task_panel)
 
 func _update_combo(body,collected_item):
-	var current_task = get_node("background_panel/Panel/combo_content/task"+str(current_step))
-	if(current_task.get_complete()):
-		current_step += 1
-		current_task = get_node("background_panel/Panel/combo_content/task"+str(current_step))
-	current_item_in_step = current_task.get_item()
+	if all_tasks_complete: 
+		return
 	
+	var current_task = get_node("background_panel/Panel/combo_content/task"+str(current_task_index))
+	current_item_in_step = current_task.get_item()
 	
 	if (current_item_in_step == collected_item):
 		current_task.update_amount_collected()
 	
+	if(current_task.get_complete()):
+		current_task_index += 1
+	
+	if(current_task_index > total_task):
+		all_tasks_complete = true
+		emit_signal("combo_completed")
+		print("all combo steps done")
+		
+
+
+	
 
 func _decide_combo_diffculty():
-	var combos_completed : float = 20# GameStats.stats["combo"]["combos_completed"]
+	var combos_completed : float =  GameStats.stats["combo"]["combos_completed"]
 	var task_difficulty = difficulty.none
 	combos_completed = combos_completed / 10
 	print(combos_completed)
@@ -67,7 +83,6 @@ func _decide_combo_diffculty():
 	generate_tasks(task_difficulty,GameStats.stats["luck"]["rarity_lvl"])
 
 func _decide_num_of_tasks(t_difficulty):
-	var total_task = 1
 	if (t_difficulty == difficulty.easy):
 		total_task = randi_range(1,2)
 	elif (t_difficulty <= difficulty.medium):
@@ -87,18 +102,17 @@ func _decide_num_of_tasks(t_difficulty):
 
 func _decide_amount_per_task(t_difficulty):
 	randomize()
-	var total_task = 1
+	var amount = 1
 	if (t_difficulty == difficulty.easy):
-		total_task = randi_range(1,2)
+		amount = randi_range(1,2)
 	elif (t_difficulty <= difficulty.medium):
-		total_task = randi_range(1,3)
+		amount = randi_range(1,3)
 	elif (t_difficulty <= difficulty.hard):
-		total_task = randi_range(2,3)
+		amount = randi_range(2,3)
 	elif (t_difficulty <= difficulty.very_hard):
-		total_task = randi_range(2,4)
+		amount = randi_range(2,4)
 	elif (t_difficulty <= difficulty.ultra_hard):
-		total_task = randi_range(3,4)
+		amount = randi_range(3,4)
 	else :
-		total_task = 4
-	
-	return total_task
+		amount = 4
+	return amount
