@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://boegokda70ft5"]
+[gd_scene load_steps=7 format=3 uid="uid://boegokda70ft5"]
 
 [ext_resource type="StyleBox" uid="uid://dakl1ewjnawnr" path="res://styles/combo_task_background.tres" id="1_bqb0w"]
 [ext_resource type="Script" path="res://combo_task.gd" id="1_e70fn"]
@@ -6,6 +6,24 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au54g"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsva7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.0392157, 0.8, 1)
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4nq3"]
+bg_color = Color(0, 0, 0, 0.741176)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.0392157, 0.8, 1)
+corner_radius_bottom_left = 16
 
 [node name="combo_task" type="Panel"]
 custom_minimum_size = Vector2(0, 80)
@@ -43,3 +61,46 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "1. Computer chips 2x V"
 scroll_active = false
+
+[node name="current" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nsva7")
+
+[node name="complete" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p4nq3")
+
+[node name="Label" type="Label" parent="complete"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.5
+offset_right = 20.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Completed"
+horizontal_alignment = 1
+vertical_alignment = 1

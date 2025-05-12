@@ -55,6 +55,9 @@ func _underground_hazards():
 
 func _apply_mult_to_collected_item(value):
 	value = (value * GameStats.stats["mult"]["powerC_mult"])
+	if (GameStats.combo == true):
+		value = value *  GameStats.stats["combo"]["combo_mult"]
+		print("combo is active")
 	return value
 
 

@@ -20,7 +20,8 @@ func setup_animation(t_value,t_currency,t_type, t_gain):
 		currencey_icon.atlas = load("res://assets/Mini_Icons.png")
 		currencey_icon.set_region(Rect2(Vector2(16,0),Vector2(16,16)))
 		$Label/TextureRect.texture = currencey_icon
-		
+	if (GameStats.combo):
+		$Label.add_theme_color_override("font_color",Color("#FF3CBE"))
 	$Label.text = "+" + str(Money.covert_Scientific_format(t_gain)) # fix the bug of invalid type nil
 	$AnimationPlayer.play("fade out")
 

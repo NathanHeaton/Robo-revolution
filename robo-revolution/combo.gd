@@ -26,8 +26,9 @@ func _ready() -> void:
 	connect("combo_completed",Callable(self,"_clear_tasks"))
 
 func _clear_tasks():
-	for tasks in total_task:
-		get_node("background_panel/Panel/combo_content/task"+str(tasks+1)).queue_free()
+	#for tasks in total_task:
+		#get_node("background_panel/Panel/combo_content/task"+str(tasks+1)).queue_free()
+	GameStats.combo = true
 
 func generate_tasks(task_difficulty, rarity_lvl):
 	_decide_num_of_tasks(task_difficulty)
@@ -36,6 +37,8 @@ func generate_tasks(task_difficulty, rarity_lvl):
 		var task_panel = combo_task_scene.instantiate()
 		task_panel.name = "task" + str(tasks+ 1)
 		task_panel.get_intial_data(_decide_amount_per_task(task_difficulty), 0, tasks + 1)
+		if tasks == 0:
+			task_panel.set_current()
 		$background_panel/Panel/combo_content.add_child(task_panel)
 
 func _update_combo(body,collected_item):
@@ -43,6 +46,7 @@ func _update_combo(body,collected_item):
 		return
 	
 	var current_task = get_node("background_panel/Panel/combo_content/task"+str(current_task_index))
+	current_task.set_current()
 	current_item_in_step = current_task.get_item()
 	
 	if (current_item_in_step == collected_item):

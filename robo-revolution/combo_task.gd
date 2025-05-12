@@ -13,7 +13,8 @@ var failed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$current.hide()
+	$complete.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,8 +23,11 @@ func _process(delta: float) -> void:
 func get_complete() -> bool:
 	return complete
 
+
 func set_complete():
 	complete = true
+	$current.hide()
+	$complete.show()
 
 func set_failed():
 	failed = true
@@ -78,7 +82,9 @@ func pick_item():
 	
 	return rnd_item
 
-
+func set_current():
+	$current.show()
+	print("showing current")
 
 func _in_correct_location(item) -> bool:
 	var in_location = false

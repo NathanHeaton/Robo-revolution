@@ -91,6 +91,8 @@ func set_stat(type : String,stat : String,value):
 	stats[type][stat] = value
 	emit_signal("stats_changed", type,stat)
 
+func activate_combo():
+	combo = true
 
 func sum_luck_lvl()-> int: # fix later
 	var luck = 0
