@@ -66,11 +66,13 @@ var stats = {
 		"synergy_mult" : 777 # 777X
 	},
 	"combo":{
+		"combo_duration": 30,
 		"combo_mult" : 2,
 		"super_combo_mult" : 10,
 		"super_combo_chance" : 12,
 		"powerC_combo_mult": 2,
 		"combos_completed": 0,
+		"bought": false,
 	},
 	"companion":{
 		"amount": 1,

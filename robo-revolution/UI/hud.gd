@@ -20,7 +20,6 @@ func _ready() -> void:
 	Money.connect("powerC_changed", Callable(self, "_on_powerC_changed"))
 	GameStats.connect("stats_changed", Callable(self, "_manage_stat_change"))
 	_update_health()
-	_setup_combo()
 	
 
 func _hide_panels():
@@ -47,6 +46,9 @@ func show_message(text):
 	#$Message.show()
 	#$Message_Timer.start()
 	
+func _start_combo():
+	_setup_combo()
+
 
 func _setup_combo():
 	var combo = combo_scene.instantiate()
@@ -61,6 +63,8 @@ func _manage_stat_change(type,stat):
 	match stat:
 		"health":
 			_update_health()
+		"bought":
+			_start_combo()
 
 func _prestige_handeler():
 	$Prestige_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer/MarginContainer/conversion/PanelContainer/money_box/money.text = Money.covert_Scientific_format(Money.MONEY)

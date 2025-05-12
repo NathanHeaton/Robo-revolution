@@ -118,7 +118,16 @@ func _upgrade(upgrade):
 			_3X_Sell_Value_upgrade(upgrade["level"])
 		"Alien Key":
 			_give_alien_key()
-
+		"Combo":
+			_combo_upgrade(upgrade["level"])
+func _combo_upgrade(level: int):
+	if(level == 1):
+		GameStats.stats["combo"]["bought"] = true
+		GameStats.set_stat("combo","bought",null)
+	else:
+		print("bought combo")
+		GameStats.set_stat("combo","duration",snapped(clamp(4 + log(level + 1) * -1.15, 0.1, 5), 0.01))
+	
 func _spawnrate_upgrade(level: int):
 	GameStats.set_stat("luck","spawn_time",snapped(clamp(4 + log(level + 1) * -1.15, 0.1, 5), 0.01))
 	$loot_spawn_timer.wait_time = GameStats.stats["luck"]["spawn_time"]
