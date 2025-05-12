@@ -2,8 +2,6 @@ extends Control
 
 var combo_task_scene : PackedScene = preload("res://UI/combo_task.tscn")
 
-signal combo_completed
-
 enum difficulty { none,
  easy,
  medium,
@@ -23,11 +21,12 @@ var all_tasks_complete = false
 func _ready() -> void:
 	_decide_combo_diffculty()
 	ItemData.connect("collected_item",Callable(self,"_update_combo"))
-	connect("combo_completed",Callable(self,"_clear_tasks"))
 
-func _clear_tasks():
+func completed_tasks():
 	#for tasks in total_task:
 		#get_node("background_panel/Panel/combo_content/task"+str(tasks+1)).queue_free()
+	$combo_duration.start()
+	GameStats.stats["combo"]["combos_completed"] += 1
 	GameStats.combo = true
 
 func generate_tasks(task_difficulty, rarity_lvl):
@@ -57,7 +56,7 @@ func _update_combo(body,collected_item):
 	
 	if(current_task_index > total_task):
 		all_tasks_complete = true
-		emit_signal("combo_completed")
+		completed_tasks()
 		print("all combo steps done")
 		
 
@@ -120,3 +119,8 @@ func _decide_amount_per_task(t_difficulty):
 	else :
 		amount = 4
 	return amount
+
+
+func _on_combo_duration_timeout() -> void:
+	GameStats.combo = false
+	queue_free()

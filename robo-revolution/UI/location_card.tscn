@@ -18,20 +18,24 @@ atlas = ExtResource("2_jsgf4")
 region = Rect2(800, 400, 64, 64)
 
 [node name="location_card" type="Control"]
+custom_minimum_size = Vector2(0, 300)
 layout_direction = 1
 layout_mode = 3
-anchor_right = 0.521
-anchor_bottom = 0.185
+anchor_right = 0.596
+anchor_bottom = 0.305
 offset_right = -0.320068
-offset_bottom = 0.199997
+offset_bottom = -0.399994
 size_flags_vertical = 3
 script = ExtResource("1_ebauc")
 
 [node name="location_panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(1000, 200)
-layout_mode = 0
-offset_right = 1000.0
-offset_bottom = 200.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eq3nb")
 
 [node name="MarginContainer" type="MarginContainer" parent="location_panel"]
@@ -76,7 +80,7 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content"]
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme_override_constants/separation = 5
 
@@ -87,11 +91,11 @@ theme_override_font_sizes/font_size = 30
 text = "place holder"
 
 [node name="Description" type="Label" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/Upgarde_Content/VBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
 theme_override_font_sizes/font_size = 24
-text = "placeholder"
+text = "Be careful of power surges\\nContains: scrap, plastic, rusty_nails, computer_chips, vehicle_components, wires, robot_parts, motherboard, metal, gold_plates, rubies, gold_bars"
 autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="location_panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]

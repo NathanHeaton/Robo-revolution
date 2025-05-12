@@ -1,16 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://duh1bxkxexh5v"]
+[gd_scene load_steps=6 format=3 uid="uid://duh1bxkxexh5v"]
 
 [ext_resource type="Script" path="res://combo.gd" id="1_dewhs"]
 [ext_resource type="StyleBox" uid="uid://3ocy40xkcfs3" path="res://Themes/black_transparent_background.tres" id="2_1dyp4"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_frruh"]
-[ext_resource type="StyleBox" uid="uid://b1ba2pu1l6a3m" path="res://styles/normal_buy_button.tres" id="4_qfr8p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llima"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 expand_margin_top = 16.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrytt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_coiq5"]
+content_margin_left = 20.0
+content_margin_right = 20.0
 bg_color = Color(0, 0, 0, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.376471, 0.0235294, 0.396078, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 6
+expand_margin_left = 10.0
+expand_margin_top = 15.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+anti_aliasing = false
 
 [node name="Combo" type="Control"]
 custom_minimum_size = Vector2(280, 512)
@@ -19,9 +36,10 @@ layout_mode = 3
 anchor_top = 0.263
 anchor_right = 0.146
 anchor_bottom = 0.737
-offset_top = 235.96
-offset_right = -240.32
-offset_bottom = -235.96
+offset_left = 8.0
+offset_top = 3.95999
+offset_right = 7.67999
+offset_bottom = 4.04004
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -66,21 +84,21 @@ text = "Combo"
 
 [node name="reward" type="PanelContainer" parent="background_panel/Panel"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_styles/panel = ExtResource("4_qfr8p")
+theme_override_styles/panel = SubResource("StyleBoxFlat_coiq5")
 
-[node name="Panel" type="Panel" parent="background_panel/Panel/reward"]
-custom_minimum_size = Vector2(0, 80)
+[node name="Label" type="Label" parent="background_panel/Panel/reward"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nrytt")
-
-[node name="Label" type="Label" parent="background_panel/Panel/reward/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 text = "Reward: 3X income boost
 30seconds"
+horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="combo_duration" type="Timer" parent="."]
+wait_time = 60.0
+
+[node name="task_duration" type="Timer" parent="."]
+
+[connection signal="timeout" from="combo_duration" to="." method="_on_combo_duration_timeout"]
