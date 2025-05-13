@@ -121,7 +121,7 @@ func _upgrade(upgrade):
 		"Combo":
 			_combo_upgrade(upgrade["level"])
 func _combo_upgrade(level: int):
-	if(level == 1):
+	if(!GameStats.stats["combo"]["bought"]):
 		GameStats.stats["combo"]["bought"] = true
 		GameStats.set_stat("combo","bought",null)
 	else:

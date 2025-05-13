@@ -261,3 +261,11 @@ func _on_settings_toggled(toggled_on: bool) -> void:
 
 func _on_prestige_pressed() -> void:
 	emit_signal("prestiged")
+
+
+func _on_start_combo_timeout() -> void:
+	if (GameStats.combo == false && GameStats.stats["combo"]["bought"] && !has_node("Combo")):
+		_start_combo()
+	$start_combo.wait_time = randi_range(5,40)
+	$start_combo.start()
+		

@@ -24,6 +24,7 @@ UpgradeManager="*res://Globals/upgrade_manager.gd"
 GlobalThemes="*res://Globals/global_themes.gd"
 GameStats="*res://Globals/game_stats.gd"
 ItemData="*res://Globals/item_data.gd"
+Utility="*res://Globals/utility.gd"
 
 [display]
 

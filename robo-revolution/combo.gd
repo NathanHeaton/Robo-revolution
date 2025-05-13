@@ -21,11 +21,22 @@ var all_tasks_complete = false
 func _ready() -> void:
 	_decide_combo_diffculty()
 	ItemData.connect("collected_item",Callable(self,"_update_combo"))
+	$timer_background/task_progress_bar.max_value = $task_duration.time_left
+	$combo_duration_bar.max_value = $combo_duration.time_left
+	$combo_duration.paused = true
+	
+
+func _process(delta: float) -> void:
+	
+	$timer_background/task_progress_bar.value = $task_duration.time_left
+	$combo_duration_bar.value = $combo_duration.time_left
+
 
 func completed_tasks():
 	#for tasks in total_task:
 		#get_node("background_panel/Panel/combo_content/task"+str(tasks+1)).queue_free()
-	$combo_duration.start()
+	$timer_background.hide()
+	$combo_duration.paused = false
 	GameStats.stats["combo"]["combos_completed"] += 1
 	GameStats.combo = true
 
@@ -123,4 +134,8 @@ func _decide_amount_per_task(t_difficulty):
 
 func _on_combo_duration_timeout() -> void:
 	GameStats.combo = false
+	queue_free()
+
+
+func _on_task_duration_timeout() -> void:
 	queue_free()

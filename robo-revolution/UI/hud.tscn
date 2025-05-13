@@ -1763,6 +1763,9 @@ layout_mode = 2
 size_flags_horizontal = 2
 theme_override_constants/separation = 12
 
+[node name="start_combo" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="Message_Timer" to="." method="_on_message_timer_timeout"]
 [connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/settings" to="." method="_on_settings_toggled"]
 [connection signal="toggled" from="MarginContainer/top_nav_container/top_nav/profile" to="." method="_on_profile_toggled"]
@@ -1789,3 +1792,4 @@ theme_override_constants/separation = 12
 [connection signal="pressed" from="profile_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="settings_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="stats_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
+[connection signal="timeout" from="start_combo" to="." method="_on_start_combo_timeout"]

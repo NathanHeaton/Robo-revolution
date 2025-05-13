@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://duh1bxkxexh5v"]
+[gd_scene load_steps=10 format=3 uid="uid://duh1bxkxexh5v"]
 
 [ext_resource type="Script" path="res://combo.gd" id="1_dewhs"]
 [ext_resource type="StyleBox" uid="uid://3ocy40xkcfs3" path="res://Themes/black_transparent_background.tres" id="2_1dyp4"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_frruh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ivxp"]
+bg_color = Color(0.603922, 0, 0.403922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gu56t"]
+bg_color = Color(1, 0.235294, 0.745098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llima"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -29,6 +35,12 @@ expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nd6y"]
+bg_color = Color(0.603922, 0, 0.403922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl4qp"]
+bg_color = Color(1, 0.235294, 0.745098, 1)
+
 [node name="Combo" type="Control"]
 custom_minimum_size = Vector2(280, 512)
 layout_direction = 3
@@ -45,6 +57,34 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 script = ExtResource("1_dewhs")
 
+[node name="timer_background" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 72.0
+offset_right = 321.0
+offset_bottom = 114.0
+scale = Vector2(0.859314, 10.4074)
+theme_override_styles/panel = ExtResource("2_1dyp4")
+
+[node name="task_progress_bar" type="ProgressBar" parent="timer_background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5ivxp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gu56t")
+value = 9.0
+fill_mode = 3
+show_percentage = false
+
 [node name="background_panel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(260, 512)
 layout_mode = 1
@@ -57,9 +97,6 @@ theme_override_styles/panel = ExtResource("2_1dyp4")
 [node name="Polygon2D" type="Polygon2D" parent="background_panel"]
 color = Color(0.117647, 0.117647, 0.117647, 1)
 polygon = PackedVector2Array(-16, 24, 248, 8, 248, 496, -16, 496)
-
-[node name="Panel2" type="Panel" parent="background_panel"]
-layout_mode = 2
 
 [node name="Panel" type="PanelContainer" parent="background_panel"]
 layout_mode = 2
@@ -97,8 +134,28 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="combo_duration" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 30.0
+autostart = true
 
 [node name="task_duration" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+autostart = true
+
+[node name="combo_duration_bar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.043
+anchor_bottom = 0.041
+offset_left = 12.0
+offset_top = 400.0
+offset_right = 235.96
+offset_bottom = 400.008
+theme_override_styles/background = SubResource("StyleBoxFlat_6nd6y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cl4qp")
+value = 8.0
+fill_mode = 1
+show_percentage = false
 
 [connection signal="timeout" from="combo_duration" to="." method="_on_combo_duration_timeout"]
+[connection signal="timeout" from="task_duration" to="." method="_on_task_duration_timeout"]

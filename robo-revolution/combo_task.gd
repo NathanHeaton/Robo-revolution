@@ -63,7 +63,7 @@ func _change_sprite():
 	
 
 func _change_description():
-	$task/HBoxContainer/loot_details.text = str(step)+ ". " + item["name"] + " "+ str(amount_completed)+"/" + str(amount)
+	$task/HBoxContainer/loot_details.text = str(step)+ ". " + Utility.underscores_to_spaces(item["name"]) + " "+ str(amount_completed)+"/" + str(amount)
 	
 
 func _change_amount():

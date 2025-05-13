@@ -32,7 +32,7 @@ var location_data: Dictionary = {
 	locations.Scrapyard:{
 		"id": 0,
 		"name": "Scrapyard",
-		"description" : "Increase chance to spawn trash items.\nContains: scrap, plastic, rusty_nails, gears, computer_chips, vehicle_components, wires, gold_plates, rubies",
+		"description" : "Increase chance to spawn trash items.\nContains: scrap, plastic, rusty nails, gears, computer chips, vehicle components, wires, gold plates, rubies",
 		"unlocked": true,
 		"key_needed": false,
 		"base_cost": 0,
@@ -41,7 +41,7 @@ var location_data: Dictionary = {
 	locations.Underground:{
 		"id": 1,
 		"name": "Underground",
-		"description" : "Be careful of power surges\nContains: scrap, plastic, rusty_nails, computer_chips, vehicle_components, wires, robot_parts, motherboard, metal, gold_plates, rubies, gold_bars",
+		"description" : "Be careful of power surges\nContains: scrap, plastic, rusty nails, computer chips, vehicle components, wires, robot_parts, motherboard, metal, gold plates, rubies, gold_bars",
 		"unlocked": false,
 		"key_needed": false,
 		"base_cost": 5000,
@@ -50,7 +50,7 @@ var location_data: Dictionary = {
 	locations.Ocean:{
 		"id": 2,
 		"name": "Ocean",
-		"description" : "Water dammage likely.\nContains: scrap, plastic, rusty_nails, metal, seashells, ship_wreckage, broken_jewels, rubies, pearls",
+		"description" : "Water dammage likely.\nContains: scrap, plastic, rusty nails, metal, seashells, ship wreckage, broken jewels, rubies, pearls",
 		"unlocked": false,
 		"base_cost": 45600,
 		"key_needed": false,
@@ -59,7 +59,7 @@ var location_data: Dictionary = {
 	locations.Alien:{
 		"id": 3,
 		"name": "Alien",
-		"description" : "watch out for alien patrollers.\nContains: scrap, alien_parts, alien_scrap_metal, alien_artifacts, power_crystals",
+		"description" : "watch out for alien patrollers.\nContains: scrap, alien parts, alien scrap metal, alien artifacts, power crystals",
 		"unlocked": false,
 		"base_cost": 5780000,
 		"key_needed": true,
