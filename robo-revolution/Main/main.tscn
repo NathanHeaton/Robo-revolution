@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=12 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_l0ipk"]
-[ext_resource type="PackedScene" uid="uid://cypyv08he7eys" path="res://Scenes/scrap_treasure.tscn" id="2_yxho2"]
 [ext_resource type="PackedScene" uid="uid://ct4icsg4o81hl" path="res://UI/cost_display.tscn" id="3_aj5xg"]
 [ext_resource type="PackedScene" uid="uid://cpky4ajurmwss" path="res://Scenes/location_sprites.tscn" id="3_cn8wn"]
 [ext_resource type="PackedScene" uid="uid://chxff3xxo7qn2" path="res://Scenes/player.tscn" id="4_pkabt"]
@@ -10,10 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bgplxom4d71ao" path="res://Scenes/walls.tscn" id="7_lbk8s"]
 [ext_resource type="PackedScene" uid="uid://cbh7nw33q7mn7" path="res://Scenes/item_creator.tscn" id="8_7cs6e"]
 [ext_resource type="PackedScene" uid="uid://bo78udtb0svk0" path="res://Scenes/companion.tscn" id="10_b0kjg"]
+[ext_resource type="Script" path="res://Main/upgrade_updater.gd" id="11_4stpa"]
+[ext_resource type="Script" path="res://Main/item_adder.gd" id="11_iv5ig"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_l0ipk")
-scrap_treasure = ExtResource("2_yxho2")
 cost_display = ExtResource("3_aj5xg")
 companions = ExtResource("10_b0kjg")
 metadata/_edit_vertical_guides_ = [824.0, 1143.0, 964.0]
@@ -45,8 +45,14 @@ wait_time = 5.0
 [node name="surge_duration" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="UpgradeUpdater" type="Node" parent="."]
+script = ExtResource("11_4stpa")
+
+[node name="ItemAdder" type="Node" parent="."]
+script = ExtResource("11_iv5ig")
+
 [connection signal="push" from="Player" to="." method="_on_player_push"]
-[connection signal="timeout" from="loot_spawn_timer" to="." method="_spawn_loot"]
+[connection signal="timeout" from="loot_spawn_timer" to="ItemAdder" method="_on_loot_spawn_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="power_surge" to="." method="_on_power_surge_timeout"]
 [connection signal="timeout" from="surge_duration" to="." method="_on_surge_duration_timeout"]

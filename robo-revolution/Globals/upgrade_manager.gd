@@ -31,7 +31,6 @@ func detuct_cost(cost, currency):
 		Money.MONEY -= cost
 	elif (currency == "powerC"):
 		Money.POWER_C -= cost
-	
 
 
 
