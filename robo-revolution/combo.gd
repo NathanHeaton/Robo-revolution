@@ -21,10 +21,15 @@ var all_tasks_complete = false
 func _ready() -> void:
 	_decide_combo_diffculty()
 	ItemData.connect("collected_item",Callable(self,"_update_combo"))
+	GameStats.connect("stats_changed",Callable(self,"_update_info"))
 	$timer_background/task_progress_bar.max_value = $task_duration.time_left
 	$combo_duration_bar.max_value = $combo_duration.time_left
 	$combo_duration.paused = true
+	_update_info(null, null)
 	
+
+func _update_info(type, stat):
+	$background_panel/Panel/reward/Label.text = "Reward: " + str(GameStats.stats["combo"]["combo_mult"]) + "X\n income boost 30 seconds"
 
 func _process(delta: float) -> void:
 	

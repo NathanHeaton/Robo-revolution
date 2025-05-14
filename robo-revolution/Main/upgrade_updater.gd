@@ -15,10 +15,6 @@ func _upgrade(upgrade):
 			_rarity_upgrade(upgrade["level"])
 		"Item Focuser":
 			_item_focuser_upgrade(upgrade["level"])
-		"3X Sell Value":
-			_3X_Sell_Value_upgrade(upgrade["level"])
-		"Alien Key":
-			_give_alien_key()
 		"Combo":
 			_combo_upgrade(upgrade["level"])
 		"Combo Increase":
@@ -35,7 +31,7 @@ func _upgrade(upgrade):
 			_refinement_upgrade(upgrade["level"])
 		"Rarity+":
 			_rarity_upgrade_plus(upgrade["level"])
-				# Ocean Upgrades
+		# Ocean Upgrades
 		"Rarity++":
 			_rarity_upgrade_2plus(upgrade["level"])
 		"Companion Upgrades":
@@ -61,6 +57,11 @@ func _upgrade(upgrade):
 			apply_alien_controller()
 		"Synergy":
 			apply_synergy()
+		# Power Crystal
+		"3X Sell Value":
+			_3X_Sell_Value_upgrade(upgrade["level"])
+		"Alien Key":
+			_give_alien_key()
 
 # Scrapyard
 #============================================================================================================================
@@ -85,8 +86,7 @@ func _rarity_upgrade(level: int):
 	GameStats.set_stat("luck","scrapyard", level)
 
 func _combo_increase_upgrade(level: int):
-	# add logic
-	GameStats.set_stat("combo", "multiplier", 1.0 + (level * 0.05)) 
+	GameStats.set_stat("combo", "combo_mult", 2.0 + level * 0.5 ) 
 
 func _item_focuser_upgrade(level: int):
 	var x = 30 + log(level + 1) * 150
