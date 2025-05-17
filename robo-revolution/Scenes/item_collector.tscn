@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://dkgn3ys5nt1ao"]
+[gd_scene load_steps=38 format=3 uid="uid://dkgn3ys5nt1ao"]
 
 [ext_resource type="Script" path="res://Scenes/rigid_body_2d.gd" id="1_8ruds"]
 [ext_resource type="Texture2D" uid="uid://i5gqgj28yre7" path="res://assets/collection_points_Sheet.png" id="2_hewsg"]
+[ext_resource type="AudioStream" uid="uid://dpel4vbcxtvq5" path="res://audio/SFX/collect_noise.wav" id="3_ic148"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgpwt"]
 radius = 138.101
@@ -289,6 +290,11 @@ animation = &"Scrapyard_standby"
 
 [node name="collection_time" type="Timer" parent="."]
 one_shot = true
+
+[node name="collect_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ic148")
+volume_db = -20.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="collectors" to="." method="_on_collectors_animation_finished"]

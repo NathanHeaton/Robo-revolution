@@ -27,6 +27,8 @@ func _on_body_entered(body: Node) -> void:
 		body.apply_central_impulse(force)
 		set_collection_animation()
 		ItemData.emit_signal("collected_item", body, body.get_item())
+		$collect_sfx.pitch_scale = randf_range(0.7, 1.3)
+		$collect_sfx.play()
 		
 
 func set_collector():
