@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=14 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_l0ipk"]
 [ext_resource type="PackedScene" uid="uid://ct4icsg4o81hl" path="res://UI/cost_display.tscn" id="3_aj5xg"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bo78udtb0svk0" path="res://Scenes/companion.tscn" id="10_b0kjg"]
 [ext_resource type="Script" path="res://Main/upgrade_updater.gd" id="11_4stpa"]
 [ext_resource type="Script" path="res://Main/item_adder.gd" id="11_iv5ig"]
+[ext_resource type="AudioStream" uid="uid://biwb4mpbd0sf3" path="res://audio/music/robo_revolution_main_track.mp3" id="12_puve6"]
+[ext_resource type="AudioStream" uid="uid://ucv2uu17qw0i" path="res://audio/music/robo_revolution_alt_track.mp3" id="13_guper"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_l0ipk")
@@ -51,8 +53,20 @@ script = ExtResource("11_4stpa")
 [node name="ItemAdder" type="Node" parent="."]
 script = ExtResource("11_iv5ig")
 
+[node name="track_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_puve6")
+volume_db = -20.0
+bus = &"music"
+
+[node name="track_2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_guper")
+volume_db = -20.0
+bus = &"music"
+
 [connection signal="push" from="Player" to="." method="_on_player_push"]
 [connection signal="timeout" from="loot_spawn_timer" to="ItemAdder" method="_on_loot_spawn_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="power_surge" to="." method="_on_power_surge_timeout"]
 [connection signal="timeout" from="surge_duration" to="." method="_on_surge_duration_timeout"]
+[connection signal="finished" from="track_1" to="." method="_on_track_1_finished"]
+[connection signal="finished" from="track_2" to="." method="_on_track_2_finished"]

@@ -17,6 +17,8 @@ func _ready() -> void:
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
 	if (GameStats.stats["companion"]["amount"] > 0):
 		_spawn_companions()
+	_pick_track()
+	
 
 func _spawn_companions():
 	for companion in GameStats.stats["companion"]["amount"]:
@@ -118,3 +120,17 @@ func _update_surge_time():
 func _on_surge_duration_timeout() -> void:# surge has ended
 	_update_surge_time()
 	$power_surge.start()
+
+
+func _pick_track() -> void:
+	var track = randi_range(1,2)
+	get_node("track_" + str(track)).play()
+	
+
+
+func _on_track_2_finished() -> void:
+	_pick_track()
+
+
+func _on_track_1_finished() -> void:
+	_pick_track()
