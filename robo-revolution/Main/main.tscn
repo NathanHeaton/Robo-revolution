@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8nwu4mwix02w"]
+[gd_scene load_steps=15 format=3 uid="uid://c8nwu4mwix02w"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_l0ipk"]
 [ext_resource type="PackedScene" uid="uid://ct4icsg4o81hl" path="res://UI/cost_display.tscn" id="3_aj5xg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bgplxom4d71ao" path="res://Scenes/walls.tscn" id="7_lbk8s"]
 [ext_resource type="PackedScene" uid="uid://cbh7nw33q7mn7" path="res://Scenes/item_creator.tscn" id="8_7cs6e"]
 [ext_resource type="PackedScene" uid="uid://bo78udtb0svk0" path="res://Scenes/companion.tscn" id="10_b0kjg"]
+[ext_resource type="AudioStream" uid="uid://qt1g21oop4hw" path="res://audio/SFX/surge_damage.wav" id="10_y150b"]
 [ext_resource type="Script" path="res://Main/upgrade_updater.gd" id="11_4stpa"]
 [ext_resource type="Script" path="res://Main/item_adder.gd" id="11_iv5ig"]
 [ext_resource type="AudioStream" uid="uid://biwb4mpbd0sf3" path="res://audio/music/robo_revolution_main_track.mp3" id="12_puve6"]
@@ -43,6 +44,10 @@ position = Vector2(800, 500)
 
 [node name="power_surge" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="surge_sfx" type="AudioStreamPlayer2D" parent="power_surge"]
+stream = ExtResource("10_y150b")
+volume_db = -20.0
 
 [node name="surge_duration" type="Timer" parent="."]
 wait_time = 5.0

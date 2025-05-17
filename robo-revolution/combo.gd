@@ -44,6 +44,7 @@ func completed_tasks():
 	$combo_duration.paused = false
 	GameStats.stats["combo"]["combos_completed"] += 1
 	GameStats.combo = true
+	$combo_complete_sfx.play()
 
 func generate_tasks(task_difficulty, rarity_lvl):
 	_decide_num_of_tasks(task_difficulty)
