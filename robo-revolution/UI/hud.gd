@@ -163,12 +163,15 @@ func _on_underground_close_button_pressed() -> void:
 
 var previousCard = null
 
+func _dip_music(value):
+	AudioServer.set_bus_effect_enabled(1,0,value)
+
 func _handle_popup_screens(currentCard, open_panel, t_toggled):
 	
 	if (previousCard && currentCard != previousCard):
 		get_node(previousCard).button_pressed = false
 		get_node(previousCard).emit_signal("toggled", false)
-	
+
 	match open_panel:
 		"achievements_panel":
 			$achievements_panel.visible = t_toggled
@@ -197,6 +200,7 @@ func _handle_popup_screens(currentCard, open_panel, t_toggled):
 		"none":
 			0
 	
+	_dip_music(t_toggled)
 	previousCard = currentCard
 
 func _on_scrapyard_upgrades_toggled(toggled_on: bool) -> void:

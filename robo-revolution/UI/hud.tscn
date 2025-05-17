@@ -330,9 +330,9 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cq68x"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
-border_width_left = 8
+border_width_left = 36
 border_width_top = 36
-border_width_right = 8
+border_width_right = 36
 border_width_bottom = 36
 border_color = Color(0.117647, 0.117647, 0.117647, 1)
 corner_radius_bottom_left = 16
@@ -1694,62 +1694,143 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
+[node name="audio_settings" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
 custom_minimum_size = Vector2(1000, 400)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="settings_panel/settings_content/ScrollContainer/settings/Panel"]
+[node name="HFlowContainer" type="GridContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings"]
 layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
+columns = 2
 
-[node name="Audio" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer"]
-custom_minimum_size = Vector2(1000, 0)
+[node name="Audio2" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Audio
+"
+vertical_alignment = 1
+
+[node name="spacer" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="music_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer"]
-custom_minimum_size = Vector2(80, 160)
+[node name="music_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
+custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
 
-[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer/music_panel"]
+[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/music_panel"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "music"
 
-[node name="music_slider" type="HSlider" parent="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer/music_panel"]
-custom_minimum_size = Vector2(1000, 0)
+[node name="music_slider" type="HSlider" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/music_panel"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 1
 value = 100.0
 
-[node name="sfx_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer"]
+[node name="sfx_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
 custom_minimum_size = Vector2(80, 160)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
 
-[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer/sfx_panel"]
+[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "SFX"
 
-[node name="sfx_slider" type="HSlider" parent="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer/sfx_panel"]
-custom_minimum_size = Vector2(1000, 0)
+[node name="sfx_slider" type="HSlider" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel"]
+layout_mode = 2
+size_flags_vertical = 1
+value = 100.0
+
+[node name="sfx_panel2" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
+custom_minimum_size = Vector2(80, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
+
+[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Master
+"
+
+[node name="master_slider" type="HSlider" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel2"]
+layout_mode = 2
+size_flags_vertical = 1
+value = 100.0
+
+[node name="display_settings" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
+custom_minimum_size = Vector2(1000, 400)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
-value = 100.0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="HFlowContainer" type="GridContainer" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="Audio2" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Display"
+vertical_alignment = 1
+
+[node name="full_screen" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer"]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
+
+[node name="MenuButton" type="MenuButton" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/full_screen"]
+layout_mode = 2
+text = "Screen"
+
+[node name="sfx_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer"]
+custom_minimum_size = Vector2(80, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
+
+[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/sfx_panel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "SFX"
+
+[node name="sfx_panel2" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer"]
+custom_minimum_size = Vector2(80, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
+
+[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/sfx_panel2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Master
+"
 
 [node name="stats_panel" type="Panel" parent="."]
 visible = false
@@ -1859,7 +1940,8 @@ autostart = true
 [connection signal="pressed" from="achievements_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="profile_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="pressed" from="settings_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
-[connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer/music_panel/music_slider" to="settings_panel" method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/Panel/HFlowContainer/sfx_panel/sfx_slider" to="settings_panel" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/music_panel/music_slider" to="settings_panel" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel/sfx_slider" to="settings_panel" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel2/master_slider" to="settings_panel" method="_on_master_slider_value_changed"]
 [connection signal="pressed" from="stats_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="timeout" from="start_combo" to="." method="_on_start_combo_timeout"]
