@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cypyv08he7eys"]
+[gd_scene load_steps=11 format=3 uid="uid://cypyv08he7eys"]
 
 [ext_resource type="Script" path="res://Scenes/scrap_treasure.gd" id="1_bp5v4"]
 [ext_resource type="PackedScene" uid="uid://bajbk31wmuugm" path="res://Scenes/item_sprites.tscn" id="2_bnupy"]
@@ -11,7 +11,19 @@ rough = true
 radius = 32.0
 
 [sub_resource type="Animation" id="Animation_xhmei"]
-length = 0.001
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Item_sprites:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 12, 15.0333, 17.0667, 19, 19.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.627451), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.32549), Color(1, 1, 1, 0.231373), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_w6c0p"]
 resource_name = "fade_out"
@@ -24,7 +36,43 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_nq8ck"]
-length = 0.001
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Item_sprites:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 4.96667),
+"transitions": PackedFloat32Array(2.21914, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Item_sprites:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 4.93333),
+"transitions": PackedFloat32Array(2.21914, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Item_sprites:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 4.93333),
+"transitions": PackedFloat32Array(3.24901, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(0.5, 0.5)]
+}
 
 [sub_resource type="Animation" id="Animation_plx2k"]
 resource_name = "collect"
@@ -33,18 +81,6 @@ resource_name = "collect"
 _data = {
 "RESET": SubResource("Animation_nq8ck"),
 "collect": SubResource("Animation_plx2k")
-}
-
-[sub_resource type="Animation" id="Animation_hh7b2"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_8oo1k"]
-resource_name = "shine"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_13kea"]
-_data = {
-"RESET": SubResource("Animation_hh7b2"),
-"shine": SubResource("Animation_8oo1k")
 }
 
 [node name="Scrap_Treasure" type="RigidBody2D" groups=["scrapTreasure"]]
@@ -73,10 +109,7 @@ libraries = {
 "": SubResource("AnimationLibrary_y0b8i")
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_13kea")
-}
+[node name="Item_sprites" parent="." instance=ExtResource("2_bnupy")]
 
 [connection signal="timeout" from="despawn_start" to="." method="_on_despawn_start_timeout"]
 [connection signal="animation_finished" from="fade_out_player" to="." method="_on_fade_out_player_animation_finished"]

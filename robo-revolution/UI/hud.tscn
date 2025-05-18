@@ -1615,14 +1615,14 @@ text = "When you prestige all of your money is converted into power crystals, AL
 autowrap_mode = 3
 
 [node name="settings_panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(1160, 400)
+custom_minimum_size = Vector2(800, 400)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 112.0
-offset_right = 1184.0
-offset_bottom = -96.0
+offset_left = 29.0
+offset_top = 113.0
+offset_right = 829.0
+offset_bottom = -143.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 script = ExtResource("7_ad4nq")
@@ -1672,17 +1672,17 @@ text = "x"
 
 [node name="settings_content" type="VBoxContainer" parent="settings_panel"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 72.0
-offset_right = 8.0
+anchor_bottom = 0.5
+offset_top = -351.0
+offset_bottom = 349.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="settings_panel/settings_content"]
-custom_minimum_size = Vector2(0, 800)
+custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uppe2")
 horizontal_scroll_mode = 0
@@ -1695,7 +1695,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="audio_settings" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
-custom_minimum_size = Vector2(1000, 400)
+custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1778,7 +1778,7 @@ size_flags_vertical = 1
 value = 100.0
 
 [node name="display_settings" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
-custom_minimum_size = Vector2(1000, 400)
+custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1803,34 +1803,30 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
 
-[node name="MenuButton" type="MenuButton" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/full_screen"]
+[node name="GridContainer" type="GridContainer" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/full_screen"]
 layout_mode = 2
-text = "Screen"
+theme_override_constants/v_separation = 36
+columns = 2
 
-[node name="sfx_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer"]
-custom_minimum_size = Vector2(80, 160)
+[node name="MenuButton" type="MenuButton" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/full_screen/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
-
-[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/sfx_panel"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "SFX"
-
-[node name="sfx_panel2" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer"]
-custom_minimum_size = Vector2(80, 160)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
-
-[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/sfx_panel2"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Master
+text = "Window Mode
 "
+item_count = 3
+popup/item_0/text = "borderless"
+popup/item_0/checked = true
+popup/item_1/text = "windowed"
+popup/item_1/id = 1
+popup/item_2/text = "fullscreen"
+popup/item_2/id = 2
+
+[node name="MenuButton2" type="CheckButton" parent="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/full_screen/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "VSync
+"
+alignment = 1
 
 [node name="stats_panel" type="Panel" parent="."]
 visible = false
@@ -1943,5 +1939,6 @@ autostart = true
 [connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/music_panel/music_slider" to="settings_panel" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel/sfx_slider" to="settings_panel" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel2/master_slider" to="settings_panel" method="_on_master_slider_value_changed"]
+[connection signal="toggled" from="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/full_screen/GridContainer/MenuButton2" to="settings_panel" method="_on_menu_button_2_toggled"]
 [connection signal="pressed" from="stats_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="timeout" from="start_combo" to="." method="_on_start_combo_timeout"]

@@ -4,7 +4,6 @@ extends RigidBody2D
 
 var value = 0
 var item 
-var sprite
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()# makes vbarients more random
@@ -14,21 +13,16 @@ func _ready() -> void:
 		linear_damp = 2.0  # Higher = more resistance
 	
 
-func _setup_srpite():
-	sprite = item_sprite.instantiate()
-	add_child(sprite)
-
 func spawn_loot_type(t_item):
-	_setup_srpite()
 	item = t_item
 	if (item == null):
 		print("error: item is null")
 		return
 
-	sprite.play(item.name)
+	$Item_sprites.play(item.name)
 	var rnd_frame = randi_range(0,item.variants-1)
-	sprite.frame = rnd_frame
-	sprite.pause()
+	$Item_sprites.frame = rnd_frame
+	$Item_sprites.pause()
 	value = item.value
 	mass = item.weight
 
@@ -48,7 +42,7 @@ func get_type():
 	return item["type"]
 
 func _on_despawn_start_timeout() -> void:
-	$fade_out_player.play("fade_out")
+	$fade_out_player.play("RESET")
 
 func _on_fade_out_player_animation_finished(anim_name: StringName) -> void:
 	queue_free()
@@ -56,7 +50,7 @@ func _on_fade_out_player_animation_finished(anim_name: StringName) -> void:
 func collect():
 	$fade_out_player.stop()
 	$CollisionShape2D.disabled = true
-	$collect.play("collect")
+	$collect.play("RESET")
 
 func _on_collect_animation_finished(anim_name: StringName) -> void:
 	queue_free()
