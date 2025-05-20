@@ -1828,6 +1828,26 @@ text = "VSync
 "
 alignment = 1
 
+[node name="credit" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
+
+[node name="HFlowContainer" type="GridContainer" parent="settings_panel/settings_content/ScrollContainer/settings/credit"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="Audio2" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/credit/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Music, art, and code by Nathan Heaton"
+vertical_alignment = 1
+
 [node name="stats_panel" type="Panel" parent="."]
 visible = false
 custom_minimum_size = Vector2(1160, 500)

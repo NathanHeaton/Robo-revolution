@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="Robo-revolution"
+config/description="Top-down Idle game, you play as a robot who collects items (rubbish/ treasure) by pushing them into the center of the screen, these items are then sold automatically so that you can buy upgrades, this is the core gameplay loop. As you progress you will be able to obtain new locations with unique challenges, and companions to help you on the journey. "
+config/version="1.0"
 run/main_scene="res://Main/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/Icon.png"
 
 [autoload]
 
