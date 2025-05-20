@@ -47,9 +47,17 @@ func _on_despawn_start_timeout() -> void:
 func _on_fade_out_player_animation_finished(anim_name: StringName) -> void:
 	queue_free()
 
+
+func reset_velocity():
+	mass = 50
+	linear_velocity = Vector2(0,0)
+	angular_velocity = 0
+	linear_damp = 3
+
+
 func collect():
 	$fade_out_player.stop()
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled",true)
 	$collect.play("RESET")
 
 func _on_collect_animation_finished(anim_name: StringName) -> void:

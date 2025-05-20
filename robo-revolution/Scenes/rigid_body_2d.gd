@@ -23,7 +23,8 @@ func _on_body_entered(body: Node) -> void:
 		var direction = get_viewport_rect().size/2 - body.global_position
 		var distance = direction.length()
 		distance = direction.normalized()
-		var force = distance * 200
+		var force = distance * 500
+		body.reset_velocity()
 		body.apply_central_impulse(force)
 		set_collection_animation()
 		ItemData.emit_signal("collected_item", body, body.get_item())
