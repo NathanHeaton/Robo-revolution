@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://duh1bxkxexh5v"]
 
-[ext_resource type="Script" path="res://combo.gd" id="1_dewhs"]
+[ext_resource type="Script" path="res://UI/combo.gd" id="1_dewhs"]
 [ext_resource type="StyleBox" uid="uid://3ocy40xkcfs3" path="res://Themes/black_transparent_background.tres" id="2_1dyp4"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_frruh"]
 [ext_resource type="AudioStream" uid="uid://67t0vy01qyp2" path="res://audio/SFX/powerUp6.ogg" id="4_g0hrj"]

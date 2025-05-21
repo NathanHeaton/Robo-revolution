@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://bo78udtb0svk0"]
 
-[ext_resource type="Script" path="res://companion.gd" id="1_nhkka"]
+[ext_resource type="Script" path="res://Scenes/companion.gd" id="1_nhkka"]
 [ext_resource type="Texture2D" uid="uid://1bt0fm2qrtfb" path="res://assets/companions-Sheet.png" id="2_ad3xe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uh2sh"]
@@ -205,9 +205,8 @@ script = ExtResource("1_nhkka")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8b3v6")
-animation = &"carrying_animation"
-frame = 4
-frame_progress = 0.769399
+animation = &"moving_animation"
+frame_progress = 0.995611
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.333333, 5)

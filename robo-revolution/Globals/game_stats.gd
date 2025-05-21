@@ -48,7 +48,7 @@ var stats = {
 		"basic_water_proof" : 0
 	},
 	"luck":{
-		"rarity_lvl" : 0,
+		"rarity_lvl" : 5,
 		"spawn_time": 4,
 		"item_spawn_region" : Rect2(),
 		"scrapyard" : 0,

@@ -3,14 +3,6 @@ extends Node
 signal level_changed(id)
 signal upgrade(upgrade)
 signal unlock_location
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func apply_upgrade(id, lvl, amount, cost, location, currency):
 	detuct_cost(cost, currency)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dstx3gsjfi0gq"]
 
-[ext_resource type="Script" path="res://stats_card.gd" id="1_tfvnh"]
+[ext_resource type="Script" path="res://UI/stats_card.gd" id="1_tfvnh"]
 [ext_resource type="Texture2D" uid="uid://cx3o0s8h4i681" path="res://assets/Upgrades.png" id="2_0ynxn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rueew"]

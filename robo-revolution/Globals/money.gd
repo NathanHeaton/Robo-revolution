@@ -19,15 +19,6 @@ var MONEY: float = 0: # allows signals to be sent when money is updated
 		money_back_up = maxf(snapped(value,1),0)
 		emit_signal("money_changed")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-	#calculate_max_buy(150,36,10,2.5)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func covert_Scientific_format(num: float):
 	var num_string = str(snapped(num,1))# gets rid of decimals if there are any
