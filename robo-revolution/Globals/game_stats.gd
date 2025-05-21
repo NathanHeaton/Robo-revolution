@@ -75,7 +75,7 @@ var stats = {
 		"bought": false,
 	},
 	"companion":{
-		"amount": 1,
+		"amount": 0,
 		"strength": 4,
 		"speed": 50,
 		"capacity": 1
@@ -101,12 +101,3 @@ func sum_luck_lvl()-> int: # fix later
 	#for nums in stats["luck"]["luck_lvl"]:
 		#luck += nums
 	return luck
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

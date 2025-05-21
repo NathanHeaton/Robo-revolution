@@ -15,16 +15,8 @@ func _ready() -> void:
 	GameStats.set_stat("luck","item_spawn_region", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	ItemData.connect("collected_item",Callable(self,"_on_item_collector_collect"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
-	if (GameStats.stats["companion"]["amount"] > 0):
-		_spawn_companions()
 	_pick_track()
 	
-
-func _spawn_companions():
-	for companion in GameStats.stats["companion"]["amount"]:
-		var new_comp = companions.instantiate()
-		add_child(new_comp)
-		new_comp.position = Vector2(400, 800)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame

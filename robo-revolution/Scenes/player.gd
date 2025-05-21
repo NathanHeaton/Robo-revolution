@@ -55,11 +55,11 @@ func _physics_process(delta: float) -> void:
 	
 	position = position.clamp(Vector2.ZERO,screen_size)
 	
-	for body in $pushing_area.get_overlapping_bodies():  # Use Area2D method
+	for body in $pushing_area.get_overlapping_bodies(): 
 		if body is RigidBody2D:
 			pushing = true
 			var push_direction = (body.position - position).normalized()
-			body.apply_central_impulse(push_direction * GameStats.stats["physical"]["strength"])  # Adjust push force
+			body.apply_central_impulse(push_direction * GameStats.stats["physical"]["strength"]) 
 		else:
 			pushing = false
 

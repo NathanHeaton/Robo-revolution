@@ -26,7 +26,7 @@ func _upgrade(upgrade):
 		"Surge Chances":
 			_surge_chances_upgrade(upgrade["level"])
 		"Companion":
-			_companion_upgrade(upgrade["level"])
+			_spawn_companions(upgrade["level"])
 		"Refinement":
 			_refinement_upgrade(upgrade["level"])
 		"Rarity+":
@@ -111,8 +111,15 @@ func _super_combo_aligner_upgrade(level: int):
 func _surge_chances_upgrade(level: int):
 	print("Applying Surge Chances upgrade")
 
-func _companion_upgrade(level: int):
-	print("Applying Companion upgrade")
+func _spawn_companions(level: int):
+	var previous_amount = GameStats.stats["companion"]["amount"]
+	GameStats.set_stat("companion","amount",level)
+	print(GameStats.stats["companion"]["amount"])
+	for companion in GameStats.stats["companion"]["amount"] -  previous_amount:
+		randomize()
+		var new_comp = get_parent().companions.instantiate()
+		get_parent().add_child(new_comp)
+		new_comp.position = Vector2(randi_range(100,1200), randi_range(100,900))
 
 func _refinement_upgrade(level: int):
 	print("Applying Refinement upgrade")
