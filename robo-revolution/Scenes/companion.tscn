@@ -227,5 +227,15 @@ shape = SubResource("CapsuleShape2D_m21cy")
 position = Vector2(1, 1)
 polygon = PackedVector2Array(-11.3334, -6.99996, -102.668, -235, -48.0009, -259.333, 32.3324, -259.333, 82.9991, -243.667, 8.66665, -6.00003)
 
+[node name="wait" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="searching" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="grab_area" to="." method="_on_grab_area_body_entered"]
 [connection signal="body_entered" from="vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="vision" to="." method="_on_vision_body_exited"]
+[connection signal="timeout" from="wait" to="." method="_on_wait_timeout"]
+[connection signal="timeout" from="searching" to="." method="_on_searching_timeout"]
