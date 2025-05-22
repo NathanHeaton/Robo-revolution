@@ -37,4 +37,6 @@ func get_upgrade_id(id, location):
 func buy_location(cost,location):
 	detuct_cost(cost, "money")
 	LocationData.location_data[location]["unlocked"] = true
+	var location_stat_text : String = (LocationData.location_data[location].name).to_lower()+ "_unlocked"
+	GameStats.set_stat("location",location_stat_text, true)
 	emit_signal("unlock_location")

@@ -976,7 +976,6 @@ sprite_frames = SubResource("SpriteFrames_n2m7w")
 animation = &"none"
 
 [node name="pushing_area" type="Area2D" parent="."]
-visible = false
 position = Vector2(1, 5)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="pushing_area"]
@@ -986,7 +985,6 @@ scale = Vector2(2.60882, 17.4885)
 polygon = PackedVector2Array(-13.7993, 2.40159, 6.89974, 2.74466, 8.43286, -2.97339, -23.7656, -2.63029, -15.7159, 5.1707e-06, -23.7655, 2.23005)
 
 [node name="player_body" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6lt8k")

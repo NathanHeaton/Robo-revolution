@@ -3,23 +3,18 @@ extends Node
 @export var scrap_treasure: PackedScene
 @export var cost_display: PackedScene
 @export var companions: PackedScene
-# Called when the node enters the scene tree for the first time.
-
 
 signal rarity_upgraded(rarity)
 
 func _ready() -> void:
 	newGame()
-	Money.MONEY = 51000000000
-	Money.POWER_C = 35
+	Money.MONEY = 500000000
+	Money.POWER_C = 0
 	GameStats.set_stat("luck","item_spawn_region", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	ItemData.connect("collected_item",Callable(self,"_on_item_collector_collect"))
 	$HUD.connect("prestiged", Callable(self, "_prestige"))
 	_pick_track()
-	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta: float) -> void:
 	match LocationData.CURRENT_LOCATION:
 		LocationData.locations.Scrapyard:
@@ -43,7 +38,6 @@ func _underground_hazards():
 	if (first_time_in_underground):
 		$power_surge.start()
 		first_time_in_underground = false
-	
 
 func _apply_mult_to_collected_item(value):
 	value = (value * GameStats.stats["mult"]["powerC_mult"])
@@ -51,7 +45,6 @@ func _apply_mult_to_collected_item(value):
 		value = value *  GameStats.stats["combo"]["combo_mult"]
 		print("combo is active")
 	return value
-
 
 func _on_item_collector_collect(body,item):
 	var gain = 1
@@ -61,7 +54,6 @@ func _on_item_collector_collect(body,item):
 	elif (body.get_currency() == "powerC"):
 		gain = body.get_value()
 		Money.POWER_C += gain
-	#$HUD.update_money()
 	_handle_collected_item_text(body,gain)
 	body.collect()
 
@@ -75,7 +67,6 @@ func _prestige():
 	Money.POWER_C += Money.MONEY / GameStats.stats["other"]["powerC_conversion_rate"]
 	Money.MONEY = 0
 	_reset_upgrades()
-	
 
 func _reset_upgrades():
 	for upgradeSections in UpgradeData.upgrades.keys():
@@ -85,16 +76,12 @@ func _reset_upgrades():
 			current["level"] = 0
 			UpgradeManager.emit_signal("level_changed", current["id"])
 
-
 func newGame():
 	Money.MONEY = 0
 	$HUD.show_message("Collect Scrap and treasure")
-	#$Player.position($Start_Position.position)
-	
 
 func respawn():
 	Money.MONEY = Money.MONEY * 0.1
-	#$Player.start($Start_Position.position)
 
 func _on_hud_start_game() -> void:
 	newGame()
@@ -118,8 +105,6 @@ func _on_surge_duration_timeout() -> void:# surge has ended
 func _pick_track() -> void:
 	var track = randi_range(1,2)
 	get_node("track_" + str(track)).play()
-	
-
 
 func _on_track_2_finished() -> void:
 	_pick_track()

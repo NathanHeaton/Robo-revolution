@@ -135,10 +135,11 @@ func _rarity_upgrade_2plus(level: int):
 	GameStats.set_stat("luck","ocean", level)
 
 func apply_companion_upgrades():
-	pass
+	GameStats.set_stat("other", "unlocked_companion_upgrades",true )
 
 func apply_prestige():
-	pass
+	GameStats.set_stat("other", "unlocked_prestiege",true )
+
 
 func apply_sea_drill():
 	pass

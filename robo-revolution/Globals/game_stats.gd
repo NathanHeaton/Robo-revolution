@@ -82,7 +82,15 @@ var stats = {
 	},
 	"other":{
 		"powerC_conversion_rate" : 10000,
-		"alien_key" : false
+		"alien_key" : false,
+		"unlocked_prestiege": false,
+		"unlocked_companion_upgrades": false
+	},
+	"location":{
+		"scarpyard_unlocked": true,
+		"underground_unlocked": false,
+		"ocean_unlocked": false,
+		"alien_unlocked": false,
 	}
 }
 

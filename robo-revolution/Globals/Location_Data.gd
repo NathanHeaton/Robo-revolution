@@ -44,7 +44,7 @@ var location_data: Dictionary = {
 		"description" : "Be careful of power surges\nContains: scrap, plastic, rusty nails, computer chips, vehicle components, wires, robot_parts, motherboard, metal, gold plates, rubies, gold_bars",
 		"unlocked": false,
 		"key_needed": false,
-		"base_cost": 5000,
+		"base_cost": 500,
 		"sprite_position": Vector2(800,190)
 	},
 	locations.Ocean:{
@@ -52,7 +52,7 @@ var location_data: Dictionary = {
 		"name": "Ocean",
 		"description" : "Water dammage likely.\nContains: scrap, plastic, rusty nails, metal, seashells, ship wreckage, broken jewels, rubies, pearls",
 		"unlocked": false,
-		"base_cost": 45600,
+		"base_cost": 4560,
 		"key_needed": false,
 		"sprite_position": Vector2(32,285)
 	},
@@ -61,7 +61,7 @@ var location_data: Dictionary = {
 		"name": "Alien",
 		"description" : "watch out for alien patrollers.\nContains: scrap, alien parts, alien scrap metal, alien artifacts, power crystals",
 		"unlocked": false,
-		"base_cost": 5780000,
+		"base_cost": 57800,
 		"key_needed": true,
 		"sprite_position": Vector2(800,400)
 	}

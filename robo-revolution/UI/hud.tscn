@@ -1,9 +1,10 @@
-[gd_scene load_steps=71 format=3 uid="uid://3pke8c3v8xbd"]
+[gd_scene load_steps=72 format=3 uid="uid://3pke8c3v8xbd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_qb4pq"]
 [ext_resource type="Texture2D" uid="uid://b5fqnhsorrxyf" path="res://assets/top_nav_icons.png" id="2_yatbj"]
 [ext_resource type="Texture2D" uid="uid://bisrwqsp3i7ac" path="res://assets/upgrade_icons.png" id="3_80ti6"]
 [ext_resource type="Texture2D" uid="uid://c46dbtr3xp40r" path="res://assets/Mini_Icons.png" id="3_sgyd2"]
+[ext_resource type="Script" path="res://UI/upgrades_locations_nav.gd" id="4_ajyeb"]
 [ext_resource type="Theme" uid="uid://xnk1sn3p84f7" path="res://Themes/Alien_buttons.tres" id="5_8pnjh"]
 [ext_resource type="Texture2D" uid="uid://cnpsp8yns21na" path="res://assets/arrow.png" id="5_jhnrn"]
 [ext_resource type="Script" path="res://UI/settings_panel.gd" id="7_ad4nq"]
@@ -499,11 +500,11 @@ size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_dihul")
 
 [node name="upgrades_Locations_nav" type="HBoxContainer" parent="MarginContainer/upgrade_nav_container"]
-custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 15
+script = ExtResource("4_ajyeb")
 
 [node name="Scrapyard_Upgrades" type="TextureButton" parent="MarginContainer/upgrade_nav_container/upgrades_Locations_nav"]
 custom_minimum_size = Vector2(70, 70)
