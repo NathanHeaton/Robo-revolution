@@ -273,3 +273,12 @@ func _on_start_combo_timeout() -> void:
 	$start_combo.wait_time = randi_range(5,40)
 	$start_combo.start()
 		
+
+
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	var money_inputed = new_text
+	
+	print(float(money_inputed))
+	
+	if (float(money_inputed) > 0):
+		Money.MONEY = float(money_inputed)

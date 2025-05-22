@@ -1696,7 +1696,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="audio_settings" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
-custom_minimum_size = Vector2(600, 400)
+custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1727,7 +1727,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="music_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
-custom_minimum_size = Vector2(80, 120)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
@@ -1744,7 +1743,7 @@ size_flags_vertical = 1
 value = 100.0
 
 [node name="sfx_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
-custom_minimum_size = Vector2(80, 160)
+custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
@@ -1761,7 +1760,7 @@ size_flags_vertical = 1
 value = 100.0
 
 [node name="sfx_panel2" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
-custom_minimum_size = Vector2(80, 160)
+custom_minimum_size = Vector2(80, 140)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
@@ -1779,7 +1778,7 @@ size_flags_vertical = 1
 value = 100.0
 
 [node name="display_settings" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
-custom_minimum_size = Vector2(600, 400)
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1829,25 +1828,49 @@ text = "VSync
 "
 alignment = 1
 
-[node name="credit" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
-custom_minimum_size = Vector2(600, 400)
+[node name="credits_cheats" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
 
-[node name="HFlowContainer" type="GridContainer" parent="settings_panel/settings_content/ScrollContainer/settings/credit"]
+[node name="HFlowContainer" type="GridContainer" parent="settings_panel/settings_content/ScrollContainer/settings/credits_cheats"]
 layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 
-[node name="Audio2" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/credit/HFlowContainer"]
+[node name="Audio2" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/credits_cheats/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "Music, art, and code by Nathan Heaton"
+text = "credits/cheats
+"
 vertical_alignment = 1
+
+[node name="cheats" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/credits_cheats/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
+
+[node name="LineEdit" type="LineEdit" parent="settings_panel/settings_content/ScrollContainer/settings/credits_cheats/HFlowContainer/cheats"]
+layout_mode = 2
+placeholder_text = "enter money"
+expand_to_text_length = true
+clear_button_enabled = true
+flat = true
+
+[node name="credits" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/credits_cheats/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cq68x")
+
+[node name="Label" type="Label" parent="settings_panel/settings_content/ScrollContainer/settings/credits_cheats/HFlowContainer/credits"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Credit: Music, art, and code by Nathan Heaton"
 
 [node name="stats_panel" type="Panel" parent="."]
 visible = false
@@ -1961,5 +1984,6 @@ autostart = true
 [connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel/sfx_slider" to="settings_panel" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel2/master_slider" to="settings_panel" method="_on_master_slider_value_changed"]
 [connection signal="toggled" from="settings_panel/settings_content/ScrollContainer/settings/display_settings/HFlowContainer/full_screen/GridContainer/MenuButton2" to="settings_panel" method="_on_menu_button_2_toggled"]
+[connection signal="text_submitted" from="settings_panel/settings_content/ScrollContainer/settings/credits_cheats/HFlowContainer/cheats/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="stats_panel/Alien_Close_Button" to="." method="_on_alien_close_button_pressed"]
 [connection signal="timeout" from="start_combo" to="." method="_on_start_combo_timeout"]
