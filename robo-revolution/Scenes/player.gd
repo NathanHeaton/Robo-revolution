@@ -94,12 +94,12 @@ func _upgrade(upgrade):
 
 
 func strength_upgrade(level: int):
-	var new_strength = 1 + log(level + 2) * 15 + (level / 5)
+	var new_strength = 1 + log(level + 2) * 17 + (level / 5)
 	GameStats.set_stat("physical", "strength", new_strength)
 	GameStats.set_stat("physical", "max_health", GameStats.stats["physical"]["max_health"] + level * 15)
 
 func speed_upgrade(level: int):
-	var new_speed = 400 + log(level + 2) * 50
+	var new_speed = 400 + log(level + 2) * 60
 	GameStats.set_stat("physical", "speed", new_speed)
 
 func combo_upgrade(level: int):
