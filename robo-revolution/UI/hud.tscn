@@ -653,10 +653,10 @@ custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 26.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 1184.0
+offset_bottom = -92.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -733,10 +733,10 @@ custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 26.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 1184.0
+offset_bottom = -100.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -809,10 +809,10 @@ custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 26.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 1184.0
+offset_bottom = -92.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -889,10 +889,10 @@ custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 26.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 1184.0
+offset_bottom = -92.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -969,10 +969,10 @@ custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 26.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 1184.0
+offset_bottom = -92.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -1049,10 +1049,10 @@ custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 26.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 1184.0
+offset_bottom = -92.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -1129,10 +1129,10 @@ custom_minimum_size = Vector2(1160, 760)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 26.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 1184.0
+offset_bottom = -92.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -1210,10 +1210,10 @@ custom_minimum_size = Vector2(1160, 400)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 394.0
-offset_right = 1182.0
-offset_bottom = -98.0
+offset_left = 24.0
+offset_top = 392.0
+offset_right = 1184.0
+offset_bottom = -100.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -1394,10 +1394,10 @@ custom_minimum_size = Vector2(1160, 400)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 42.0
-offset_top = 92.0
-offset_right = 1202.0
-offset_bottom = -400.0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 1184.0
+offset_bottom = -380.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -1464,41 +1464,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
 
-[node name="MarginContainer" type="MarginContainer" parent="achievements_panel/Scrapyard_content/Panel"]
-custom_minimum_size = Vector2(900, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="Upgarde_Content_Panel" type="Panel" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer"]
+[node name="Upgarde_Content_Panel" type="Panel" parent="achievements_panel/Scrapyard_content/Panel"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
 
-[node name="MarginContainer" type="MarginContainer" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
-custom_minimum_size = Vector2(350, 0)
+[node name="Description" type="Label" parent="achievements_panel/Scrapyard_content/Panel/Upgarde_Content_Panel"]
 layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Description" type="Label" parent="achievements_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 886.0
+offset_bottom = 91.0
 theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
 theme_override_font_sizes/font_size = 24
-text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
-"
+text = "Coming soon!"
 autowrap_mode = 3
 
 [node name="profile_panel" type="Panel" parent="."]
@@ -1507,10 +1485,10 @@ custom_minimum_size = Vector2(1160, 400)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 63.0
-offset_top = 62.0
-offset_right = 1223.0
-offset_bottom = -430.0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 1184.0
+offset_bottom = -380.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 
@@ -1578,52 +1556,31 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_xe6n0")
 
-[node name="MarginContainer" type="MarginContainer" parent="profile_panel/Scrapyard_content/Panel"]
-custom_minimum_size = Vector2(900, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="Upgarde_Content_Panel" type="Panel" parent="profile_panel/Scrapyard_content/Panel/MarginContainer"]
+[node name="Upgarde_Content_Panel" type="Panel" parent="profile_panel/Scrapyard_content/Panel"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o78p2")
 
-[node name="MarginContainer" type="MarginContainer" parent="profile_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="profile_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer"]
-custom_minimum_size = Vector2(350, 0)
+[node name="Description" type="Label" parent="profile_panel/Scrapyard_content/Panel/Upgarde_Content_Panel"]
 layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Description" type="Label" parent="profile_panel/Scrapyard_content/Panel/MarginContainer/Upgarde_Content_Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 886.0
+offset_bottom = 91.0
 theme_override_colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
 theme_override_font_sizes/font_size = 24
-text = "When you prestige all of your money is converted into power crystals, ALL of your upgrades are except for power crystal upgrades
-"
+text = "Coming soon!"
 autowrap_mode = 3
 
 [node name="settings_panel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(800, 400)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = 113.0
-offset_right = 829.0
-offset_bottom = -143.0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 824.0
+offset_bottom = -144.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ugnei")
 script = ExtResource("7_ad4nq")

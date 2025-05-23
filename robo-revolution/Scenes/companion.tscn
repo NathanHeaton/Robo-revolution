@@ -197,6 +197,8 @@ radius = 8.66667
 height = 25.3333
 
 [node name="companion" type="CharacterBody2D"]
+z_index = -1
+z_as_relative = false
 rotation = 1.5708
 scale = Vector2(3, 3)
 collision_layer = 2
