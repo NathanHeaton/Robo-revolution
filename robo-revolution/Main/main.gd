@@ -8,7 +8,7 @@ signal rarity_upgraded(rarity)
 
 func _ready() -> void:
 	newGame()
-	Money.MONEY = 0
+	Money.MONEY = 10000000
 	Money.POWER_C = 0
 	GameStats.set_stat("luck","item_spawn_region", Rect2(Vector2(30,30),Vector2(1920 - 60, 1080 - 60)))
 	ItemData.connect("collected_item",Callable(self,"_on_item_collector_collect"))

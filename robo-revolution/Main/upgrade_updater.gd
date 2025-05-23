@@ -80,9 +80,10 @@ func _spawnrate_upgrade(level: int):
 
 func _rarity_upgrade(level: int):
 	if 	GameStats.stats["luck"]["scrapyard"] < 1:
-		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.stats["luck"]["rarity_lvl"] += 1
 		GameStats.set_stat("luck", "rarity_lvl",null )
 		emit_signal("rarity_upgraded","rarity")
+		print("rarity level: ",GameStats.stats["luck"]["rarity_lvl"])
 	GameStats.set_stat("luck","scrapyard", level)
 
 func _combo_increase_upgrade(level: int):
@@ -97,9 +98,10 @@ func _item_focuser_upgrade(level: int):
 #============================================================================================================================
 func _rarity_upgrade_plus(level: int):
 	if GameStats.stats["luck"]["underground"] < 1:
-		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.stats["luck"]["rarity_lvl"] += 1
 		GameStats.set_stat("luck", "rarity_lvl", null)
 		emit_signal("rarity_upgraded","rarity+")
+		print("rarity level: ",GameStats.stats["luck"]["rarity_lvl"])
 	GameStats.set_stat("luck","underground", level)
 
 func _super_combo_upgrade(level: int):
@@ -129,9 +131,10 @@ func _refinement_upgrade(level: int):
 #============================================================================================================================
 func _rarity_upgrade_2plus(level: int):
 	if (GameStats.stats["luck"]["ocean"] < 1):
-		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.stats["luck"]["rarity_lvl"] += 1
 		GameStats.set_stat("luck", "rarity_lvl",null )
 		emit_signal("rarity_upgraded","rarity++")
+		print("rarity level: ",GameStats.stats["luck"]["rarity_lvl"])
 	GameStats.set_stat("luck","ocean", level)
 
 func apply_companion_upgrades():
@@ -151,9 +154,10 @@ func apply_drill_burst():
 #============================================================================================================================
 func _rarity_upgrade_3plus(level: int):
 	if (GameStats.stats["luck"]["alien"] < 1):
-		GameStats.stats["luck"]["rarity_lvl"] + 1
+		GameStats.stats["luck"]["rarity_lvl"] += 1
 		GameStats.set_stat("luck", "rarity_lvl",null )
 		emit_signal("rarity_upgraded","rarity+++")
+		print("rarity level: ",GameStats.stats["luck"]["rarity_lvl"])
 	GameStats.set_stat("luck","alien", level)
 
 func apply_auto_combo():

@@ -1697,7 +1697,7 @@ text = "music"
 [node name="music_slider" type="HSlider" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/music_panel"]
 layout_mode = 2
 size_flags_vertical = 1
-value = 100.0
+value = 50.0
 
 [node name="sfx_panel" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
 custom_minimum_size = Vector2(0, 140)
@@ -1714,7 +1714,7 @@ text = "SFX"
 [node name="sfx_slider" type="HSlider" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer/sfx_panel"]
 layout_mode = 2
 size_flags_vertical = 1
-value = 100.0
+value = 50.0
 
 [node name="sfx_panel2" type="PanelContainer" parent="settings_panel/settings_content/ScrollContainer/settings/audio_settings/HFlowContainer"]
 custom_minimum_size = Vector2(80, 140)
